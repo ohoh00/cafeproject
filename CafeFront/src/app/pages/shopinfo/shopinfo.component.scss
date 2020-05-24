@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Mali:wght@300&display=swap" rel="stylesheet');
+.bgfull{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.bggrey{
+    width: 100%;
+    height: 100%;
+    background-color: #BBBBBB;
+}
+.titleBack {
+    color: black;
+    font-family: "Mali";
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bolder;
+   
+}
+.titleMedBack {
+    color: black;
+    font-family: "Mali";
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bolder;
+   
+}
+.titleMedBackNB {
+    color: black;
+    font-family: "Mali";
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    }
+    .map-container iframe{
+    left:0;
+    top:0;
+    height:75%;
+    width:90%;
+    position:absolute;
+    }

@@ -1,0 +1,30 @@
+.map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    border-radius: 25px;
+    }
+    .map-container iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+    }
+
+    .titleBack {
+        color: black;
+        font-family: "Mali";
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+    .btn-rounded-corners {
+        border-radius: 25px;
+        width: 150px;
+        height: 50px;
+        margin-left: 320px;
+    }
