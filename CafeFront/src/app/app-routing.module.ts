@@ -8,7 +8,8 @@ import { RegshopComponent } from './pages/regshop/regshop.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ShopinfoComponent } from './pages/shopinfo/shopinfo.component';
 import { SummaryComponent } from './pages/summary/summary.component';
-
+import { OrderHComponent } from './pages/order-h/order-h.component';
+import { PayComponent } from './pages/pay/pay.component';
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'lists/:listId', component: TaskViewComponent },
@@ -19,7 +20,9 @@ const routes: Routes = [
   { path: 'regshop', component: RegshopComponent},
   { path: 'home', component: HomeComponent},
   { path: 'shopinfo', component: ShopinfoComponent},
-  { path: 'summary', component: SummaryComponent},
+  { path: 'summary', component: SummaryComponent },
+  { path: 'orderh', component: OrderHComponent },
+  { path: 'pay', component: PayComponent},
 ];
 
 @NgModule({
