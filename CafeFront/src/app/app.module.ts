@@ -14,6 +14,8 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { FuncbarComponent } from './pages/funcbar/funcbar.component';
 import { ShopinfoComponent } from './pages/shopinfo/shopinfo.component';
 import { SummaryComponent } from './pages/summary/summary.component';
+import { OrderHComponent } from './pages/order-h/order-h.component';
+import { PayComponent } from './pages/pay/pay.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { SummaryComponent } from './pages/summary/summary.component';
     MenuComponent,
     FuncbarComponent,
     ShopinfoComponent,
-    SummaryComponent
+    SummaryComponent,
+    OrderHComponent,
+    PayComponent
   ],
   imports: [
     BrowserModule,
