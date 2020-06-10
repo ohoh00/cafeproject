@@ -8,8 +8,14 @@ import { RegshopComponent } from './pages/regshop/regshop.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ShopinfoComponent } from './pages/shopinfo/shopinfo.component';
 import { SummaryComponent } from './pages/summary/summary.component';
+<<<<<<< HEAD
 import { OrderHComponent } from './pages/order-h/order-h.component';
 import { PayComponent } from './pages/pay/pay.component';
+=======
+import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
+
+
+>>>>>>> 082e2ecd1040a8976657bbbef2fc45976590c9ed
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'lists/:listId', component: TaskViewComponent },
@@ -20,9 +26,15 @@ const routes: Routes = [
   { path: 'regshop', component: RegshopComponent},
   { path: 'home', component: HomeComponent},
   { path: 'shopinfo', component: ShopinfoComponent},
+<<<<<<< HEAD
   { path: 'summary', component: SummaryComponent },
   { path: 'orderh', component: OrderHComponent },
   { path: 'pay', component: PayComponent},
+=======
+  { path: 'summary', component: SummaryComponent},
+  { path: 'managemenu', component: ManagemenuComponent}
+  
+>>>>>>> 082e2ecd1040a8976657bbbef2fc45976590c9ed
 ];
 
 @NgModule({

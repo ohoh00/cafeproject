@@ -13,7 +13,70 @@
     letter-spacing: 0.5px;
     text-align: center;
 }
+.titleBmed {
+    color: black;
+    font-size: 18px;
+    font-family: "Mali";
+    letter-spacing: 0.5px;
+    text-align: center;
+    font-weight: bolder;
+}
+.titleBmedA {
+  color: black;
+  font-size: 16px;
+  font-family: "Mali";
+  letter-spacing: 0.5px;
+  text-align: center;
+  font-weight: bolder;
+}
+.titleBsmall {
+    color: black;
+    font-size: 12px;
+    font-family: "Mali";
+    letter-spacing: 0.5px;
+    text-align: center;
+    font-weight: bolder;
+}
 img {
     border-radius: 50%;
   }
+<<<<<<< HEAD
   
+=======
+
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 350px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    border-radius: 25px;
+    margin-left: -220px;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .btn_slshop{
+    border-radius: 25px;
+    background: white;
+    width: 100%;
+    height:40px;
+    opacity: 85%;
+}
+.btn_slshop2{
+  border-radius: 25px;
+  background: white;
+  width: 100%;
+  height:30px;
+  opacity: 85%;
+}
+>>>>>>> 082e2ecd1040a8976657bbbef2fc45976590c9ed

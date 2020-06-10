@@ -38,3 +38,48 @@ img {
     border-radius: 25px;
     color: red;
 }
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+body{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 42px;
+	background: #f7f7f7;
+}
+span{
+	color: white;
+    font-size: 32px;
+    letter-spacing: 0.5px;
+    margin-top: 12px;
+	animation: span 3s ease-in infinite alternate;
+}
+.main{
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+.letter{
+	display: inline-flex;
+	height: 27px;
+	/* border: 2.5px solid #FF1EAD; */
+	border: 2.35px solid white;
+	border-radius: 14px;
+	
+	animation: letter 2s ease-in-out infinite alternate;
+}
+@keyframes span {
+	0%,30%{ margin: 0 15px; }
+	70%,100%{ margin: 0 5px; }
+}
+@keyframes letter {
+	0%,30%{ width: 27px; }
+	70%,100%{ width: 30vw; }
+}
