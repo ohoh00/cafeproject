@@ -14,6 +14,8 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { FuncbarComponent } from './pages/funcbar/funcbar.component';
 import { ShopinfoComponent } from './pages/shopinfo/shopinfo.component';
 import { SummaryComponent } from './pages/summary/summary.component';
+import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,15 @@ import { SummaryComponent } from './pages/summary/summary.component';
     MenuComponent,
     FuncbarComponent,
     ShopinfoComponent,
-    SummaryComponent
+    SummaryComponent,
+    ManagemenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

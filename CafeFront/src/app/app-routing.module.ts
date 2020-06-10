@@ -8,6 +8,8 @@ import { RegshopComponent } from './pages/regshop/regshop.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ShopinfoComponent } from './pages/shopinfo/shopinfo.component';
 import { SummaryComponent } from './pages/summary/summary.component';
+import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'shopinfo', component: ShopinfoComponent},
   { path: 'summary', component: SummaryComponent},
+  { path: 'managemenu', component: ManagemenuComponent}
+  
 ];
 
 @NgModule({
