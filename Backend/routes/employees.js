@@ -43,7 +43,32 @@ function insertUser(dataUsers){
         })
     })
 }
+function getUser(id){
+    return new Promise((resolve, reject) => {
+        Employees.findById(id,(err,data) => {
+            if(err)
+              reject(new Error('Connot get employee'))
+            else
+              if(data)
+                  resolve(data)
+              else
+                  reject(new Error(`Employee ID ${id} is not exist`))
+        })
+    })
+    
+}
 
+router.route('/getEmployee/:id').get((req,res) => {
+    const id = req.params.id
+    getUser(id).then( result => {
+        if(data)
+            res.status(200).json(result)
+        else
+            res.status(404).send({message : `Cannot find employee with ID  ${id}`})
+    }).catch( err => {
+        res.status(500).send({message: `Error: ${err}`})
+    })
+})
 router.route('/signup').post((req,res) => {
         const payload ={
             email: req.body.email,

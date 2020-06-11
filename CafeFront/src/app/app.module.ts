@@ -4,7 +4,6 @@ import { HttpClientModule} from "@angular/common/http"
 import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TaskViewComponent } from './pages/task-view/task-view.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegmemComponent } from './pages/regmem/regmem.component';
 import { SlshopComponent } from './pages/slshop/slshop.component';
@@ -22,7 +21,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
-    TaskViewComponent,
     LoginComponent,
     RegmemComponent,
     SlshopComponent,

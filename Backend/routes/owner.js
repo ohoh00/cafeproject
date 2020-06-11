@@ -93,4 +93,30 @@ router.route('/signup').post((req,res) => {
         console.log(err)
     })
 })
+
+function getOwner(id){
+    return new Promise((resolve, reject) => {
+        Orders.findById(id,(err,data) => {
+          if(err)
+            reject(new Error('Connot get owner'))
+          else
+            if(data)
+                resolve(data)
+            else
+                reject(new Error(`Owner ID ${id} is not exist`))
+      })
+    }) 
+}
+
+router.route('/getOwner/:id').get((req,res) => {
+    const id = req.params.id
+    getOwner(id).then( result => {
+        if(data)
+            res.status(200).json(result)
+        else
+            res.status(404).send({message : `Cannot find order with ID  ${id}`})
+    }).catch( err => {
+        res.status(500).send({message: `Error: ${err}`})
+    })
+})
 module.exports = router
