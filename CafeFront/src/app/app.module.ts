@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule} from "@angular/common/http"
-import { FormsModule } from '@angular/forms'
+import { ReactiveFormsModule,FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -17,6 +17,8 @@ import { OrderHComponent } from './pages/order-h/order-h.component';
 import { PayComponent } from './pages/pay/pay.component';
 import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { CustomerComponent } from './pages/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SummaryComponent,
     OrderHComponent,
     PayComponent,
-    ManagemenuComponent
+    ManagemenuComponent,
+    EmployeeComponent,
+    CustomerComponent
 
   ],
   imports: [
@@ -40,7 +44,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
