@@ -18,6 +18,8 @@ import { OrderHComponent } from './pages/order-h/order-h.component';
 import { PayComponent } from './pages/pay/pay.component';
 import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { CustomerComponent } from './pages/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SummaryComponent,
     OrderHComponent,
     PayComponent,
-    ManagemenuComponent
+    ManagemenuComponent,
+    EmployeeComponent,
+    CustomerComponent
 
   ],
   imports: [

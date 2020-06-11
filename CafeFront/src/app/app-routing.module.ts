@@ -11,7 +11,8 @@ import { SummaryComponent } from './pages/summary/summary.component';
 import { OrderHComponent } from './pages/order-h/order-h.component';
 import { PayComponent } from './pages/pay/pay.component';
 import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
-
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { CustomerComponent } from './pages/customer/customer.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -27,8 +28,9 @@ const routes: Routes = [
   { path: 'orderh', component: OrderHComponent },
   { path: 'pay', component: PayComponent},
   { path: 'summary', component: SummaryComponent},
-  { path: 'managemenu', component: ManagemenuComponent}
-  
+  { path: 'managemenu', component: ManagemenuComponent},
+  { path: 'employee', component: EmployeeComponent},
+  { path: 'customer', component: CustomerComponent}
 ];
 
 @NgModule({
