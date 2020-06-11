@@ -14,13 +14,10 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { FuncbarComponent } from './pages/funcbar/funcbar.component';
 import { ShopinfoComponent } from './pages/shopinfo/shopinfo.component';
 import { SummaryComponent } from './pages/summary/summary.component';
-<<<<<<< HEAD
 import { OrderHComponent } from './pages/order-h/order-h.component';
 import { PayComponent } from './pages/pay/pay.component';
-=======
 import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
->>>>>>> 082e2ecd1040a8976657bbbef2fc45976590c9ed
 
 @NgModule({
   declarations: [
@@ -35,12 +32,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FuncbarComponent,
     ShopinfoComponent,
     SummaryComponent,
-<<<<<<< HEAD
     OrderHComponent,
     PayComponent
-=======
     ManagemenuComponent
->>>>>>> 082e2ecd1040a8976657bbbef2fc45976590c9ed
+
   ],
   imports: [
     BrowserModule,
