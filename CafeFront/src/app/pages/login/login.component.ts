@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import {OwnerService} from '../../service/owner.service'
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   password: string;
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private os : OwnerService
   ) { }
 
   ngOnInit(): void {
@@ -21,19 +23,20 @@ export class LoginComponent implements OnInit {
 
   
   clickLogin(){
-    console.log("Login work!");
-      if(this.id=="admin"){
-        if(this.password=="1703"){
-          alert("Login Success");
-        this.router.navigateByUrl('/slshop');
+    const owner = {email:this.id,password:this.password}
+    this.os.login(owner).subscribe(
+      data => {
+        if(data.status){
+          this.router.navigateByUrl('/slshop');
         }
         else{
-          alert("Wrog password");
+          alert('Username or Password is incorrect')
         }
+      },
+      err => {
+        alert('Username or Password is incorrect')
       }
-      else{
-        alert("Wrog id");
-      }
+    )
   }
 
 }

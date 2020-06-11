@@ -94,9 +94,43 @@ router.route('/signup').post((req,res) => {
     })
 })
 
+function login(email){
+    return new Promise((resolve, reject) => {
+      User.findOne({email:email},(err,data) => {
+          if(err){
+              reject(new Error('Cannot find username'))
+          }
+          else{
+            if(data){
+                resolve({id:data._id,email:data.email,password:data.password})
+
+            }
+            else{
+                reject(new Error('Cannot find username'))
+            }
+          }
+      })
+    })
+    
+}
+async function compareHash(Text,myHash) {
+    return new Promise((resolve, reject) => {
+         bcr.compare(Text,myHash,(err,data) => {
+             if(err){
+                 
+                 reject(new Error('Error bcrypt compare'))
+             }
+             else{
+                 
+                 resolve({status: data})
+             }
+         })
+    })
+ }
+
 function getOwner(id){
     return new Promise((resolve, reject) => {
-        Orders.findById(id,(err,data) => {
+        User.findById(id,(err,data) => {
           if(err)
             reject(new Error('Connot get owner'))
           else
@@ -108,13 +142,37 @@ function getOwner(id){
     }) 
 }
 
+router.route('/login').post(async (req,res) => {
+    const payload = {
+        email:req.body.email,
+        password:req.body.password
+    }
+    console.log(payload)
+    try {
+        const result = await login(payload.email)
+        const loginStatus = await compareHash(payload.password,result.password)
+        console.log(result)
+        const status = loginStatus.status
+
+        if(status){
+            res.status(200).json({result,status})
+        }
+        else{
+            res.status(200).json({status})
+        }
+    } catch (error) {
+        res.status(404).send(error)
+        
+    }
+})
+
 router.route('/getOwner/:id').get((req,res) => {
     const id = req.params.id
     getOwner(id).then( result => {
-        if(data)
+        if(result)
             res.status(200).json(result)
         else
-            res.status(404).send({message : `Cannot find order with ID  ${id}`})
+            res.status(404).send({message : `Cannot find Owner with ID  ${id}`})
     }).catch( err => {
         res.status(500).send({message: `Error: ${err}`})
     })
