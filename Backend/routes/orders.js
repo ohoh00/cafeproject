@@ -102,7 +102,7 @@ router.route('/getdOrder/:id').get((req,res) => {
     })
 })
 
-router.route('/getshop').get((req,res) => {
+router.route('/getOrder').get((req,res) => {
     getAllOrders().then( result => {
         if(data)
             res.status(200).json(result)
