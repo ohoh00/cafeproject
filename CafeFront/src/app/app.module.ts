@@ -33,7 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ShopinfoComponent,
     SummaryComponent,
     OrderHComponent,
-    PayComponent
+    PayComponent,
     ManagemenuComponent
 
   ],
