@@ -8,12 +8,12 @@ import {map} from 'rxjs/operators'
 export class MenuService {
 
   menu: any
-  URL = 'http://localhost:3000/'
+  URL = 'http://localhost:3000'
 
   constructor(private http : HttpClient) { }
 
   addMenu(menu){
-    return this.http.post<any>(`${this.URL}/menu/addMenu`,menu).pipe(
+    return this.http.post<any>(`${this.URL}menu/addMenu`,menu).pipe(
       map(data =>{
         return data
       })
@@ -21,11 +21,11 @@ export class MenuService {
   }
 
   getAllMenu(){
-    return this.http.get<any>(`${this.URL}/menu/getMenu`).pipe(
+    return this.http.get<any>(`${this.URL}menu/getMenu`).pipe(
       map(data => {
         if(data){
           this.menu = data
-          console.log(data)
+          console.log(this.menu)
         }
         return this.menu
       })

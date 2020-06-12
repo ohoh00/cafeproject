@@ -101,7 +101,8 @@ router.route('/signup').post((req,res) => {
             email: req.body.email,
             name: req.body.name,
             phoneNumber: req.body.phoneNumber,
-            position: req.body.position
+            position: req.body.position,
+            
         }
         console.log(payload)
         insertUser(payload)

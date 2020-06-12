@@ -8,12 +8,12 @@ import {map} from 'rxjs/operators'
 export class IngredientsService {
 
   ingredient: any
-  URL = 'http://localhost:3000/'
+  URL = 'http://localhost:3000'
 
   constructor(private http : HttpClient) { }
 
   addIngredient(ingredient){
-    return this.http.post<any>(`${this.URL}/ingredients/addIngredient`,ingredient).pipe(
+    return this.http.post<any>(`${this.URL}ingredients/addIngredient`,ingredient).pipe(
       map(data =>{
         return data
       })
@@ -21,7 +21,7 @@ export class IngredientsService {
   }
 
   getAllIngredients(){
-    return this.http.get<any>(`${this.URL}/ingredients/getIngredients`).pipe(
+    return this.http.get<any>(`${this.URL}ingredients/getIngredients`).pipe(
       map(data => {
         if(data){
           this.ingredient = data
