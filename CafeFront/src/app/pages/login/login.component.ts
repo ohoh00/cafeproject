@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     const owner = {email:this.id,password:this.password}
     this.os.login(owner).subscribe(
       data => {
-        
         if(data){
           this.router.navigateByUrl('/slshop');
         }
