@@ -7,8 +7,9 @@ var schema = require('mongoose').Schema
 const menuSchema = schema({
    name:String,
    type: String,
-   ingredientDetails: String,
-   status:Boolean
+   price: Number,
+   img: String
+   
 },{
     collection: 'menu'
 })
@@ -41,10 +42,9 @@ function addMenu(MenuDetails){
     return new Promise((res,rej) => {
         var new_user = new Menu({
             name:MenuDetails.name,
-            status:MenuDetails.status,
-            ingredientDetails:MenuDetails.ingredientDetails,
-            type:MenuDetails.type
-
+            type:MenuDetails.type,
+            price:MenuDetails.price,
+            img:MenuDetails.img
         })
         new_user.save((err,data) => {
             if(err){
@@ -60,9 +60,9 @@ function addMenu(MenuDetails){
 router.route('/addMenu').post((req,res) => {
         const payload ={
             name:req.body.name,
-            status:req.body.status,
-            ingredientDetails:req.body.ingredientDetails,
-            type:req.body.type
+            type:req.body.type,
+            price:req.body.price,
+            img:req.body.img
         }
         console.log(payload)
         addMenu(payload)
@@ -79,7 +79,7 @@ router.route('/addMenu').post((req,res) => {
 
 router.route('/getMenu').get((req,res) => {
     getMenu().then( result => {
-        if(data)
+        if(result)
             res.status(200).json(result)
         else
             res.status(204).send({message : `Document is empty.`})
