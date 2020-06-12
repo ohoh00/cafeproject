@@ -57,6 +57,33 @@ function getUser(id){
     })
     
 }
+function getAllEmolyees(){
+    return new Promise((resolve, reject) => {
+        Employees.find({},(err,data) => {
+          if (err) {
+              reject(new Error('Cannot get orders'))
+          } else {
+              if(data){
+                  resolve(data)
+              }
+              else{
+                reject(new Error('Cannot get orders'))
+              }
+          }
+      })
+    })
+}
+router.route('/getEmployee').get((req,res) => {
+    getAllEmolyees().then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(204).send({message : 'Document is empty.'})
+    })
+    .catch( err => {
+        res.status(500).send({message: `Eroor: ${err}`})
+    })
+})
 
 router.route('/getEmployee/:id').get((req,res) => {
     const id = req.params.id
@@ -74,7 +101,7 @@ router.route('/signup').post((req,res) => {
             email: req.body.email,
             name: req.body.name,
             phoneNumber: req.body.phoneNumber,
-            birth: req.body.position
+            position: req.body.position
         }
         console.log(payload)
         insertUser(payload)

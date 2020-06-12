@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {EmployeeService} from '../../service/employee.service'
 
 @Component({
   selector: 'app-employee',
@@ -7,9 +9,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor() { }
+  employees:any
 
-  ngOnInit(): void {
+  employeeForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    position: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+  });
+
+  constructor(private em: EmployeeService) { 
+    this.onLoading();
+    
   }
 
+  ngOnInit(): void {
+    
+  }
+
+  
+  addEmployee() {
+    this.em.addEmployee(this.employeeForm.value).subscribe(
+      
+      data => {
+        console.log(data)
+        alert('Employee added successfully');
+        this.employeeForm.reset();
+      },
+      err => {
+        console.log(err);
+      });
+  }
+  onLoading() {
+    try {
+      this.em.getEmployee().subscribe(
+        data => {
+          this.employees = data;
+      },
+        err => {
+          console.log(err)
+        });
+    } catch (error) {
+        console.log(error)
+    }
+  }
+  
+  
 }
