@@ -47,7 +47,11 @@
               </div>
               <div class="form-group">
                 <label>รูปภาพ</label>
+<<<<<<< HEAD
                 <input type="file" class="form-control-file" (change)="onChangeImg($event)">
+=======
+                <input type="file" class="form-control-file" formControlName="img">
+>>>>>>> oh
               </div>
             </form>
           </div>
@@ -74,12 +78,27 @@
           </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
           <tr *ngFor="let item of menu; index as i">
+=======
+<<<<<<< Updated upstream
+          <tr>
+            <th scope="row">1</th>
+            <td>ลาเต้</td>
+            <td>ร้อน</td>
+            <td>50</td>
+=======
+          <tr *ngFor="let item of menus; index as i">
+>>>>>>> oh
             <th scope="row">{{i+1}}</th>
             <td>{{item.name}}</td>
             <td>{{item.type}}</td>
             <td>{{item.price}}</td>
             <td><img [src]="item.img" style="height:150px;"></td>
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> oh
           </tr>
         </tbody>
       </table>

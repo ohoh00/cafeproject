@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+<<<<<<< HEAD
 import { MenuService } from '../../service/menu.service'
+=======
+>>>>>>> oh
 
 @Component({
   selector: 'app-managemenu',
@@ -16,18 +19,35 @@ export class ManagemenuComponent implements OnInit {
     img: new FormControl('', [Validators.required])
   });
 
+<<<<<<< HEAD
   menu:any
 
+=======
+<<<<<<< Updated upstream
+  constructor() { }
+=======
+  menus:any
+>>>>>>> oh
 
   previewLoaded:boolean = false
 
   constructor(private ms: MenuService) {
     this.onLoading();
    }
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> oh
 
   ngOnInit(): void {
   }
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+  
+=======
+>>>>>>> oh
   addMenu(){
     this.ms.addMenu(this.manageForm.value).subscribe(
       data => {
@@ -40,6 +60,7 @@ export class ManagemenuComponent implements OnInit {
       });
   }
 
+<<<<<<< HEAD
   onLoading() {
     try {
       this.ms.getAllMenu().subscribe(
@@ -55,6 +76,8 @@ export class ManagemenuComponent implements OnInit {
     }
   }
 
+=======
+>>>>>>> oh
   onChangeImg(e:any){
     if(e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -75,6 +98,7 @@ export class ManagemenuComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
   resetForm(){
     this.manageForm.reset();
     this.previewLoaded = false;
@@ -83,5 +107,21 @@ export class ManagemenuComponent implements OnInit {
 
   
     
+=======
+  onLoading() {
+    try {
+      this.ms.getAllMenu().subscribe(
+        data => {
+          this.menus = data;
+      },
+        err => {
+          console.log(err)
+        });
+    } catch (error) {
+        console.log(error)
+    }
+  }
+>>>>>>> Stashed changes
+>>>>>>> oh
 
 }
