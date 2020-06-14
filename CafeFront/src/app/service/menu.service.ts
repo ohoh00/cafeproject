@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators'
 export class MenuService {
 
   menu: any
-  URL = 'http://localhost:3000'
+  URL = 'http://localhost:3000/'
 
   constructor(private http : HttpClient) { }
 
