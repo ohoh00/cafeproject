@@ -12,6 +12,7 @@ import { PayComponent } from './pages/pay/pay.component';
 import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
+import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component';
 import { OrderComponent } from './pages/order/order.component';
 
 const routes: Routes = [
@@ -29,7 +30,9 @@ const routes: Routes = [
   { path: 'managemenu', component: ManagemenuComponent},
   { path: 'employee', component: EmployeeComponent},
   { path: 'customer', component: CustomerComponent},
+  { path: 'manageingrt', component: ManageingrtComponent},
   { path: 'order', component: OrderComponent}
+
 ];
 
 @NgModule({

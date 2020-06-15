@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 var schema = require('mongoose').Schema
 const ingredientSchema = schema({
    name:String,
-   status:Boolean
+   status:String
 },{
     collection: 'ingredients'
 })
@@ -52,6 +52,7 @@ function addIngredient(ingredientDetails){
         })
     })
 }
+     
 
 router.route('/addIngredient').post((req,res) => {
         const payload ={
@@ -73,7 +74,7 @@ router.route('/addIngredient').post((req,res) => {
 
 router.route('/getIngredients').get((req,res) => {
     getIngredients().then( result => {
-        if(data)
+        if(result)
             res.status(200).json(result)
         else
             res.status(204).send({message : `Document is empty.`})

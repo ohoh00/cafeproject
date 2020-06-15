@@ -32,7 +32,8 @@ export class ManagemenuComponent implements OnInit {
       data => {
         console.log(data)
         alert('Menu added successfully');
-        this.manageForm.reset();
+        this.onLoading();
+        this.resetForm();
       },
       err =>{
         console.log(err);
@@ -64,7 +65,7 @@ export class ManagemenuComponent implements OnInit {
     try {
       this.ms.getAllMenu().subscribe(
         data => {
-          this.menus = data;
+          this.menus = data;       
       },
         err => {
           console.log(err)
@@ -72,6 +73,11 @@ export class ManagemenuComponent implements OnInit {
     } catch (error) {
         console.log(error)
     }
+  }
+
+  resetForm(){
+    this.manageForm.reset();
+    this.previewLoaded = false;
   }
 
 
