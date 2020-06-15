@@ -39,7 +39,7 @@ import { OrderComponent } from './pages/order/order.component';
     ManagemenuComponent,
     EmployeeComponent,
     CustomerComponent,
-    ManageingrtComponent
+    ManageingrtComponent,
     OrderComponent
 
   ],
