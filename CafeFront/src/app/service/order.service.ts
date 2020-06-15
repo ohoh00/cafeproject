@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators'
 export class OrderService {
 
   order : any
-  URL = 'http://localhost:3000/'
+  URL = 'http://localhost:3000'
 
   constructor(private http : HttpClient) { }
 

@@ -13,15 +13,15 @@ export class EmployeeService {
   constructor(private http : HttpClient) { }
 
   addEmployee(employee){
-    return this.http.post<any>(`${this.URL}/employees/signup`,employee).pipe(
+    return this.http.post<any>(`${this.URL}employees/signup`,employee).pipe(
       map(data =>{
         return data
       })
     )
   }
 
-  getEmployee(id){
-    return this.http.get<any>(`${this.URL}/employees/getEmployee/${id}`).pipe(
+  getEmployee(){
+    return this.http.get<any>(`${this.URL}employees/getEmployee`).pipe(
       map(data => {
         if(data){
           this.employee = data
