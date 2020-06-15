@@ -10,11 +10,8 @@
             <div class="titleFunc"><i class="fa fa-history"  style="color: white; margin-right: 10px;"></i>ประวัติออร์เดอร์</div>
         </button>
 
-        <select class="custom-select  mb-3">
-            <option selected>เลือกออเดอร์</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select class="custom-select  mb-3 form-control" formControlName="order"  #t (change)="onChange(t.value)">
+          <option *ngFor="let item of OrderList; index as  i" [value]="i"  >Order {{i+1}}</option>
         </select>
         </div>
         <div style="padding-right: 60px;">
@@ -28,20 +25,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>ลาเต้(ร้อน)</td>
-                  <td>1</td>
-                  <td>50</td>
+                <tr *ngFor="let item of OrderSlelct; index as i">
+                    <td scope="row">{{i+1}}</td>
+                    <td>{{item.o_name}}</td>
+                    <td>{{item.o_quantity}}</td>
+                    <td>{{item.o_price}}</td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>ลาเต้(เย็น)</td>
-                  <td>1</td>
-                  <td>50</td>
-                </tr>
-              </tbody>
+            </tbody>
             </table>
+              <p class="text-right">
+              <b>ราคารวม: {{this.Sum}} บาท </b>
+              </p>
           </div>
     </div>
 </div>
