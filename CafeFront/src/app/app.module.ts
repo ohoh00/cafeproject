@@ -19,6 +19,7 @@ import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
+import { OrderComponent } from './pages/order/order.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CustomerComponent } from './pages/customer/customer.component';
     PayComponent,
     ManagemenuComponent,
     EmployeeComponent,
-    CustomerComponent
+    CustomerComponent,
+    OrderComponent
 
   ],
   imports: [
