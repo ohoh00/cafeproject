@@ -26,8 +26,13 @@ export class MenuComponent implements OnInit {
     console.log(this.id)
     this.os.getOwner(this.id).subscribe(data => {
       this.customer = {name:data.name,email:data.email}
-      console.log(data)
+      console.log('name',this.customer.name)
+      console.log('this is data',data)
     })
+  }
+  logOut(){
+    this.local.remove('user')
+    this.router.navigate(['/login'])
   }
 
 }
