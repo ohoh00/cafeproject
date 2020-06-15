@@ -56,7 +56,33 @@ function getUser(id){
     })
     
 }
-
+function getAllCustomer(){
+    return new Promise((resolve, reject) => {
+        User.find({},(err,data) => {
+          if (err) {
+              reject(new Error('Cannot get orders'))
+          } else {
+              if(data){
+                  resolve(data)
+              }
+              else{
+                reject(new Error('Cannot get orders'))
+              }
+          }
+      })
+    })
+}
+router.route('/getCustomer').get((req,res) => {
+    getAllCustomer().then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(204).send({message : 'Document is empty.'})
+    })
+    .catch( err => {
+        res.status(500).send({message: `Eroor: ${err}`})
+    })
+})
 router.route('/getCustomer/:id').get((req,res) => {
     const id = req.params.id
     getUser(id).then( result => {

@@ -13,15 +13,15 @@ export class CustomerService {
   constructor(private http : HttpClient) { }
 
   addCustomer(customer){
-    return this.http.post<any>(`${this.URL}/customers/signup`,customer).pipe(
+    return this.http.post<any>(`${this.URL}customers/signup`,customer).pipe(
       map(data =>{
         return data
       })
     )
   }
 
-  getUser(id){
-    return this.http.get<any>(`${this.URL}/customers/getCustomer/${id}`).pipe(
+  getAlluser(){
+    return this.http.get<any>(`${this.URL}customers/getCustomer`).pipe(
       map(data => {
         if(data){
           this.customer = data
