@@ -12,7 +12,11 @@ import { PayComponent } from './pages/pay/pay.component';
 import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
+<<<<<<< HEAD
 import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component';
+=======
+import { OrderComponent } from './pages/order/order.component';
+>>>>>>> eceb86d841782b99ef8f6fe0dad4e96dd0428870
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -29,8 +33,12 @@ const routes: Routes = [
   { path: 'managemenu', component: ManagemenuComponent},
   { path: 'employee', component: EmployeeComponent},
   { path: 'customer', component: CustomerComponent},
+<<<<<<< HEAD
   { path: 'manageingrt', component: ManageingrtComponent},
 
+=======
+  { path: 'order', component: OrderComponent}
+>>>>>>> eceb86d841782b99ef8f6fe0dad4e96dd0428870
 ];
 
 @NgModule({

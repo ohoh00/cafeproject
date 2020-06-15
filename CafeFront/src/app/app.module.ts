@@ -19,7 +19,11 @@ import { ManagemenuComponent } from './pages/managemenu/managemenu.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
+<<<<<<< HEAD
 import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component';
+=======
+import { OrderComponent } from './pages/order/order.component';
+>>>>>>> eceb86d841782b99ef8f6fe0dad4e96dd0428870
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component'
     ManagemenuComponent,
     EmployeeComponent,
     CustomerComponent,
+<<<<<<< HEAD
     ManageingrtComponent
+=======
+    OrderComponent
+>>>>>>> eceb86d841782b99ef8f6fe0dad4e96dd0428870
 
   ],
   imports: [
