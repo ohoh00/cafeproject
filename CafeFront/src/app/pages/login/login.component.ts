@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import {OwnerService} from '../../service/owner.service'
+
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,9 @@ import {OwnerService} from '../../service/owner.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   id: string;
   password: string;
+  
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.os.login(owner).subscribe(
       data => {
         if(data){
-          this.router.navigateByUrl('/slshop');
+          this.router.navigate(['/slshop']);
         }
         else{
           alert('Username or Password is incorrect')

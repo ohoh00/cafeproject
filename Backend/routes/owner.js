@@ -3,7 +3,9 @@ var expressFunction = require('express')
 const router = expressFunction.Router()
 const mongoose = require('mongoose')
 const bcr = require('bcryptjs')
-
+const jwt = require('jsonwebtoken')
+const auth = require('../Auth')
+const KEY = 'G5N9i15w!tHu'
 var schema = require('mongoose').Schema
 const userSchema = schema({
     email: String,
@@ -155,7 +157,8 @@ router.route('/login').post(async (req,res) => {
         const status = loginStatus.status
 
         if(status){
-            res.status(200).json({result,status})
+            const token = jwt.sign(result,KEY, {expiresIn:60*5})
+            res.status(200).json({result,token,status})
         }
         else{
             res.status(200).json({status})
