@@ -25,6 +25,15 @@ export class ShopService {
       return this.shop
     }))
   }
+  getShopOw(id){
+    return this.http.get<any>(`http://localhost:3000/shops/getshopow/${id}`).pipe(map( data => {
+      if(data){
+        this.shop = data
+        console.log(data)
+      }
+      return this.shop
+    }))
+  }
 
   getAllShops(){
       return this.http.get<any>('http://localhost:3000/shops/getshop').pipe
