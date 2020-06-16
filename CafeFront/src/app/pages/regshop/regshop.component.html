@@ -24,13 +24,16 @@
 
                         </div>
                         <div class="col-sm-11">
+                            <form [formGroup]="shopForm">
                             <img class="card-img-top"
-                        src="https://pngimage.net/wp-content/uploads/2018/06/placeholder-icon-png-5.png"
-                        alt="Card image" style="width:100%">
+                                    [src]="this.shopForm.value.imageProfile"
+                                    alt="Card image" style="height: 300px; width: 300px;"></form>
                             <div class="form-group">
                             <label class="col-md-4 control-label" for="filebutton">รูปโปรไฟล์</label>
                             <div class="col-md-4">
-                                <input id="filebutton" name="filebutton" class="input-file" type="file">
+                                <form [formGroup]="shopForm">
+                                <input class="form-control-file" type="file" (change)="onChangeImg($event)">
+                                </form>
                             </div>
                             </div>
                             &nbsp;
@@ -59,57 +62,53 @@
                 <div class="col-sm-5">
                     &nbsp;
 
-
+                    <form [formGroup]="shopForm">
                     <div class="col-sm-9">
                         <label class="col-md-6 control-label" for="textinput">ชื่อร้าน</label>
-                        <input id="textinput" name="textinput" type="text" class="form-control input-md" required="">
+                        <input type="text" class="form-control input-md" formControlName="name">
                           
                         </div>&nbsp;
                     <div class="col-sm-5">
                         <label class="col-md-6 control-label" for="textinput">เบอร์ติดต่อ</label>
-                        <input id="textinput" name="textinput" type="text" class="form-control input-md" required="">
+                        <input type="text" class="form-control input-md" formControlName="phoneNumber">
                               
                     </div>
                     &nbsp;
                     <div class="col-sm-9">
                         <label class="col-md-6 control-label" for="textinput">คำอธิบายร้าน</label>
-                        <input id="textinput" name="textinput" type="text" class="form-control input-md" required="">
+                        <input type="text" class="form-control input-md" formControlName="description">
                               
                     </div>&nbsp;
 
                     <div class="row">
                         
-                        <div class="col-sm-5" style="margin-left: 15px;">
-                          <label class="col-md-5 control-label" for="passwordinput">เวลาเปิด</label>
-                          <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
+                        <div class="col-sm-6" style="margin-left: 15px;">
+                          <label class="col-md-5 control-label" for="passwordinput">เวลาเปิด-ปิด</label>
+                          <input type="text" class="form-control input-md" formControlName="time">
                           
                         </div>
                         
-                        <div class="col-sm-5" style="margin-left: 28px;">
-                          <label class="col-md-5 control-label" for="passwordinput">เวลาปิด</label>
-                          <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
-                          
-                        </div>
+                        
             
                         
                         
                     </div>&nbsp;
                     <div class="col-sm-11">
                         <label class="col-md-6 control-label" for="textinput">ที่อยู่ร้าน</label>
-                        <input id="textinput" name="textinput" type="text" class="form-control input-md" required="">
+                        <input type="text" class="form-control input-md" formControlName="address">
                               
                     </div>&nbsp;
                     <div class="row">
                         
                         <div class="col-sm-5" style="margin-left: 15px;">
                           <label class="col-md-5 control-label" for="passwordinput">ตำบล</label>
-                          <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
+                          <input type="text" class="form-control input-md" formControlName="tumbon">
                           
                         </div>
                         
                         <div class="col-sm-5" style="margin-left: 28px;">
                           <label class="col-md-5 control-label" for="passwordinput">อำเภอ</label>
-                          <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
+                          <input type="text" class="form-control input-md" formControlName="amphoe">
                           
                         </div>
             
@@ -120,20 +119,20 @@
                         
                         <div class="col-sm-5" style="margin-left: 15px;">
                           <label class="col-md-5 control-label" for="passwordinput">จังหวัด</label>
-                          <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
+                          <input type="text" class="form-control input-md" formControlName="province">
                           
                         </div>
                         
                         <div class="col-sm-5" style="margin-left: 28px;">
                           <label class="col-md-5 control-label" for="passwordinput">ไปรษณีย์</label>
-                          <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
+                          <input type="text" class="form-control input-md" formControlName="post">
                           
                         </div>
             
                         
                         
                     </div>&nbsp;
-
+                    </form>
 
                 </div>
                 
@@ -157,7 +156,9 @@
                                     <div class="form-group">
                         
                                     </div>
-                                    <button class="btn btn-primary btn-rounded-corners titleWhite " routerLink="/slshop" > บันทึก </button>
+                                    <form [formGroup]="shopForm">
+                                    <button class="btn btn-primary btn-rounded-corners titleWhite " (click)="addShop()" > บันทึก </button>
+                                    </form>
                             </div>
 
                             <div class="col-sm-1">
