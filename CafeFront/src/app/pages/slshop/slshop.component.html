@@ -34,7 +34,7 @@
 
     </div>
         
-        <button class="col-sm-6 btn btn-primary btn_slshop"  (click)="clickShop(item.name)" routerLink="/home">
+        <button class="col-sm-6 btn btn-primary btn_slshop"  (click)="clickShop({name:item.name,id:item._id})" routerLink="/home">
             <div class="row">
             <div class="col-sm-4 titleWh">{{item.name}}</div> 
             </div>  

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {EmployeeService} from '../../service/employee.service'
+import {LocalStorageService} from 'angular-web-storage'
 
 @Component({
   selector: 'app-employee',
@@ -10,18 +11,25 @@ import {EmployeeService} from '../../service/employee.service'
 export class EmployeeComponent implements OnInit {
 
   employees:any
-
+  shop: String
   employeeForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     position: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
+    shop: new FormControl('', [Validators.required])
   });
 
-  constructor(private em: EmployeeService) { 
-    
+  constructor(private em: EmployeeService,
+    private local : LocalStorageService) { 
+      try{
+        this.employeeForm.get("shop").setValue(this.local.get('shop').id)
+        
+      }catch(err){
+        console.log(err);
+      }
+      this.onLoading();
     console.log('this is construct')
-    
   }
 
   ngOnInit(): void {
@@ -30,13 +38,14 @@ export class EmployeeComponent implements OnInit {
 
   
   addEmployee() {
+    this.employeeForm.get("shop").setValue(this.local.get('shop').id)
     this.em.addEmployee(this.employeeForm.value).subscribe(
       
       data => {
         console.log(data)
         alert('Employee added successfully');
-        this.employeeForm.reset();
         this.onLoading();
+        this.employeeForm.reset();
       },
       err => {
         console.log(err);
@@ -44,7 +53,7 @@ export class EmployeeComponent implements OnInit {
   }
   onLoading() {
     try {
-       this.em.getEmployee().subscribe(
+       this.em.getEmployeeShop(this.employeeForm.get("shop").value).subscribe(
         data => {
           this.employees = data;
       },
@@ -54,10 +63,6 @@ export class EmployeeComponent implements OnInit {
     } catch (error) {
         console.log(error)
     }
-  }
-
-  Update(){
-    
   }
   
 }

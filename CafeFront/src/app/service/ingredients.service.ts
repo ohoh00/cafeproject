@@ -41,5 +41,9 @@ export class IngredientsService {
     )
   }
 
+  deleteitem(id){
+    return this.http.delete(`${this.URL}ingredients/delete/${id}`);
+  }
+
   
 }

@@ -35,8 +35,9 @@ export class SlshopComponent implements OnInit {
   }
 
   clickShop(data){
-    var Shop = {name:data}
-    this.local.set('shop',Shop,1,'w')
+    
+    
+    this.local.set('shop',data,1,'w')
     console.log("Sent Shop Success"+data)
   }
 
