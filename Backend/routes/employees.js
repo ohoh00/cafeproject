@@ -8,8 +8,8 @@ const userSchema = schema({
     email: String,
     name: String,
     phoneNumber: String,
-    position: String
-
+    position: String,
+    shop: String
 },{
     collection: 'employees'
 })
@@ -30,7 +30,8 @@ function insertUser(dataUsers){
             email: dataUsers.email,
             name: dataUsers.name,
             phoneNumber: dataUsers.phoneNumber,
-            position: dataUsers.position
+            position: dataUsers.position,
+            shop: dataUsers.shop
 
         })
         new_user.save((err,data) => {
@@ -73,6 +74,31 @@ function getAllEmolyees(){
       })
     })
 }
+function getEmployeeShop(shop){
+    return new Promise((resolve, reject) => {
+        Employees.find({shop:shop},(err,data) => {
+            if(err)
+              reject(new Error('Connot get employee'))
+            else
+              if(data)
+                  resolve(data)
+              else
+                  reject(new Error(`Employee ID ${id} is not exist`))
+        })
+    })
+    
+}
+router.route('/getEmployeeShop/:id').get((req,res) => {
+    const id = req.params.id
+    getEmployeeShop(id).then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(404).send({message : `Cannot find employee with ID  ${id}`})
+    }).catch( err => {
+        res.status(500).send({message: `Error: ${err}`})
+    })
+})
 router.route('/getEmployee').get((req,res) => {
     getAllEmolyees().then( result => {
         if(result)
@@ -102,7 +128,7 @@ router.route('/signup').post((req,res) => {
             name: req.body.name,
             phoneNumber: req.body.phoneNumber,
             position: req.body.position,
-            
+            shop: req.body.shop
         }
         console.log(payload)
         insertUser(payload)
