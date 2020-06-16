@@ -21,8 +21,11 @@ export class MenuComponent implements OnInit {
     ) 
     {
 
-        this.id = local.get('user').result.id
-
+        try{
+          this.id = local.get('user').result.id
+        }catch(err){
+          console.log(err);
+        }
       
      }
 
