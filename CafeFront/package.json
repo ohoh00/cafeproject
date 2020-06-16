@@ -26,6 +26,7 @@
     "angular-web-storage": "^9.0.0",
     "bootstrap": "^4.5.0",
     "bootstrap-scss": "^4.4.1",
+    "canvasjs": "^1.8.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",

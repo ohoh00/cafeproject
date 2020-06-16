@@ -36,14 +36,15 @@ export class EmployeeComponent implements OnInit {
         console.log(data)
         alert('Employee added successfully');
         this.employeeForm.reset();
+        this.onLoading();
       },
       err => {
         console.log(err);
       });
   }
-  async onLoading() {
+  onLoading() {
     try {
-      await this.em.getEmployee().subscribe(
+       this.em.getEmployee().subscribe(
         data => {
           this.employees = data;
       },
