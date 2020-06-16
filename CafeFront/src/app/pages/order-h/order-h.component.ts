@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {OrderService} from '../../service/order.service'
+import { OrderService } from '../../service/order.service'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+
 
 @Component({
   selector: 'app-order-h',
@@ -7,27 +9,20 @@ import {OrderService} from '../../service/order.service'
   styleUrls: ['./order-h.component.scss']
 })
 export class OrderHComponent implements OnInit {
-  Orders = [
-    {o_name:'ลาเต้',o_type:'ร้อน',o_quantity:1,o_price:50 },
-    {o_name:'ชาเย็น',o_type:'เย็น',o_quantity:1,o_price:50},
-    {o_name:'ชาเขียว',o_type:'ปั่น',o_quantity:1,o_price:60},
-    {o_name:'ไมโล',o_type:'เย็น',o_quantity:1,o_price:50},
-    {o_name:'เอสเพรสโซ่',o_type:'ร้อน',o_quantity:1,o_price:60},
-  ]
-  Orders2 = [
-    {o_name:'ลาเต้',o_type:'ร้อน',o_quantity:1,o_price:50 },
-    {o_name:'ชาชัก',o_type:'เย็น',o_quantity:1,o_price:50},
-    {o_name:'ชาเขียว',o_type:'ร้อน',o_quantity:1,o_price:160},
-    {o_name:'ไมโล',o_type:'ร้อน',o_quantity:1,o_price:50},
-    {o_name:'เอสเพรสโซ่',o_type:'ร้อน',o_quantity:1,o_price:60},
-  ]
-
+ 
   Sum : any = 0
   OrderList: any
   OrderSlelct: any
-  
+
+  orderForm = new FormGroup({
+    id:new FormControl('',[Validators.required]),
+  })
   constructor(private os: OrderService) { 
-   
+    this.os.getAllOrders().subscribe( data => {
+      this.OrderList = data
+      this.OrderSlelct = this.OrderList[0].menu
+      console.log('hello',this.OrderList)
+    })
   }
 
   ngOnInit(): void {
@@ -37,8 +32,16 @@ export class OrderHComponent implements OnInit {
     })
   }
   onChange(value){
-    this.OrderSlelct = this.OrderList[value]
-    this.Sum = this.OrderList.totalPrice
+    this.OrderSlelct = this.OrderList[value].menu
+    this.orderForm.get('id').setValue(this.OrderList[value]._id)
+    console.log(this.OrderSlelct)
+    this.Sum = this.OrderList[value].totalPrice
+  }
+  getOrders(){
+    this.os.getAllOrders().subscribe( data => {
+      this.OrderList = data
+      console.log('hello',this.OrderList)
+    })
   }
 
 }
