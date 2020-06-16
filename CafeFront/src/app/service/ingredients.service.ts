@@ -21,6 +21,7 @@ export class IngredientsService {
   }
 
   updateIngredient(ingredient,id){
+    console.log(ingredient);
     return this.http.put<any>(`${this.URL}ingredients/update/${id}`,ingredient).pipe(
       map(data =>{
         return data
