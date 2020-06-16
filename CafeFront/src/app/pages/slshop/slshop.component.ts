@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShopService } from '../../service/shop.service'
+import { Router, ActivatedRoute } from '@angular/router';
 import {LocalStorageService} from 'angular-web-storage'
 
 import {OwnerService} from '../../service/owner.service'
@@ -15,7 +16,8 @@ export class SlshopComponent implements OnInit {
   id : String
   constructor(private sh: ShopService,
               private local : LocalStorageService,
-              private os : OwnerService,) {
+              private os : OwnerService,
+              private router : Router) {
                 try{
                   this.id = local.get('user').result.id
                 }catch(err){
@@ -25,6 +27,10 @@ export class SlshopComponent implements OnInit {
 
   ngOnInit(): void {
     this.onLoading();
+  }
+  logOut(){
+    this.local.remove('user')
+    this.router.navigate(['/login'])
   }
 
   clickShop(data){
