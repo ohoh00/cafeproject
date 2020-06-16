@@ -39,8 +39,8 @@ export class OrderService {
       })
     )
   }
-  getAllOrders(shop,paymentstatus=false){
-    return this.http.get<any>(`${this.URL}/orders/getOrder/${shop}/${paymentstatus}`,).pipe(
+  getAllOrders(shop,paymentstatus='false'){
+    return this.http.get<any>(`${this.URL}/orders/getOrder/${shop}/${paymentstatus}`).pipe(
       map(data => {
         if(data){
           this.order = data

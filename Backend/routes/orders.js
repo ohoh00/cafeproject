@@ -140,7 +140,9 @@ router.route('/getdOrder/:shop/:id').get((req,res) => {
 })
 
 router.route('/getOrder/:shop/:paymentStatus').get((req,res) => {
-    getAllOrders(req.params.paymentStatus,req.params.shop).then( result => {
+
+
+    getAllOrders(req.params.paymentStatus == "false" ? false : true,req.params.shop).then( result => {
         if(result)
             res.status(200).json(result)
         else

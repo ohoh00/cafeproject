@@ -16,8 +16,9 @@ export class OrderHComponent implements OnInit {
 
 
   constructor(private os: OrderService,private ls : LocalStorageService) { 
-    this.shop = ls.get('shop').id
-    this.os.getAllOrders(true,this.shop).subscribe( data => {
+    this.shop = ls.get('shop').name.id
+    console.log(this.shop)
+    this.os.getAllOrders(this.shop,'true').subscribe( data => {
       data.forEach(element => {
          var item = {
           customerPhoneNumber:element.customerPhoneNumber
