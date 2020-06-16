@@ -21,7 +21,7 @@ export class IngredientsService {
   }
 
   updateIngredient(ingredient,id){
-    return this.http.post<any>(`${this.URL}ingredients/update/${id}`,ingredient).pipe(
+    return this.http.put<any>(`${this.URL}ingredients/update/${id}`,ingredient).pipe(
       map(data =>{
         return data
       })
