@@ -20,6 +20,7 @@ export class SlshopComponent implements OnInit {
               private router : Router) {
                 try{
                   this.id = local.get('user').result.id
+                  this.onLoading();
                 }catch(err){
                   console.log(err);
                 }
@@ -41,13 +42,9 @@ export class SlshopComponent implements OnInit {
 
   onLoading() {
     try {
-       this.sh.getShopOw(this.id).subscribe(
-        data => {
-          this.shops = data;
-      },
-        err => {
-          console.log(err)
-        });
+     this.sh.getShopOw(this.id).subscribe( data => {
+       this.shops = data
+     })
     } catch (error) {
         console.log(error)
     }

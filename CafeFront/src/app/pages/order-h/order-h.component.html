@@ -6,34 +6,35 @@
     <div class="col-10">
         <br/>
         <div class="row">
-        <button class="btn btn-primary btn-lg btn-block btn-rounded-corners " (click)="getOrders()">
+        <button class="btn btn-primary btn-lg btn-block btn-rounded-corners" >
             <div class="titleFunc"><i class="fa fa-history"  style="color: white; margin-right: 10px;"></i>ประวัติออร์เดอร์</div>
         </button>
-
-        <select class="custom-select  mb-3 form-control" formControlName="order"  #t (change)="onChange(t.value)">
-          <option *ngFor="let item of OrderList; index as  i" [value]="i"  >Order {{i+1}}</option>
-        </select>
         </div>
+        <br/>
         <div style="padding-right: 60px;">
             <table class="table" style="background-color: white;">
               <thead>
                 <tr>
-                  <th scope="col">ลำดับ</th>
-                  <th scope="col">รายการ</th>
-                  <th scope="col">ราคา</th>
+                  <th scope="col">ออร์เดอร์</th>
+                  <th scope="col">เบอร์สมาชิก</th>
+                  <th scope="col">วันที่จ่าย</th>
+                  <th scope="col">การจ่าย</th>
+                  <th scope="col">จำนวนเมนู</th>
+                  <th scope="col">ราคารวม</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of OrderSlelct; index as i">
+                <tr *ngFor="let item of OrderList; index as i">
                     <td scope="row">{{i+1}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.price}}</td>
+                    <td>{{item.customerPhoneNumber}}</td>
+                    <td>{{item.paymentDate}}</td>
+                    <td>{{item.paymentMethod}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.totalPrice}}</td>
+
                 </tr>
             </tbody>
             </table>
-              <p class="text-right">
-              <b>ราคารวม: {{this.Sum}} บาท </b>
-              </p>
           </div>
     </div>
 </div>
