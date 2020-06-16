@@ -6,7 +6,7 @@
     <div class="col-10">
         <br/>
         <div class="row">
-        <button class="btn btn-primary btn-lg btn-block btn-rounded-corners" >
+        <button class="btn btn-primary btn-lg btn-block btn-rounded-corners " (click)="getOrders()">
             <div class="titleFunc"><i class="fa fa-history"  style="color: white; margin-right: 10px;"></i>ประวัติออร์เดอร์</div>
         </button>
 
@@ -20,18 +20,14 @@
                 <tr>
                   <th scope="col">ลำดับ</th>
                   <th scope="col">รายการ</th>
-                  <th scope="col">ประเภท</th>
-                  <th scope="col">จำนวน</th>
                   <th scope="col">ราคา</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of OrderSlelct; index as i">
                     <td scope="row">{{i+1}}</td>
-                    <td>{{item.o_name}}</td>
-                    <td>{{item.o_type}}</td>
-                    <td>{{item.o_quantity}}</td>
-                    <td>{{item.o_price}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
                 </tr>
             </tbody>
             </table>
