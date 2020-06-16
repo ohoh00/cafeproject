@@ -39,16 +39,19 @@
                 
                 </div>
             </div>
-            <div class="row">
-                <div class="col-9">
+            <div  class="row " >
+                <div class="col-9"  >
                     <!--เมนูอยู่นี่นะ-->
                     <br>
-                    <div class="card" style="width: 200px; height: 200px;">
-                        <img src="https://media-cdn.tripadvisor.com/media/photo-s/0e/96/7f/97/coffe-latte-100-arabica.jpg" style="height: 150px; width: 200px;" alt="Avatar">
+                    <div class="row" >
+                    <div class="card" style="width: 200px; height: 200px;" *ngFor="let item of menu; index as i" >
+                        <a (click)="addMenu({name:item.name,id:item._id,type:item.type,price:item.price})">  <img [src]="item.img" style="height: 150px; width: 200px;" alt="Avatar"></a>
+                       
                         <div class="card-body">
-                          <p class="card-text">คาปูชิโน่</p>
+                          <p class="card-text">{{item.name}}</p>
                         </div>
-                      </div>                      
+                      </div>     
+                    </div>                 
 
                 </div>
                 <div class="col-3 " style="background-color: white; padding-top: 50px; margin-top: -72px; height: 800px;">
@@ -57,38 +60,28 @@
                     <div class="" style="padding-left: 5px; margin-right: 80px;">
                        
                         <!--ชาเขียวกับกากะบาท-->
-                        <div class="row" style="margin-left: 1px">
+                        <div *ngFor="let item of selectMenu; index as i" class="row" style="margin-left: 1px">
                             <div class="col-10">
-                                <div class="row menutext">
-                                    <div class="col-9">ชาเขียว</div>
-                                    <div class="col-3">ปั่น</div>
+                                <div class="row menutext" style="pad: 10;margin: 10;">
+                                    <div class="col-9">{{item.name}}</div>
+                                    <div class="col-3">{{item.type}}</div>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <button class="button button3" style="border-radius: 100px;">X</button>
+                                <button class="button button3" style="border-radius: 100px;"(click)="deletSelect(i)">X</button>
                             </div>
+                            <br>
                         </div>
                         <!--ชาเขียวกับกากะบาท-->
-                        <br>
-                        <div class="row" style="margin-left: 1px">
-                            <div class="col-10">
-                                <div class="row menutext">
-                                    <div class="col-9">คาปูชิโน่</div>
-                                    <div class="col-3">เย็น</div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <button class="button button3" style="border-radius: 100px;">X</button>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-9"></div>
                 <div class="col-3 " style="background-color: white; height: 58px;">
-                    <button class="btn btn-primary btn-rounded-corners btn_slshop titleBmedA " style="background-color: black; width: 150px; margin-left: 5px;" >ล้างรายการ</button>
-                    <button class="btn btn-primary btn-rounded-corners btn_slshop titleBmedA " style="background-color: #0b83f6; width: 150px; margin-left: 50px;" >บันทึก</button>
+                    <button class="btn btn-primary btn-rounded-corners btn_slshop titleBmedA " style="background-color: black; width: 150px; margin-left: 5px;" (click)="deleteAllSelect()" >ล้างรายการ</button>
+                    <button class="btn btn-primary btn-rounded-corners btn_slshop titleBmedA " style="background-color: #0b83f6; width: 150px; margin-left: 50px;" (click)="saveOrder()">บันทึก</button>
                 </div>
             </div>
     </div>

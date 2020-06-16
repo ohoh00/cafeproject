@@ -8,7 +8,7 @@ const menuSchema = schema({
    name:String,
    type: String,
    price: Number,
-   img: String
+   img: String,
    
 },{
     collection: 'menu'
