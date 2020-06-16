@@ -19,12 +19,13 @@ export class EmployeeComponent implements OnInit {
   });
 
   constructor(private em: EmployeeService) { 
-    this.onLoading();
+    
+    console.log('this is construct')
     
   }
 
   ngOnInit(): void {
-    
+    this.onLoading();
   }
 
   
@@ -40,9 +41,9 @@ export class EmployeeComponent implements OnInit {
         console.log(err);
       });
   }
-  onLoading() {
+  async onLoading() {
     try {
-      this.em.getEmployee().subscribe(
+      await this.em.getEmployee().subscribe(
         data => {
           this.employees = data;
       },
@@ -53,6 +54,9 @@ export class EmployeeComponent implements OnInit {
         console.log(error)
     }
   }
-  
+
+  Update(){
+    
+  }
   
 }
