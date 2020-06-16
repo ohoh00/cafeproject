@@ -25,8 +25,31 @@ try {
     Orders = mongoose.model('orders',orderSchema)
 }
 
+function updateOrder(condition,update){
+    var new_order = new Orders({
+        paymentStatus: update.paymentStatus,
+        paymentDate: update.paymentDate,
+        paymentMethod:update.paymentMethod,        
+        customerPhoneNumber:update.customerPhoneNumber
+
+    })
+    console.log('this is update',update)
+    return new Promise((resolve, reject) => {
+      Orders.updateOne(condition,new_order, (data,err) => {
+            if(err){
+                console.log(err)
+                reject(new Error({message:err}))
+            }
+            else{
+                resolve(data)
+            }
+      })
+    })
+}
+
 function getOrder(id){
     return new Promise((resolve, reject) => {
+
         Orders.findById(id,(err,data) => {
           if(err)
             reject(new Error('Connot get order'))
@@ -77,6 +100,24 @@ function addOrder(orderDetails){
         })
     })
 }
+
+router.route('/updateOrder').put((req,res) => {
+    const payload =  {
+        paymentStatus: req.body.paymentStatus,
+        paymentDate: req.body.paymentDate,
+        paymentMethod:req.body.paymentMethod,
+        customerPhoneNumber:req.body.customerPhoneNumber
+    }
+    console.log(payload)
+    Orders.updateOne({_id:req.body.id},payload,(err,data) => {
+        if(data){
+            res.status(200).json(data)
+        }
+        else{
+            res.status(500).send({message:'Update failed'+err.message})
+        }
+    })
+})
 
 router.route('/addOrder').post((req,res) => {
         const payload ={
