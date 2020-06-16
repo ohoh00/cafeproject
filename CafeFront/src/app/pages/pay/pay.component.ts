@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {OrderService} from '../../service/order.service'
 
 @Component({
@@ -12,9 +12,22 @@ export class PayComponent implements OnInit {
   Sum : any = 0
   OrderList: any
   OrderSlelct:any
+
+
+  orderForm = new FormGroup({
+    id:new FormControl('',[Validators.required]),
+    paymentMethod : new FormControl('',[Validators.required]),
+    customerPhoneNumber: new FormControl('')
+  })
   
   constructor(private os: OrderService) {
-    this.getOrders()
+    this.os.getAllOrders().subscribe( data => {
+      this.OrderList = data
+      this.OrderSlelct = this.OrderList[0].menu
+      console.log('hello',this.OrderList)
+    })
+    
+
   }
 
   
@@ -29,8 +42,30 @@ export class PayComponent implements OnInit {
   }
   onChange(value){
     this.OrderSlelct = this.OrderList[value].menu
+    this.orderForm.get('id').setValue(this.OrderList[value]._id)
     console.log(this.OrderSlelct)
     this.Sum = this.OrderList[value].totalPrice
+  }
+  Pay(){
+    const payload = {
+    id:this.orderForm.get('id').value,
+    paymentStatus:true,
+    paymentDate:new Date(),
+    paymentMethod:this.orderForm.get('paymentMethod').value,
+    customerPhoneNumber:this.orderForm.get('customerPhoneNumber').value
+    }
+    console.log(payload)
+    this.os.updateOrder(payload).subscribe( data => {
+
+     alert('Payment updated.')
+     this.reset()
+    },err => {
+      console.log('Payment is failed to update.\n Err:',err)
+    })
+    
+  }
+  reset(){
+    this.orderForm.reset()
   }
 
 

@@ -15,6 +15,14 @@ export class OrderService {
   addOrder(order){
     return this.http.post<any>(`${this.URL}/orders/addOrder`,order).pipe(
       map(data => {
+        console.log(data)
+        return data
+      })
+    )
+  }
+  updateOrder(newOrder){
+    return this.http.put<any>(`${this.URL}/orders/updateOrder`,newOrder).pipe(
+      map(data => {
         return data
       })
     )
