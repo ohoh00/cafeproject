@@ -8,7 +8,7 @@ import {OwnerService} from '../../service/owner.service'
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit,OnDestroy {
+export class MenuComponent implements OnInit {
 
   id : String
   customer: any
@@ -26,7 +26,6 @@ export class MenuComponent implements OnInit,OnDestroy {
           console.log(err);
         }
      }
-
   ngOnInit(): void {
     this.getOwner()
   }
