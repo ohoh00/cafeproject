@@ -28,12 +28,15 @@ export class OwnerService {
     }))
   }
   login(user){
+    console.log(user);
     return this.http.post('http://localhost:3000/owner/login',user).pipe(
       map(data=>{
+        console.log(data);
         if(data){
           this.local.set('user',data,1,'w')
           console.log('write ',this.local.get('user'))
         }
+
         return data
       })
     )

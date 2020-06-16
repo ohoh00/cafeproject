@@ -20,6 +20,14 @@ export class IngredientsService {
     )
   }
 
+  updateIngredient(ingredient,id){
+    return this.http.post<any>(`${this.URL}ingredients/update/${id}`,ingredient).pipe(
+      map(data =>{
+        return data
+      })
+    )
+  }
+
   getAllIngredients(){
     return this.http.get<any>(`${this.URL}ingredients/getIngredients`).pipe(
       map(data => {

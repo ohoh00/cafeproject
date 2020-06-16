@@ -52,6 +52,7 @@
                 <input type="text" class="form-control" formControlName="name">
               </div>
               <div class="form-group">
+                <label for="recipient-name" class="col-form-label">สถานะ:</label>
                 <select class="form-control" formControlName="status">
                     <option value=""></option>
                     <option>มี</option>
@@ -63,7 +64,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addMenuaddIngredient()">บันทึก</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addIngredient()">บันทึก</button>
           </div>
         </div>
       </div>
@@ -81,21 +82,33 @@
             </div>
   
             <div class="modal-body">
+              <label for="recipient-name" class="col-form-label">id:</label>
+              <select class="form-control" [(ngModel)]="id">
+                <option value=""></option>
+                <option *ngFor="let item of indata; index as i">{{item._id}}</option>
+              </select>
               <form [formGroup]="manageinForm">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">รายการ:</label>
-                  <input type="text" class="form-control" formControlName="name">
+                  <select class="form-control" formControlName="name">
+                    <option value=""></option>
+                    <option *ngFor="let item of indata; index as i">{{item.name}}</option>
+                  </select>
                 </div>
                 <div class="form-group">
-                  <label for="message-text" class="col-form-label">สถานะ:</label>
-                  <input type="text" class="form-control" formControlName="status">
+                  <label for="recipient-name" class="col-form-label">สถานะ:</label>
+                  <select class="form-control" formControlName="status">
+                    <option value=""></option>
+                    <option>มี</option>
+                    <option>หมด</option>
+                  </select>
                 </div>
               </form>
             </div>
   
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addMenuaddIngredient()">บันทึก</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateIngredient()">บันทึก</button>
             </div>
           </div>
         </div>
@@ -108,12 +121,14 @@
           <tr>
             <th scope="col">รายการ</th>
             <th scope="col">สถานะ</th>
+            <th scope="col">id</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of indata; index as i">
             <th scope="row">{{item.name}}</th>
             <td>{{item.status}}</td>
+            <td>{{item._id}}</td>
           </tr>
         </tbody>
       </table>
