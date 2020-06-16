@@ -37,7 +37,7 @@ export class ManageingrtComponent implements OnInit {
   }
 
   updateIngredient(){
-    this.is.updateIngredient(this.manageinForm.value,this.id ).subscribe(
+    this.is.updateIngredient(this.manageinForm.value,this.id).subscribe(
       data => {
         console.log(data)
         alert('Ingredient updated successfully');
@@ -60,6 +60,10 @@ export class ManageingrtComponent implements OnInit {
     } catch (error) {
         console.log(error)
     }
+  }
+
+  onChange(id){
+    this.id = id;
   }
 
 }
