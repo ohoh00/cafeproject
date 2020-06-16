@@ -52,7 +52,24 @@ function addIngredient(ingredientDetails){
         })
     })
 }
-     
+
+router.route('/update/:id').put(function (req,res){
+    Ingredients.findById(req.params.id, function(err,ingredient){
+        if(!ingredient)
+           res.status(404).send("Record not found");
+        else{
+            ingredient.name = req.body.name;
+            ingredient.status = req.body.status;
+
+            ingredient.save().then(ingredient => {
+                res.json('Update complte');
+            }).catch(err => {
+                res.status(400).send("unagle to update the database");
+            });
+        }
+    });
+});
+
 
 router.route('/addIngredient').post((req,res) => {
         const payload ={

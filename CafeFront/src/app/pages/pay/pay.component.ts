@@ -9,7 +9,6 @@ import {OrderService} from '../../service/order.service'
 })
 export class PayComponent implements OnInit {
 
-
   Sum : any = 0
   OrderList: any
   OrderSlelct:any

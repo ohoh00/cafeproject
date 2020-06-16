@@ -37,6 +37,7 @@ export class CustomerComponent implements OnInit {
         console.log(data)
         alert('Customer added successfully');
         this.customerForm.reset();
+        this.onLoading();
       },
       err => {
         console.log(err);

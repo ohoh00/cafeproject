@@ -15,6 +15,7 @@ export class ManageingrtComponent implements OnInit {
   });
 
   indata:any
+  id:any
 
   constructor(private is: IngredientsService) { 
     this.onLoading();
@@ -23,11 +24,23 @@ export class ManageingrtComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addMenuaddIngredient(){
+  addIngredient(){
     this.is.addIngredient(this.manageinForm.value).subscribe(
       data => {
         console.log(data)
         alert('Ingredient added successfully');
+        this.onLoading();
+      },
+      err =>{
+        console.log(err);
+      });
+  }
+
+  updateIngredient(){
+    this.is.updateIngredient(this.manageinForm.value,this.id ).subscribe(
+      data => {
+        console.log(data)
+        alert('Ingredient updated successfully');
         this.onLoading();
       },
       err =>{
