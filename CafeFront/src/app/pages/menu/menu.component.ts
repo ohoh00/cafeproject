@@ -11,6 +11,7 @@ import {OwnerService} from '../../service/owner.service'
 export class MenuComponent implements OnInit {
 
   id : String
+  shop: String
   customer: any
   constructor(
     public router: Router,
@@ -21,6 +22,7 @@ export class MenuComponent implements OnInit {
     {
         try{
           this.id = local.get('user').result.id
+          this.shop = local.get('shop').name
           this.getOwner()
         }catch(err){
           console.log(err);

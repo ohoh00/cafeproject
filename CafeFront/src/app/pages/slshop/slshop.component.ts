@@ -27,6 +27,12 @@ export class SlshopComponent implements OnInit {
     this.onLoading();
   }
 
+  clickShop(data){
+    var Shop = {name:data}
+    this.local.set('shop',Shop,1,'w')
+    console.log("Sent Shop Success"+data)
+  }
+
   onLoading() {
     try {
        this.sh.getShopOw(this.id).subscribe(
