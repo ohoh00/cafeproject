@@ -5,10 +5,14 @@ const mongoose = require('mongoose')
 
 var schema = require('mongoose').Schema
 const orderSchema = schema({
-    order: String,
+    menu: Array,
     totalPrice: Number,
     paymentStatus: Boolean,
-    paymentDate: Date
+    paymentDate: Date,
+    quantity:Number,
+    paymentMethod:String,
+    customerPhoneNumber:String
+
 },{
     collection: 'orders'
 })
@@ -54,10 +58,13 @@ function getAllOrders(){
 function addOrder(orderDetails){
     return new Promise((res,rej) => {
         var new_user = new Orders({
-            order: orderDetails.order,
+            menu: orderDetails.menu,
             totalPrice: orderDetails.totalPrice,
             paymentStatus: orderDetails.paymentStatus,
-            paymentDate: orderDetails.paymentDate
+            paymentDate: orderDetails.paymentDate,
+            paymentMethod:orderDetails.paymentMethod,
+            quantity:orderDetails.quantity,
+            customerPhoneNumber:orderDetails.customerPhoneNumber
 
         })
         new_user.save((err,data) => {
@@ -73,10 +80,14 @@ function addOrder(orderDetails){
 
 router.route('/addOrder').post((req,res) => {
         const payload ={
-            order: req.body.order,
+            menu: req.body.menu,
             totalPrice: req.body.totalPrice,
             paymentStatus: req.body.paymentStatus,
-            paymentDate: req.body.paymentDate
+            paymentDate: req.body.paymentDate,
+            paymentMethod:req.body.paymentMethod,
+            quantity:req.body.quantity,
+            customerPhoneNumber:req.body.customerPhoneNumber
+
         }
         console.log(payload)
         addOrder(payload)
@@ -93,7 +104,7 @@ router.route('/addOrder').post((req,res) => {
 router.route('/getdOrder/:id').get((req,res) => {
     const id = req.params.id
     getOrder(id).then( result => {
-        if(data)
+        if(result)
             res.status(200).json(result)
         else
             res.status(404).send({message : `Cannot find order with ID  ${id}`})
@@ -104,7 +115,7 @@ router.route('/getdOrder/:id').get((req,res) => {
 
 router.route('/getOrder').get((req,res) => {
     getAllOrders().then( result => {
-        if(data)
+        if(result)
             res.status(200).json(result)
         else
             res.status(204).send({message : `Document is empty.`})

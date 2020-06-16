@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {OrderService} from '../../service/order.service'
 
 @Component({
   selector: 'app-order-h',
@@ -25,26 +26,19 @@ export class OrderHComponent implements OnInit {
   OrderList: any
   OrderSlelct: any
   
-  constructor() { 
-    this.OrderList = [this.Orders,this.Orders2]
+  constructor(private os: OrderService) { 
+   
   }
 
   ngOnInit(): void {
+    this.os.getAllOrders().subscribe( data => {
+      this.OrderList = data
+      console.log('hello',this.OrderList)
+    })
   }
-
-  SumPrice(order:any) {
-    var i = 0;
-    var sumPrice = 0;
-    for (i; i < order.length; i++){
-      sumPrice += order[i].o_price;
-    }
-    return this.Sum = sumPrice
-  }
-
   onChange(value){
     this.OrderSlelct = this.OrderList[value]
-    console.log(value)
-    this.SumPrice(this.OrderSlelct)
+    this.Sum = this.OrderList.totalPrice
   }
 
 }

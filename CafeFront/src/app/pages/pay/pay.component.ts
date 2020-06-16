@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {OrderService} from '../../service/order.service'
 
 @Component({
   selector: 'app-pay',
@@ -9,45 +10,28 @@ import { FormControl } from '@angular/forms';
 export class PayComponent implements OnInit {
 
 
-  Orders = [
-    {o_name:'ลาเต้',o_quantity:1,o_price:50 },
-    {o_name:'ชาเย็น',o_quantity:1,o_price:50},
-    {o_name:'ชาเขียว',o_quantity:1,o_price:60},
-    {o_name:'ไมโล',o_quantity:1,o_price:50},
-    {o_name:'เอสเพรสโซ่',o_quantity:1,o_price:60},
-  ]
-  Orders2 = [
-    {o_name:'ลาเต้',o_quantity:1,o_price:50 },
-    {o_name:'ชาชัก',o_quantity:1,o_price:50},
-    {o_name:'ชาเขียว',o_quantity:1,o_price:160},
-    {o_name:'ไมโล',o_quantity:1,o_price:50},
-    {o_name:'เอสเพรสโซ่',o_quantity:1,o_price:60},
-  ]
-
   Sum : any = 0
   OrderList: any
   OrderSlelct:any
   
-  constructor() {
-    this.OrderList = [this.Orders,this.Orders2]
+  constructor(private os: OrderService) {
+    this.getOrders()
   }
 
-  ngOnInit(): void {
-  }
   
-  SumPrice(order:any) {
-    var i = 0;
-    var sumPrice = 0;
-    for (i; i < order.length; i++){
-      sumPrice += order[i].o_price;
-    }
-    return this.Sum = sumPrice
+  ngOnInit(): void {
+    
   }
-
+  getOrders(){
+    this.os.getAllOrders().subscribe( data => {
+      this.OrderList = data
+      console.log('hello',this.OrderList)
+    })
+  }
   onChange(value){
-    this.OrderSlelct = this.OrderList[value]
-    console.log(value)
-    this.SumPrice(this.OrderSlelct)
+    this.OrderSlelct = this.OrderList[value].menu
+    console.log(this.OrderSlelct)
+    this.Sum = this.OrderList[value].totalPrice
   }
 
 
