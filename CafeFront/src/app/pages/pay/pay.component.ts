@@ -7,21 +7,19 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./pay.component.scss']
 })
 export class PayComponent implements OnInit {
-
-
   Orders = [
-    {o_name:'ลาเต้',o_quantity:1,o_price:50 },
-    {o_name:'ชาเย็น',o_quantity:1,o_price:50},
-    {o_name:'ชาเขียว',o_quantity:1,o_price:60},
-    {o_name:'ไมโล',o_quantity:1,o_price:50},
-    {o_name:'เอสเพรสโซ่',o_quantity:1,o_price:60},
+    {o_name:'ลาเต้',o_type:'ร้อน',o_quantity:1,o_price:50 },
+    {o_name:'ชาเย็น',o_type:'เย็น',o_quantity:1,o_price:50},
+    {o_name:'ชาเขียว',o_type:'ปั่น',o_quantity:1,o_price:60},
+    {o_name:'ไมโล',o_type:'เย็น',o_quantity:1,o_price:50},
+    {o_name:'เอสเพรสโซ่',o_type:'ร้อน',o_quantity:1,o_price:60},
   ]
   Orders2 = [
-    {o_name:'ลาเต้',o_quantity:1,o_price:50 },
-    {o_name:'ชาชัก',o_quantity:1,o_price:50},
-    {o_name:'ชาเขียว',o_quantity:1,o_price:160},
-    {o_name:'ไมโล',o_quantity:1,o_price:50},
-    {o_name:'เอสเพรสโซ่',o_quantity:1,o_price:60},
+    {o_name:'ลาเต้',o_type:'ร้อน',o_quantity:1,o_price:50 },
+    {o_name:'ชาชัก',o_type:'เย็น',o_quantity:1,o_price:50},
+    {o_name:'ชาเขียว',o_type:'ร้อน',o_quantity:1,o_price:160},
+    {o_name:'ไมโล',o_type:'ร้อน',o_quantity:1,o_price:50},
+    {o_name:'เอสเพรสโซ่',o_type:'ร้อน',o_quantity:1,o_price:60},
   ]
 
   Sum : any = 0
