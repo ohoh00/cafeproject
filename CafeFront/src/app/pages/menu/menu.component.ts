@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit {
   getOwner(){
     console.log(this.id)
     this.os.getOwner(this.id).subscribe(data => {
-      this.customer = {name:data.name,email:data.email}
+      this.customer = {name:data.name,email:data.email,img:data.imageProfile}
       console.log('name',this.customer.name)
       console.log('this is data',data)
     })
