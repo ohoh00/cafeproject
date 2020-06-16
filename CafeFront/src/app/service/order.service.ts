@@ -28,8 +28,8 @@ export class OrderService {
     )
   }
 
-  getOrder(id){
-    return this.http.get<any>(`${this.URL}/orders/getOrder/${id}`).pipe(
+  getOrder(id,shop){
+    return this.http.get<any>(`${this.URL}/orders/getdOrder/${shop}/${id}`).pipe(
       map(data => {
         if(data){
           this.order = data
@@ -39,8 +39,8 @@ export class OrderService {
       })
     )
   }
-  getAllOrders(){
-    return this.http.get<any>(`${this.URL}/orders/getOrder`).pipe(
+  getAllOrders(shop,paymentstatus='false'){
+    return this.http.get<any>(`${this.URL}/orders/getOrder/${shop}/${paymentstatus}`).pipe(
       map(data => {
         if(data){
           this.order = data
@@ -50,5 +50,7 @@ export class OrderService {
       })
     )
   }
+
+
 
 }

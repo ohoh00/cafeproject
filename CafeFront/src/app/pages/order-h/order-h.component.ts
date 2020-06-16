@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../service/order.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-
+import {LocalStorageService} from 'angular-web-storage'
 
 @Component({
   selector: 'app-order-h',
@@ -10,38 +10,34 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class OrderHComponent implements OnInit {
  
-  Sum : any = 0
-  OrderList: any
-  OrderSlelct: any
 
-  orderForm = new FormGroup({
-    id:new FormControl('',[Validators.required]),
-  })
-  constructor(private os: OrderService) { 
-    this.os.getAllOrders().subscribe( data => {
-      this.OrderList = data
-      this.OrderSlelct = this.OrderList[0].menu
+  OrderList: any[] = []
+  shop: any
+
+
+  constructor(private os: OrderService,private ls : LocalStorageService) { 
+    this.shop = ls.get('shop').name.id
+    console.log(this.shop)
+    this.os.getAllOrders(this.shop,'true').subscribe( data => {
+      data.forEach(element => {
+         var item = {
+          customerPhoneNumber:element.customerPhoneNumber
+          ,paymentDate:new Date(element.paymentDate).toUTCString()
+          ,paymentMethod:element.paymentMethod
+          ,quantity:element.quantity
+          ,totalPrice:element.totalPrice
+          ,paymentStatus:element.paymentStatus
+          ,menu:element.menu
+        }
+        this.OrderList.push(item)
+      });
+     
       console.log('hello',this.OrderList)
     })
   }
 
   ngOnInit(): void {
-    this.os.getAllOrders().subscribe( data => {
-      this.OrderList = data
-      console.log('hello',this.OrderList)
-    })
-  }
-  onChange(value){
-    this.OrderSlelct = this.OrderList[value].menu
-    this.orderForm.get('id').setValue(this.OrderList[value]._id)
-    console.log(this.OrderSlelct)
-    this.Sum = this.OrderList[value].totalPrice
-  }
-  getOrders(){
-    this.os.getAllOrders().subscribe( data => {
-      this.OrderList = data
-      console.log('hello',this.OrderList)
-    })
+    
   }
 
 }

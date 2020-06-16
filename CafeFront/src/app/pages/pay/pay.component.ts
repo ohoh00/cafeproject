@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {OrderService} from '../../service/order.service'
+import {LocalStorageService} from 'angular-web-storage'
 
 @Component({
   selector: 'app-pay',
@@ -10,8 +11,9 @@ import {OrderService} from '../../service/order.service'
 export class PayComponent implements OnInit {
 
   Sum : any = 0
-  OrderList: any
+  OrderList: any[]
   OrderSlelct:any
+  shop:any
 
 
   orderForm = new FormGroup({
@@ -20,8 +22,9 @@ export class PayComponent implements OnInit {
     customerPhoneNumber: new FormControl('')
   })
   
-  constructor(private os: OrderService) {
-    this.os.getAllOrders().subscribe( data => {
+  constructor(private os: OrderService,private ls : LocalStorageService) {
+    this.shop = ls.get('shop').name.id
+    this.os.getAllOrders(this.shop).subscribe( data => {
       this.OrderList = data
       this.OrderSlelct = this.OrderList[0].menu
       this.Sum = this.OrderList[0].totalPrice
@@ -36,7 +39,7 @@ export class PayComponent implements OnInit {
     
   }
   getOrders(){
-    this.os.getAllOrders().subscribe( data => {
+    this.os.getAllOrders(this.shop).subscribe( data => {
       this.OrderList = data
       console.log('hello',this.OrderList)
     })
@@ -60,6 +63,8 @@ export class PayComponent implements OnInit {
 
      alert('Payment updated.')
      this.reset()
+     this.getOrders()
+
     },err => {
       console.log('Payment is failed to update.\n Err:',err)
     })

@@ -11,7 +11,8 @@ const orderSchema = schema({
     paymentDate: Date,
     quantity:Number,
     paymentMethod:String,
-    customerPhoneNumber:String
+    customerPhoneNumber:String,
+    shop:String
 
 },{
     collection: 'orders'
@@ -25,32 +26,12 @@ try {
     Orders = mongoose.model('orders',orderSchema)
 }
 
-function updateOrder(condition,update){
-    var new_order = new Orders({
-        paymentStatus: update.paymentStatus,
-        paymentDate: update.paymentDate,
-        paymentMethod:update.paymentMethod,        
-        customerPhoneNumber:update.customerPhoneNumber
 
-    })
-    console.log('this is update',update)
-    return new Promise((resolve, reject) => {
-      Orders.updateOne(condition,new_order, (data,err) => {
-            if(err){
-                console.log(err)
-                reject(new Error({message:err}))
-            }
-            else{
-                resolve(data)
-            }
-      })
-    })
-}
 
-function getOrder(id){
+function getOrder(id,shop){
     return new Promise((resolve, reject) => {
 
-        Orders.findById(id,(err,data) => {
+        Orders.findd({_id:id,shop:shop},(err,data) => {
           if(err)
             reject(new Error('Connot get order'))
           else
@@ -62,9 +43,10 @@ function getOrder(id){
     }) 
 }
 
-function getAllOrders(){
+function getAllOrders(id,shop){
+
     return new Promise((resolve, reject) => {
-        Orders.find({},(err,data) => {
+        Orders.find({paymentStatus:id,shop:shop},(err,data) => {
           if (err) {
               reject(new Error('Cannot get orders'))
           } else {
@@ -87,7 +69,8 @@ function addOrder(orderDetails){
             paymentDate: orderDetails.paymentDate,
             paymentMethod:orderDetails.paymentMethod,
             quantity:orderDetails.quantity,
-            customerPhoneNumber:orderDetails.customerPhoneNumber
+            customerPhoneNumber:orderDetails.customerPhoneNumber,
+            shop:orderDetails.shop
 
         })
         new_user.save((err,data) => {
@@ -127,7 +110,8 @@ router.route('/addOrder').post((req,res) => {
             paymentDate: req.body.paymentDate,
             paymentMethod:req.body.paymentMethod,
             quantity:req.body.quantity,
-            customerPhoneNumber:req.body.customerPhoneNumber
+            customerPhoneNumber:req.body.customerPhoneNumber,
+            shop:req.body.shop
 
         }
         console.log(payload)
@@ -142,9 +126,10 @@ router.route('/addOrder').post((req,res) => {
 
 })
 
-router.route('/getdOrder/:id').get((req,res) => {
+router.route('/getdOrder/:shop/:id').get((req,res) => {
     const id = req.params.id
-    getOrder(id).then( result => {
+    const shop = req.params.shop
+    getOrder(id,shop).then( result => {
         if(result)
             res.status(200).json(result)
         else
@@ -154,8 +139,10 @@ router.route('/getdOrder/:id').get((req,res) => {
     })
 })
 
-router.route('/getOrder').get((req,res) => {
-    getAllOrders().then( result => {
+router.route('/getOrder/:shop/:paymentStatus').get((req,res) => {
+
+
+    getAllOrders(req.params.paymentStatus == "false" ? false : true,req.params.shop).then( result => {
         if(result)
             res.status(200).json(result)
         else

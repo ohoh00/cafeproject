@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuService} from '../../service/menu.service'
 import {OrderService} from'../../service/order.service'
+import {LocalStorageService} from 'angular-web-storage'
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -9,7 +10,10 @@ import {OrderService} from'../../service/order.service'
 export class OrderComponent implements OnInit {
   menu:any
   selectMenu:any[] = []
-  constructor(private ms:MenuService,private os:OrderService) { }
+  shop:String
+  constructor(private ms:MenuService,private os:OrderService,private ls : LocalStorageService) { 
+    this.shop = ls.get('shop').name.id
+  }
 
   ngOnInit(): void {
     this.ms.getAllMenu().subscribe( data => {
@@ -40,8 +44,9 @@ export class OrderComponent implements OnInit {
   }
   saveOrder(){
     const payload = {
-        menu:this.selectMenu,quantity:this.selectMenu.length,paymentDate:'',paymentStatus:false,paymentMethod:'',customerPhoneNumber:'',totalPrice:this.SumPrice(this.selectMenu)
+        menu:this.selectMenu,quantity:this.selectMenu.length,paymentDate:'',paymentStatus:false,paymentMethod:'',customerPhoneNumber:'',totalPrice:this.SumPrice(this.selectMenu),shop:this.shop
     }
+    console.log('this',payload)
     this.os.addOrder(payload).subscribe(data => {
       alert('Order added.')
       this.deleteAllSelect()
