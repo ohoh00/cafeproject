@@ -14,7 +14,8 @@ const shopSchema = schema({
     tumbon: String,
     amphoe: String,
     province: String,
-    post: String
+    post: String,
+    owner: String
 },{
     collection: 'shops'
 })
@@ -70,7 +71,8 @@ function insertShop(shopDetails){
             tumbon: shopDetails.tumbon,
             amphoe: shopDetails.amphoe,
             province: shopDetails.province,
-            post: shopDetails.post
+            post: shopDetails.post,
+            owner: shopDetails.owner
 
         })
         new_user.save((err,data) => {
@@ -83,6 +85,30 @@ function insertShop(shopDetails){
         })
     })
 }
+function getShopOw(owner){
+    return new Promise((resolve, reject) => {
+      Shop.find({owner:owner},(err,data) => {
+          if(err)
+            reject(new Error('Cannot get shop'))
+          else
+            if(data)
+                resolve(data)
+            else
+                reject(new Error(`Shop ID ${id} is not exist`))
+      })
+    }) 
+}
+router.route('/getshopow/:id').get((req,res) => {
+    const id = req.params.id
+    getShopOw(id).then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(404).send({message : `Cannot find shop with ID  ${id}`})
+    }).catch( err => {
+        res.status(500).send({message: `Error: ${err}`})
+    })
+})
 
 router.route('/addshop').post((req,res) => {
         const payload ={
@@ -95,7 +121,8 @@ router.route('/addshop').post((req,res) => {
             tumbon: req.body.tumbon,
             amphoe: req.body.amphoe,
             province: req.body.province,
-            post: req.body.post
+            post: req.body.post,
+            owner: req.body.owner
         }
         console.log(payload)
         insertShop(payload)
@@ -112,7 +139,7 @@ router.route('/addshop').post((req,res) => {
 router.route('/getshop/:id').get((req,res) => {
     const id = req.params.id
     getShop(id).then( result => {
-        if(data)
+        if(result)
             res.status(200).json(result)
         else
             res.status(404).send({message : `Cannot find shop with ID  ${id}`})
@@ -123,7 +150,7 @@ router.route('/getshop/:id').get((req,res) => {
 
 router.route('/getshop').get((req,res) => {
     getAllShops().then( result => {
-        if(data)
+        if(result)
             res.status(200).json(result)
         else
             res.status(204).send({message : `Document is empty.`})

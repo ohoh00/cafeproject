@@ -28,20 +28,23 @@
     </div>
 </div>
 &nbsp;
-<div class="row">
+<div class="row" *ngFor="let item of shops; index as i">
+    
     <div class="col-sm-3">
 
     </div>
-    
-        <button class="col-sm-6 btn btn-primary btn_slshop" routerLink="/home">
+        
+        <button class="col-sm-6 btn btn-primary btn_slshop"  routerLink="/home">
             <div class="row">
-            <div class="col-sm-4 titleWh">TOPTEN Cafe</div> 
+            <div class="col-sm-4 titleWh">{{item.name}}</div> 
             </div>  
         </button>
- 
+        
+        
     <div class="col-sm-3">
 
     </div>
+    &nbsp;
 </div>
 &nbsp;
 <div class="row">

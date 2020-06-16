@@ -9,7 +9,7 @@ const userSchema = schema({
     name: String,
     phoneNumber: String,
     birth: Date
-
+    
 },{
     collection: 'customers'
 })
