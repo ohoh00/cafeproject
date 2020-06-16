@@ -14,8 +14,9 @@ export class ManageingrtComponent implements OnInit {
     status: new FormControl('', [Validators.required]),
   });
 
-  indata:any
+  indata:any[]
   id:any
+ 
 
   constructor(private is: IngredientsService) { 
     this.onLoading();
@@ -65,5 +66,13 @@ export class ManageingrtComponent implements OnInit {
   onChange(id){
     this.id = id;
   }
+
+  deleteitem(id){
+    this.is.deleteitem(id).subscribe(res => {
+      this.onLoading()
+    });
+  }
+
+  
 
 }

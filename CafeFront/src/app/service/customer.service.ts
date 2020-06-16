@@ -31,4 +31,14 @@ export class CustomerService {
       })
     )
   }
+
+  getCustomerShop(id){
+    return this.http.get<any>(`http://localhost:3000/customers/getCustomerShop/${id}`).pipe(map( data => {
+      if(data){
+        this.customer = data
+        console.log(data)
+      }
+      return this.customer
+    }))
+  }
 }

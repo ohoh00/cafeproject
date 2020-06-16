@@ -7,7 +7,11 @@
 
     </div>
     <div class="col-sm-1">
+<<<<<<< HEAD
         <a class="underlineHover titleBack" routerLink="/login" href="#">ออกจากระบบ</a>
+=======
+        <a class="underlineHover titleBack" (click)="logOut()" href="#">ย้อนกลับ</a>
+>>>>>>> f5d02b4e3253529fea3ef9633fe3c74a8c8da0d8
     </div>
     
 </div>
@@ -34,7 +38,7 @@
 
     </div>
         
-        <button class="col-sm-6 btn btn-primary btn_slshop"  routerLink="/home">
+        <button class="col-sm-6 btn btn-primary btn_slshop"  (click)="clickShop({name:item.name,id:item._id})" routerLink="/home">
             <div class="row">
             <div class="col-sm-4 titleWh">{{item.name}}</div> 
             </div>  
