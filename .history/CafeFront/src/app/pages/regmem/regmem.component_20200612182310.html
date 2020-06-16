@@ -1,0 +1,201 @@
+
+<div class="container-fluid" style="margin-top:60px">
+  <form [formGroup]="registerForm" >
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card" style="max-width: 100%; height: auto;">
+        <img class="card-img-top"
+      [src]="this.registerForm.value.imageProfile"
+      alt="Card image" style="width:100%">
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="filebutton">รูปโปรไฟล์</label>
+          <div class="col-md-4">
+            <input id="filebutton" name="filebutton" class="input-file" type="file"  (change) = "onChangeImg($events)">
+          </div>
+        </div>
+        </div>
+
+
+
+      </div>
+      <div class="col-sm-9">
+        <div class="card" style="max-width: 100%; height: auto;">
+          <div class="form-group">
+            
+          </div>
+          
+            <h1 class="titlereg">Create  Account</h1>
+          
+            <div class="form-group">
+              
+            </div>
+          <div class="row"> 
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-4">
+            <label class="col-md-4 control-label" for="textinput">อีเมล</label>
+            <input id="textinput" name="textinput" type="text" placeholder="example@mail.com" class="form-control input-md" formControlName = "email" >
+              
+            </div>
+            <div class="col-sm-6">
+
+            </div>
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-4">
+              <label class="col-md-4 control-label" for="passwordinput">รหัสผ่าน</label>
+              <input id="passwordinput" name="passwordinput" type="password" placeholder="" class="form-control input-md" required="" formControlName="password">
+              
+            </div>
+            
+            <div class="col-sm-4">
+              <label class="col-md-5 control-label" for="passwordinput">ยืนยันรหัสผ่าน</label>
+              <input id="passwordinput" name="passwordinput" type="password" placeholder="" class="form-control input-md" required="">
+              
+            </div>
+
+            <div class="col-sm-2">
+              
+            </div>
+            
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-4">
+              <label class="col-md-4 control-label" for="passwordinput">ชื่อ-สกุล</label>
+              <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" formControlName="name">
+              
+            </div>
+            
+            <div class="col-sm-4">
+              <label class="col-md-5 control-label" for="passwordinput">เบอร์โทร</label>
+              <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" formControlName="phoneNumber">
+              
+            </div>
+
+            <div class="col-sm-2">
+              
+            </div>
+            
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="row"> 
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-4">
+            <label class="col-md-6 control-label" for="textinput">เลขบัตรประชาชน</label>
+            <input id="textinput" name="textinput" type="text" class="form-control input-md" required="" formControlName="personalId">
+              
+            </div>
+            <div class="col-sm-6">
+
+            </div>
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="row"> 
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-8">
+            <label class="col-md-6 control-label" for="textinput">ที่อยู่</label>
+            <input id="textinput" name="textinput" type="text" class="form-control input-md" required="" formControlName="address">
+              
+            </div>
+            <div class="col-sm-2">
+
+            </div>
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-4">
+              <label class="col-md-4 control-label" for="passwordinput">ตำบล</label>
+              <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" formControlName="tumbon">
+              
+            </div>
+            
+            <div class="col-sm-4">
+              <label class="col-md-5 control-label" for="passwordinput">อำเภอ</label>
+              <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" formControlName="amphoe">
+              
+            </div>
+
+            <div class="col-sm-2">
+              
+            </div>
+            
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-4">
+              <label class="col-md-4 control-label" for="passwordinput">จังหวัด</label>
+              <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" formControlName="province"> 
+              
+            </div>
+            
+            <div class="col-sm-4">
+              <label class="col-md-5 control-label" for="passwordinput">รหัสไปรษณีย์</label>
+              <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" formControlName="post">
+              
+            </div>
+
+            <div class="col-sm-2">
+              
+            </div>
+            
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <div class="form-group">
+            
+          </div>
+          <a class="underlineHover titleBack " routerLink="/login" href="#">ย้อนกลับ</a>
+          <button class="btn btn-primary btn-rounded-corners " routerLink="/login" (click)="register()" > Register!! </button>
+          <div class="form-group">
+            
+          </div>
+         
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>

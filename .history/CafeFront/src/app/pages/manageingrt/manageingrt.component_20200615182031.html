@@ -1,0 +1,124 @@
+<app-menu></app-menu>
+<div class="row">
+  <div class="col-2" style="background-color: #343a40; opacity: 80%;">
+    <app-funcbar></app-funcbar>
+  </div>
+  <div class="col-9">
+    <div class="column" style="padding: 20px;">
+      <h1 style="text-align: center;">รายการวัตถุดิบ</h1>
+    </div>
+   
+    <div class="row" >
+      <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
+        <div class="titleFunc">
+          <i
+            class="fa fa-info-circle"
+            style="color: white; margin-right: 10px;"
+          ></i
+          >เพิ่มวัตถุดิบ
+        </div></button
+      >&nbsp;
+    <div>
+      <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#statusModal">
+        <div class="titleFunc">
+          <i
+            class="fa fa-info-circle"
+            style="color: white;"
+          ></i
+          >เปลี่ยนสถานะ
+        </div></button
+      >&nbsp;
+    </div>
+      
+    </div>
+    
+
+    <!-- เพิ่มวัตถุดิบ -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">NEW Ingredients</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+    
+          <div class="modal-body">
+            <form [formGroup]="manageinForm">
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">รายการ:</label>
+                <input type="text" class="form-control" formControlName="name">
+              </div>
+              <div class="form-group">
+                <select class="form-control" formControlName="status">
+                    <option value=""></option>
+                    <option>มี</option>
+                    <option>หมด</option>
+                  </select>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addMenuaddIngredient()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- เปลี่ยนสถานะ -->
+    <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="statusModalLabel">เปลี่ยนสถานะวัตถุดิบ</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+  
+            <div class="modal-body">
+              <form [formGroup]="manageinForm">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">รายการ:</label>
+                  <input type="text" class="form-control" formControlName="name">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">สถานะ:</label>
+                  <input type="text" class="form-control" formControlName="status">
+                </div>
+              </form>
+            </div>
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addMenuaddIngredient()">บันทึก</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <div style="padding-left: 20px;">
+      <table class="table" style="background-color: white;">
+        <thead>
+          <tr>
+            <th scope="col">รายการ</th>
+            <th scope="col">สถานะ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of indata; index as i">
+            <th scope="row">{{item.name}}</th>
+            <td>{{item.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+  </div>
+</div>
