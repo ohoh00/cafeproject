@@ -24,6 +24,7 @@ export class PayComponent implements OnInit {
     this.os.getAllOrders().subscribe( data => {
       this.OrderList = data
       this.OrderSlelct = this.OrderList[0].menu
+      this.Sum = this.OrderList[0].totalPrice
       console.log('hello',this.OrderList)
     })
     

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import {LocalStorageService} from 'angular-web-storage'
+import {OwnerService} from '../../service/owner.service'
 
 @Component({
   selector: 'app-slshop',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SlshopComponent implements OnInit {
 
-  constructor() { }
+  constructor( public router: Router,
+    private route: ActivatedRoute,
+    private local : LocalStorageService,
+    private os : OwnerService,) { }
 
   ngOnInit(): void {
+  }
+  logOut(){
+    this.local.remove('user')
+    this.router.navigate(['/login'])
   }
 
 }
