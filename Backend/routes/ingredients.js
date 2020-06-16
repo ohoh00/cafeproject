@@ -54,7 +54,6 @@ function addIngredient(ingredientDetails){
 }
 
 
-
 router.route('/update/:id').put(function (req,res){
     Ingredients.findById(req.params.id, function(err,ingredient){
         if(!ingredient)
@@ -68,6 +67,13 @@ router.route('/update/:id').put(function (req,res){
                 res.status(400).send("unagle to update the database");
             });
         }
+    });
+});
+
+router.route('/delete/:id').delete(function (req,res){
+    Ingredients.findByIdAndRemove({_id: req.params.id},function(err,ingredient){
+        if(err) res.json(err);
+        else res.json('Successfully removed');
     });
 });
 
