@@ -14,28 +14,23 @@ export class MenuComponent implements OnInit {
   id : String
   customer: any
   constructor(
-    public router: Router,
+    private router: Router,
     private route: ActivatedRoute,
     private local : LocalStorageService,
     private os : OwnerService
-    ) 
-    {
-
-        this.id = local.get('user').result.id
-
-      
+    ) {
+      this.id = local.get('user').result.id
      }
 
   ngOnInit(): void {
     console.log(this.id)
     this.os.getOwner(this.id).subscribe(data => {
       this.customer = {name:data.name,email:data.email}
-      console.log('name',this.customer.name)
-      console.log('this is data',data)
+      console.log(data)
     })
   }
   logOut(){
-    this.local.remove('user')
+    this.local.clear()
     this.router.navigate(['/login'])
   }
 

@@ -1,0 +1,104 @@
+
+<div class="row">
+    <div class="col-2" style="background-color: #343a40; opacity: 80%;">
+        <app-funcbar></app-funcbar>
+    </div>
+    <div class="col-10">
+        <br>
+        <br>
+        <div class="row" style="background-color: white; width: 1500px; margin-left: 33px;">
+            <div class="column" style="padding: 20px;">
+                <div class="titleFunc" >จัดการพนักงาน</div>
+            </div>
+                
+                <div style="margin-top: 70px; margin-left: 500px;">
+                    <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal" style="width: 200px; height: 50px; border-radius: 25px; margin-top: -50px; margin-left: 500px;">
+                      <div class="buttext" style="margin-left: 20px;">
+                        เพิ่มพนักงาน
+                        <i class="fa fa-plus-circle" style="color: white; margin-right: 10px;"></i>
+                      </div></button>&nbsp;
+                </div>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">เพิ่มพนักงาน</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+              
+                      <!-- modal -->
+                        <div class="modal-body">
+
+                          <form [formGroup]="employeeForm">
+
+                            
+                              <label for="recipient-name" class="col-form-label">ชื่อ-นามสกุล:</label>
+                                <div class="form-group">
+                                 <input type="text" class="form-control" formControlName='name'>
+                                </div>
+                         
+
+                            
+                              <label for="message-text" class="col-form-label">ตำแหน่ง:</label>
+                                <div class="form-group">
+                                 <input type="text" class="form-control" formControlName='position'>
+                                </div>
+                            
+
+                        
+                              <label for="message-text" class="col-form-label">เบอร์โทร:</label>
+                                <div class="form-group">
+                                 <input type="text" class="form-control" formControlName='phoneNumber'>
+                                </div>
+                    
+
+                            
+                                <label for="message-text" class="col-form-label">อีเมล:</label>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" formControlName='email'>
+                                </div>
+                           
+                            
+                          </form>
+                        </div>
+              
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="addEmployee()">บันทึก</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            
+                       
+                          
+                        </div>
+                      </div>
+                    </div>
+                </div>
+        </div>
+        
+        <div style="padding-left: 32.5px; padding-right: 48px;">
+            <table class="table" style="background-color: white; overflow-y:scroll">
+              <thead>
+                <tr>
+                  <th scope="col">ลำดับ</th>
+                  <th scope="col">ชื่อ-นามสกุล</th>
+                  <th scope="col">ตำแหน่ง</th>
+                  <th scope="col">อีเมล</th>
+                  <th scope="col">เบอร์โทร</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of employees; index as i">
+                  <td>{{i+1}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.position}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.phoneNumber}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+    </div>
+    
+</div>

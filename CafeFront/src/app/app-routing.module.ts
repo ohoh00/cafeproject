@@ -16,7 +16,7 @@ import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component'
 import { OrderComponent } from './pages/order/order.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'regmem', component: RegmemComponent},
   { path: 'slshop', component: SlshopComponent},

@@ -13,17 +13,15 @@ export class MenuComponent implements OnInit {
 
   id : String
   customer: any
+  isLogin : boolean = false
   constructor(
-    public router: Router,
+    private router: Router,
     private route: ActivatedRoute,
     private local : LocalStorageService,
     private os : OwnerService
-    ) 
-    {
-
-        this.id = local.get('user').result.id
-
-      
+    ) {
+      this.id = local.get('user').result.id
+      this.isLogin = this.router.url === '/login'
      }
 
   ngOnInit(): void {
@@ -38,5 +36,6 @@ export class MenuComponent implements OnInit {
     this.local.remove('user')
     this.router.navigate(['/login'])
   }
+
 
 }

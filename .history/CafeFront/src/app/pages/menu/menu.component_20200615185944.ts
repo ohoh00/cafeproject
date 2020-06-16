@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
   id : String
   customer: any
   constructor(
-    public router: Router,
+    private router: Router,
     private route: ActivatedRoute,
     private local : LocalStorageService,
     private os : OwnerService

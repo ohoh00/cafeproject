@@ -1,0 +1,90 @@
+
+<div class="row">
+  <div class="col-2" style="background-color: #343a40; opacity: 80%;">
+    <app-funcbar></app-funcbar>
+  </div>
+  <div class="col-9">
+    <div class="column" style="padding: 20px;">
+      <h1 style="text-align: center;">รายการเมนู</h1>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
+        <div class="titleFunc">
+          <i
+            class="fa fa-info-circle"
+            style="color: white; margin-right: 10px;"
+          ></i
+          >เพิ่มเมนู
+        </div></button
+      >&nbsp;
+    </div>
+
+    <!-- head -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">NEW MENU</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+        <!-- modal -->
+          <div class="modal-body">
+            <form [formGroup]="manageForm">
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">รายการ:</label>
+                <input type="text" class="form-control" formControlName="name">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">ประเภท:</label>
+                <input type="text" class="form-control" formControlName="type">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">ราคา:</label>
+                <input type="number" class="form-control" formControlName="price">
+              </div>
+              <div class="form-group">
+                <label>รูปภาพ</label>
+                <input type="file" class="form-control-file" (change)="onChangeImg($event)">
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addMenu()">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div style="padding-left: 20px;">
+      <table class="table" style="background-color: white;">
+        <thead>
+          <tr>
+            <th scope="col">ลำดับ</th>
+            <th scope="col">รายการ</th>
+            <th scope="col">ประเภท</th>
+            <th scope="col">ราคา</th>
+            <th scope="col">รูปภาพ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of menus; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.price}}</td>
+            <td><img [src]="item.img" style="height:100px;"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+  </div>
+</div>
