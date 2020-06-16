@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {LocalStorageService} from 'angular-web-storage'
 
 import {OwnerService} from '../../service/owner.service'
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit,OnDestroy {
 
   id : String
   customer: any
@@ -17,19 +16,21 @@ export class MenuComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     private local : LocalStorageService,
-    private os : OwnerService
+    private os : OwnerService,
     ) 
     {
-
         try{
           this.id = local.get('user').result.id
+          this.getOwner()
         }catch(err){
           console.log(err);
         }
-      
      }
 
   ngOnInit(): void {
+    this.getOwner()
+  }
+  getOwner(){
     console.log(this.id)
     this.os.getOwner(this.id).subscribe(data => {
       this.customer = {name:data.name,email:data.email}
@@ -41,5 +42,11 @@ export class MenuComponent implements OnInit {
     this.local.remove('user')
     this.router.navigate(['/login'])
   }
+
+  ngOnDestroy(){
+    console.log('this is destroy');
+    
+  }
+
 
 }

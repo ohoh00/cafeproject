@@ -15,7 +15,8 @@ export class OwnerService {
   }
 
   getOwner(id){
-    return this.http.get<any>(`http://localhost:3000/owner/getOwner/${id}`).pipe(map( data => {
+    console.log('getData',id)
+    return this.http.get<any>(`http://localhost:3000/owner/getOwner/`+id).pipe(map( data => {
       if(data){
         this.user = data
         console.log(data)
