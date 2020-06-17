@@ -18,14 +18,14 @@
         </div>
         <div style="padding-right: 60px;">
           <table class="table" style="background-color: white;">
-            <thead>
+            <thead class="thead-dark" style="text-align: center;">
               <tr>
                 <th scope="col">ลำดับ</th>
                 <th scope="col">รายการ</th>
                 <th scope="col">ราคา</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody style="text-align: center;">
               <tr *ngFor="let item of OrderSlelct; index as i">
                   <td scope="row">{{i+1}}</td>
                   <td>{{item.name}}</td>
