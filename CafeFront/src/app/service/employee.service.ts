@@ -41,4 +41,7 @@ export class EmployeeService {
       return this.employee
     }))
   }
+  deleteitem(id){
+    return this.http.delete(`${this.URL}employees/delete/${id}`);
+  }
 }

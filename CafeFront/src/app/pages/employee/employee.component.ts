@@ -64,5 +64,10 @@ export class EmployeeComponent implements OnInit {
         console.log(error)
     }
   }
+  deleteitem(id){
+    this.em.deleteitem(id).subscribe(res => {
+      this.onLoading()
+    });
+  }
   
 }

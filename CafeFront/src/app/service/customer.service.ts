@@ -41,4 +41,7 @@ export class CustomerService {
       return this.customer
     }))
   }
+  deleteitem(id){
+    return this.http.delete(`${this.URL}customers/delete/${id}`);
+  }
 }
