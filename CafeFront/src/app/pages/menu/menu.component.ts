@@ -23,20 +23,15 @@ export class MenuComponent implements OnInit {
         try{
           this.id = local.get('user').result.id
           this.shop = local.get('shop').name
-          this.owner = this.getOwner()
+          this.os.getOwner(this.id).subscribe(data => {
+            this.owner =  {name:data.name,email:data.email,img:data.imageProfile}
+      
+          })
         }catch(err){
           console.log(err);
         }
      }
   ngOnInit(): void {
-    this.getOwner()
-  }
-  getOwner(){
-    
-    this.os.getOwner(this.id).subscribe(data => {
-      return {name:data.name,email:data.email,img:data.imageProfile}
-
-    })
     
   }
   getName(){
