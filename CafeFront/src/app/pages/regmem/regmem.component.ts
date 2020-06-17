@@ -23,7 +23,7 @@ export class RegmemComponent implements OnInit {
     personalId:new FormControl('',[Validators.required,Validators.maxLength(13),Validators.minLength(13)])
   })
 
-
+  chpass = new FormControl('',[Validators.required])
 
 
   previewLoaded:boolean = false
@@ -123,6 +123,7 @@ export class RegmemComponent implements OnInit {
     get post(){
       return this.registerForm.get('post');
     }
+
 
 
 }
