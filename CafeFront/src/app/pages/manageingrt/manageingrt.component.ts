@@ -37,6 +37,7 @@ export class ManageingrtComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onLoading()
   }
 
   addIngredient(){
@@ -48,8 +49,9 @@ export class ManageingrtComponent implements OnInit {
       data => {
   
         alert('Ingredient added successfully');
-        this.onLoading();
         this.resetForm();
+        this.onLoading();
+        
       },
       err =>{
         console.log(err);
@@ -63,7 +65,10 @@ export class ManageingrtComponent implements OnInit {
     this.is.updateingredients(this.updateForm.value).subscribe(
       data => {
         alert('ingredient updated successfully');
+        this.resetForm();
         this.onLoading();
+       
+        
       },
       err =>{
         console.log(err);
@@ -72,7 +77,7 @@ export class ManageingrtComponent implements OnInit {
 
   onLoading() {
     try {
-      this.is.getIngredientShop(this.manageinForm.get("shop").value).subscribe(
+      this.is.getIngredientShop(this.local.get('shop').id).subscribe(
         data => {
           this.indata = data; 
       },
