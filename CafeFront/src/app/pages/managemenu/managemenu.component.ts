@@ -44,7 +44,6 @@ export class ManagemenuComponent implements OnInit {
     this.manageForm.get("shop").setValue(this.local.get('shop').id)
     this.ms.addMenu(this.manageForm.value).subscribe(
       data => {
-        console.log(data)
         alert('Menu added successfully');
         this.onLoading();
         this.resetForm();
@@ -95,7 +94,7 @@ export class ManagemenuComponent implements OnInit {
     }
     this.ms.updateMenu(this.updateForm.value).subscribe(
       data => {
-        console.log(data)
+   
         alert('Menu updated successfully');
         this.onLoading();
       },

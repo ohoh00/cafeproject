@@ -31,13 +31,13 @@ export class SummaryComponent implements OnInit {
         data.forEach(item => {
           this.menuList.push(item.name)
         });
-        console.log('begin',this.menuList)
+    
         this.menuList.forEach(item => {
           this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
             
-            console.log('hello',this.totalPrice)
+            
             this.menuNumber.push(data.data)
-            console.log('helloss',this.menuNumber)
+          
             this.color.push(this.getRandomColor())
             this.rederChart(this.menuNumber,this.color)
           })

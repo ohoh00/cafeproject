@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.os.getOwner(this.local.get('user').result.id).subscribe(data => {
       this.name = data.name.toUpperCase()
-      console.log('this is name',this.name)
+  
     })
   }
 

@@ -15,7 +15,7 @@ export class CustomerComponent implements OnInit {
   customerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     birth: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]{10}')]),
     email: new FormControl('', [Validators.required,Validators.email]),
     shop: new FormControl('', [Validators.required])
   });
@@ -29,7 +29,7 @@ export class CustomerComponent implements OnInit {
         console.log(err);
       }
       this.onLoading();
-    console.log('this is construct')
+   
 
   }
   datetoString(date){
@@ -47,7 +47,7 @@ export class CustomerComponent implements OnInit {
     this.cs.addCustomer(this.customerForm.value).subscribe(
       
       data => {
-        console.log(data)
+     
         alert('Customer added successfully');
         this.onLoading();
         this.customerForm.reset();

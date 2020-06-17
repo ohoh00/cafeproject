@@ -19,7 +19,7 @@ export class OrderService {
      const headers = {'authorization': this.ls.get('user').token}
     return this.http.post<any>(`${this.URL}/orders/addOrder`,order,{headers}).pipe(
       map(data => {
-        console.log(data)
+        
         return data
       })
     )
@@ -39,7 +39,7 @@ export class OrderService {
       map(data => {
         if(data){
           this.order = data
-          console.log(data)
+          
         }
         return this.order
       })
@@ -51,7 +51,7 @@ export class OrderService {
       map(data => {
         if(data){
           this.order = data
-          console.log(data)
+         
         }
         return this.order
       })

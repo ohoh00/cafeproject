@@ -50,14 +50,14 @@ export class OrderComponent implements OnInit {
     const payload = {
         menu:this.selectMenu,quantity:this.selectMenu.length,paymentDate:'',paymentStatus:false,paymentMethod:'',customerPhoneNumber:'',totalPrice:this.SumPrice(this.selectMenu),shop:this.shop
     }
-    console.log('this',payload)
+   
     this.os.addOrder(payload).subscribe(data => {
       alert('Order added.')
       this.deleteAllSelect()
     },err => {
       console.log(err)
     })
-    console.log(payload)
+  
   }
   isMenuEmpty(){
     return this.selectMenu.length === 0 ? true : false

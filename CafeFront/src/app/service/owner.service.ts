@@ -24,7 +24,7 @@ export class OwnerService {
     return this.http.get<any>(`http://localhost:3000/owner/getOwner/`+id,{headers}).pipe(map( data => {
       if(data){
         this.user = data
-        console.log(data)
+
         return this.user
       }
       else{
@@ -37,7 +37,7 @@ export class OwnerService {
     
     return this.http.post('http://localhost:3000/owner/login',user).pipe(
       map(data=>{
-        console.log(data);
+
         if(data){
           this.local.set('user',data,1,'w')
           console.log('write ',this.local.get('user'))

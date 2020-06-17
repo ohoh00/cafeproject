@@ -19,12 +19,12 @@ export class RegshopComponent implements OnInit {
     timeO: new FormControl('', [Validators.required]),
     timeC: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]{10}')]),
     address: new FormControl('', [Validators.required]),
     tumbon: new FormControl('', [Validators.required]),
     amphoe: new FormControl('', [Validators.required]),
     province: new FormControl('', [Validators.required]),
-    post: new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5)]),
+    post: new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5),Validators.pattern('[0-9]{5}')]),
     owner: new FormControl('', [Validators.required]),
   });
 
@@ -52,7 +52,7 @@ export class RegshopComponent implements OnInit {
     console.log(this.shopForm.get("timeO").value)
     this.sh.addShop(this.shopForm.value).subscribe(
       data => {
-        console.log(data)
+      
         alert('Shop added successfully');
         this.router.navigate(['/slshop'])
         this.onLoading();

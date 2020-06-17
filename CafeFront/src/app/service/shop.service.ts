@@ -22,7 +22,7 @@ export class ShopService {
     return this.http.get<any>(`http://localhost:3000/shops/getshop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.shop = data
-        console.log(data)
+ 
       }
       return this.shop
     }))
@@ -31,7 +31,7 @@ export class ShopService {
     return this.http.get<any>(`http://localhost:3000/shops/getshopow/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.shop = data
-        console.log(data)
+
       }
       return this.shop
     }))
@@ -42,7 +42,7 @@ export class ShopService {
       (map(data => {
         if(data){
           this.shop = data
-          console.log(data)
+
         }
         return this.shop
       }))

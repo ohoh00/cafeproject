@@ -37,7 +37,7 @@ export class IngredientsService {
       map(data => {
         if(data){
           this.ingredient = data
-          console.log(data)
+
         }
         return this.ingredient
       })
@@ -52,7 +52,7 @@ export class IngredientsService {
     return this.http.get<any>(`http://localhost:3000/ingredients/getIngredientShop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.ingredient = data
-        console.log(data)
+
       }
       return this.ingredient
     }))

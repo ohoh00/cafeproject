@@ -29,7 +29,7 @@ export class EmployeeService {
       map(data => {
         if(data){
           this.employee = data
-          console.log(data)
+
         }
         return this.employee
       })
@@ -40,7 +40,6 @@ export class EmployeeService {
     return this.http.get<any>(`http://localhost:3000/employees/getEmployeeShop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.employee = data
-        console.log(data)
       }
       return this.employee
     }))

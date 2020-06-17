@@ -15,7 +15,7 @@ export class EmployeeComponent implements OnInit {
   employeeForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     position: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]{10}')]),
     email: new FormControl('', [Validators.required,Validators.email]),
     shop: new FormControl('', [Validators.required])
   });
@@ -29,7 +29,7 @@ export class EmployeeComponent implements OnInit {
         console.log(err);
       }
       this.onLoading();
-    console.log('this is construct')
+   
   }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class EmployeeComponent implements OnInit {
     this.em.addEmployee(this.employeeForm.value).subscribe(
       
       data => {
-        console.log(data)
+      
         alert('Employee added successfully');
         this.onLoading();
         this.employeeForm.reset();

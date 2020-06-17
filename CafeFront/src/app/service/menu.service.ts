@@ -27,7 +27,7 @@ export class MenuService {
       map(data => {
         if(data){
           this.menu = data
-          console.log(this.menu)
+    
         }
         return this.menu
       })
@@ -51,7 +51,7 @@ export class MenuService {
     return this.http.get<any>(`http://localhost:3000/menu/getMenuShop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.menu = data
-        console.log(data)
+
       }
       return this.menu
     }))

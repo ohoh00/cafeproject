@@ -17,7 +17,7 @@ export class OrderHComponent implements OnInit {
 
   constructor(private os: OrderService,private ls : LocalStorageService) { 
     this.shop = this.ls.get('shop').id
-    console.log(this.shop)
+
     this.os.getAllOrders(this.shop,'true').subscribe( data => {
       data.forEach(element => {
          var item = {
@@ -32,7 +32,7 @@ export class OrderHComponent implements OnInit {
         this.OrderList.push(item)
       });
      
-      console.log('hello',this.OrderList)
+
     })
   }
 

@@ -15,13 +15,13 @@ export class RegmemComponent implements OnInit {
     password: new FormControl('',[Validators.required]),
     imageProfile: new FormControl('https://static.thenounproject.com/png/363633-200.png',[Validators.required]),
     name:new FormControl('',[Validators.required]),
-    phoneNumber: new FormControl('',[Validators.minLength(10),Validators.maxLength(10),Validators.required]),
+    phoneNumber: new FormControl('',[Validators.minLength(10),Validators.maxLength(10),Validators.required,Validators.pattern('[0-9]{10}')]),
     address: new FormControl('',[Validators.required]),//"123"
     tumbon: new FormControl('',[Validators.required]),
     amphoe: new FormControl('',[Validators.required]),
     province: new FormControl('',[Validators.required]),
-    post: new FormControl('',[Validators.required,Validators.maxLength(5),Validators.minLength(5)]),
-    personalId:new FormControl('',[Validators.required,Validators.maxLength(13),Validators.minLength(13)])
+    post: new FormControl('',[Validators.required,Validators.maxLength(5),Validators.minLength(5),Validators.pattern('[0-9]{5}')]),
+    personalId:new FormControl('',[Validators.required,Validators.maxLength(13),Validators.minLength(13),Validators.pattern('[0-9]{13}')])
   })
 
   chpass = new FormControl('',[Validators.required])

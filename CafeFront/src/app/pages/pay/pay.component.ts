@@ -19,7 +19,7 @@ export class PayComponent implements OnInit {
   orderForm = new FormGroup({
     id:new FormControl('',[Validators.required]),
     paymentMethod : new FormControl('',[Validators.required]),
-    customerPhoneNumber: new FormControl('',[Validators.pattern('\d{10}')])
+    customerPhoneNumber: new FormControl('',[Validators.pattern('[0-9]{10}')])
   })
   
   constructor(private os: OrderService,private ls : LocalStorageService) {
@@ -29,7 +29,7 @@ export class PayComponent implements OnInit {
       this.OrderList = data
       this.OrderSlelct = this.OrderList[0].menu
       this.Sum = this.OrderList[0].totalPrice
-      console.log('hello',this.OrderList)
+     
     })
     
 
@@ -42,18 +42,18 @@ export class PayComponent implements OnInit {
   getOrders(){
     this.os.getAllOrders(this.shop).subscribe( data => {
       this.OrderList = data
-      console.log('hello',this.OrderList)
+    
     })
   }
   onChange(value){
     this.OrderSlelct = this.OrderList[value].menu
     this.orderForm.get('id').setValue(this.OrderList[value]._id)
-    console.log(this.OrderSlelct)
+ 
     this.Sum = this.OrderList[value].totalPrice
   }
   Pay(){
     if(!this.orderForm.valid){
-      console.log(this.orderForm.value)
+   
       return alert('Payment form is not valid')
     }
     const payload = {

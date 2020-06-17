@@ -41,7 +41,7 @@ export class ManageingrtComponent implements OnInit {
     this.manageinForm.get("shop").setValue(this.local.get('shop').id)
     this.is.addIngredient(this.manageinForm.value).subscribe(
       data => {
-        console.log(data)
+  
         alert('Ingredient added successfully');
         this.onLoading();
         this.resetForm();
@@ -54,7 +54,7 @@ export class ManageingrtComponent implements OnInit {
   updateingredients(){
     this.is.updateingredients(this.manageinForm.value).subscribe(
       data => {
-        console.log(data)
+       
         alert('ingredient updated successfully');
         this.onLoading();
       },

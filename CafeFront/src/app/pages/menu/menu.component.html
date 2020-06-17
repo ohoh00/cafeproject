@@ -13,13 +13,13 @@
         
         <div class="col-sm-2">
             <div class="dropdown titleWmed">
-                <span>{{this.shop}}</span> <i class="fa fa-chevron-down"  style="color: white; margin-left: 10px;"></i>
+                <span>{{shop}}</span> <i class="fa fa-chevron-down"  style="color: white; margin-left: 10px;"></i>
                 <div class="dropdown-content" style="margin-left: -160px;">
 
                     <div class="row">
                         <div class="col-sm-1"></div>
                         <div class="col-sm-10 titleBmed">
-                            {{this.shop}}
+                            {{shop}}
                         </div>
                         <div class="col-sm-1"></div>
                     </div>
@@ -48,17 +48,17 @@
             
         </div>
         <div class="col-sm-1">
-            <img [src]="this.customer.img" style="width:55px; margin-left: 45px; height:55px;" alt="Avatar">
+            <img [src]="this.owner.img" style="width:55px; margin-left: 45px; height:55px;" alt="Avatar">
 
         </div>
         <div class="">
             <div class="dropdown titleWmed">
-                <span>{{customer.name}}</span> <i class="fa fa-chevron-down"  style="color: white; margin-left: 10px;"></i>
+                <span>{{getName()}}</span> <i class="fa fa-chevron-down"  style="color: white; margin-left: 10px;"></i>
                 <div class="dropdown-content">
                   <div class="row">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4">
-                        <img [src]="this.customer.img" style="width:100px; height: 100px;" alt="Avatar">
+                        <img [src]="getImg()" style="width:100px; height: 100px;" alt="Avatar">
                     </div>
                     <div class="col-sm-4"></div>
 
@@ -67,7 +67,7 @@
                   <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 titleBmed">
-                       {{this.customer.name}}
+                       {{getName()}}
                     </div>
                     <div class="col-sm-1"></div>
 
@@ -75,7 +75,7 @@
                   <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 titleBsmall">
-                        {{this.customer.email}}
+                        {{getEmail()}}
                     </div>
                     <div class="col-sm-1"></div>
 

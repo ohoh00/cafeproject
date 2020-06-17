@@ -30,7 +30,7 @@ export class CustomerService {
       map(data => {
         if(data){
           this.customer = data
-          console.log(data)
+
         }
         return this.customer
       })
@@ -41,7 +41,7 @@ export class CustomerService {
     return this.http.get<any>(`http://localhost:3000/customers/getCustomerShop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.customer = data
-        console.log(data)
+
       }
       return this.customer
     }))

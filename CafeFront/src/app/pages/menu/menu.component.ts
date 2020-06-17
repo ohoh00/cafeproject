@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
 
   id : String
   shop: String
-  customer: any
+  owner: any
   constructor(
     public router: Router,
     private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
         try{
           this.id = local.get('user').result.id
           this.shop = local.get('shop').name
-          this.getOwner()
+          this.owner = this.getOwner()
         }catch(err){
           console.log(err);
         }
@@ -32,23 +32,25 @@ export class MenuComponent implements OnInit {
     this.getOwner()
   }
   getOwner(){
-    console.log(this.id)
+    
     this.os.getOwner(this.id).subscribe(data => {
-      this.customer = {name:data.name,email:data.email,img:data.imageProfile}
-      console.log('name',this.customer.name)
-      console.log('this is data',data)
+      return {name:data.name,email:data.email,img:data.imageProfile}
+
     })
+    
+  }
+  getName(){
+    return this.owner.name
+  }
+  getEmail(){
+    return this.owner.email
+  }
+  getImg(){
+    return this.owner.img
   }
   logOut(){
     this.local.remove('user')
     this.local.remove('shop')
     this.router.navigate(['/login'])
   }
-
-  ngOnDestroy(){
-    console.log('this is destroy');
-    
-  }
-
-
 }
