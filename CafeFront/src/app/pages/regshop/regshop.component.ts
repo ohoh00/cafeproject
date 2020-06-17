@@ -19,18 +19,13 @@ export class RegshopComponent implements OnInit {
     timeO: new FormControl('', [Validators.required]),
     timeC: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required,Validators.pattern('\d{10}')]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
     address: new FormControl('', [Validators.required]),
     tumbon: new FormControl('', [Validators.required]),
     amphoe: new FormControl('', [Validators.required]),
     province: new FormControl('', [Validators.required]),
-<<<<<<< HEAD
     post: new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5)]),
     owner: new FormControl('', [Validators.required]),
-=======
-    post: new FormControl('', [Validators.required,Validators.pattern('\d{5}')]),
-    owner: new FormControl('',),
->>>>>>> 806b2070ab3f3434379f38f8660da1c2ccb3d977
   });
 
   shops:any
