@@ -19,7 +19,6 @@ export class ManageingrtComponent implements OnInit {
 
   indata:any[]
   id:any
-  previewLoaded:boolean = false
  
 
   constructor(private is: IngredientsService,private local : LocalStorageService) { 
@@ -49,13 +48,12 @@ export class ManageingrtComponent implements OnInit {
       });
   }
 
-  updateIngredient(){
-    this.is.updateIngredient(this.manageinForm.value,this.id).subscribe(
+  updateingredients(){
+    this.is.updateingredients(this.manageinForm.value).subscribe(
       data => {
         console.log(data)
-        alert('Ingredient updated successfully');
+        alert('ingredient updated successfully');
         this.onLoading();
-        this.resetForm();
       },
       err =>{
         console.log(err);
@@ -78,7 +76,6 @@ export class ManageingrtComponent implements OnInit {
 
   resetForm(){
     this.manageinForm.reset();
-    this.previewLoaded = false;
   }
 
 

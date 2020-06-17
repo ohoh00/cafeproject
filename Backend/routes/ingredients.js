@@ -79,21 +79,20 @@ router.route('/getIngredientShop/:id').get(auth,(req,res) => {
     })
 })
 
-router.route('/update/:id').put(auth,function (req,res){
-    Ingredients.findById(req.params.id, function(err,ingredient){
-        if(!ingredient)
-           res.status(404).send("Record not found");
-        else{
-            ingredient.status = req.body.status;
-
-            ingredient.save().then(ingredient => {
-                res.json('Update complte');
-            }).catch(err => {
-                res.status(400).send("unagle to update the database");
-            });
+router.route('/updateingredients').put(auth,(req,res) => {
+    const payload =  {
+        status:req.body.status
+    }
+    console.log(payload)
+    Ingredients.updateOne({_id:req.body.id},{status: payload.status},(err,data) => {
+        if(data){
+            res.status(200).json(data)
         }
-    });
-});
+        else{
+            res.status(500).send({message:'Update failed'+err.message})
+        }
+    })
+})
 
 router.route('/delete/:id').delete(auth,function (req,res){
     Ingredients.findByIdAndRemove({_id: req.params.id},function(err,ingredient){

@@ -75,5 +75,9 @@ export class PayComponent implements OnInit {
     this.orderForm.reset()
   }
 
+  get paymentMethod(){
+    return this.orderForm.get('paymentMethod');
+  }
+
 
 }

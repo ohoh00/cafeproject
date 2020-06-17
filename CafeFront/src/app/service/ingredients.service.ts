@@ -23,14 +23,14 @@ export class IngredientsService {
     )
   }
 
-  updateIngredient(ingredient,id){
+  updateingredients(ingredients){
     const headers = {'authorization': this.ls.get('user').token}
-    return this.http.put<any>(`${this.URL}ingredients/update/${id}`,ingredient,{headers}).pipe(
-      map(data =>{
-        return data
-      })
-    )
-  }
+     return this.http.put<any>(`${this.URL}ingredients/updateingredients`,ingredients,{headers}).pipe(
+       map(data =>{
+         return data
+       })
+     )
+   }
 
   getAllIngredients(){const headers = {'authorization': this.ls.get('user').token}
     return this.http.get<any>(`${this.URL}ingredients/getIngredients`,{headers}).pipe(
