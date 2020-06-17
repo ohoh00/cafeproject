@@ -154,7 +154,7 @@ router.route('/login').post(async (req,res) => {
         const status = loginStatus.status
 
         if(status){
-            const token = jwt.sign(result,KEY, {expiresIn:60*5})
+            const token = jwt.sign(result,KEY, {expiresIn:60*60*5})
             res.status(200).json({result,token,status})
         }
         else{

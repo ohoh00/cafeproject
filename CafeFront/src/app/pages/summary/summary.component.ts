@@ -31,8 +31,8 @@ export class SummaryComponent implements OnInit {
         console.log('begin',this.menuList)
         this.menuList.forEach(item => {
           this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
-            console.log(data)
-            this.menuNumber.push(data.y)
+            console.log('hello',data.data)
+            this.menuNumber.push(data.data)
             console.log('helloss',this.menuNumber)
             this.color.push(this.getRandomColor())
             this.rederChart(this.menuNumber,this.color)
