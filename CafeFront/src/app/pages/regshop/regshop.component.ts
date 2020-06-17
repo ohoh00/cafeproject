@@ -45,7 +45,7 @@ export class RegshopComponent implements OnInit {
   }
 
   addShop(){
-    if(!this.shopForm.valid){
+    if(this.shopForm.valid){
       this.getFormValidationErrors()
       return alert('Shop form is invalid')
     }
