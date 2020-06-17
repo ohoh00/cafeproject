@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
 import {OwnerService} from '../../service/owner.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-regmem',
   templateUrl: './regmem.component.html',
@@ -22,7 +23,7 @@ export class RegmemComponent implements OnInit {
     personalId:new FormControl('',[Validators.maxLength(13),Validators.minLength(13)])
   })
   previewLoaded:boolean = false
-  constructor(private os : OwnerService) {
+  constructor(private os : OwnerService,private router : Router) {
 
    }
 
@@ -58,6 +59,7 @@ export class RegmemComponent implements OnInit {
     this.os.addOwner(this.registerForm.value).subscribe(
       data =>{
         alert('Owner added successfully')
+        this.router.navigate(['/login'])
         this.registerForm.reset()
       }
 
