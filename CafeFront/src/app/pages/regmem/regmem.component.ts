@@ -58,7 +58,7 @@ export class RegmemComponent implements OnInit {
 
   register(){
 
-    this.getFormValidationErrors()
+ 
     if(!this.registerForm.valid){
       return alert("Register form is invalid.")
     }
@@ -74,17 +74,7 @@ export class RegmemComponent implements OnInit {
       }
     )
   }
-  getFormValidationErrors() {
-    Object.keys(this.registerForm.controls).forEach(key => {
-  
-    const controlErrors: ValidationErrors = this.registerForm.get(key).errors;
-    if (controlErrors != null) {
-          Object.keys(controlErrors).forEach(keyError => {
-            console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
-          });
-        }
-      });
-    }
+
 
     get email(){
       return this.registerForm.get('email');

@@ -52,6 +52,9 @@ export class PayComponent implements OnInit {
     this.Sum = this.OrderList[value].totalPrice
   }
   Pay(){
+    if(!this.orderForm.valid){
+      return alert('Payment form is not valid')
+    }
     const payload = {
     id:this.orderForm.get('id').value,
     paymentStatus:true,
