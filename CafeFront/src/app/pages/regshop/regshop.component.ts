@@ -18,7 +18,7 @@ export class RegshopComponent implements OnInit {
     timeO: new FormControl('', [Validators.required]),
     timeC: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
     address: new FormControl('', [Validators.required]),
     tumbon: new FormControl('', [Validators.required]),
     amphoe: new FormControl('', [Validators.required]),

@@ -15,8 +15,8 @@ export class CustomerComponent implements OnInit {
   customerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     birth: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+    email: new FormControl('', [Validators.required,Validators.email]),
     shop: new FormControl('', [Validators.required])
   });
 
@@ -36,7 +36,6 @@ export class CustomerComponent implements OnInit {
     return new Date(date).toLocaleDateString()
   }
   ngOnInit(): void {
-    this.onLoading();
   }
 
   
@@ -71,5 +70,9 @@ export class CustomerComponent implements OnInit {
     this.cs.deleteitem(id).subscribe(res => {
       this.onLoading()
     });
+  }
+
+  get email(){
+    return this.customerForm.get('email');
   }
 }

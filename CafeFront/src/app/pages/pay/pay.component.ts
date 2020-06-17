@@ -19,7 +19,7 @@ export class PayComponent implements OnInit {
   orderForm = new FormGroup({
     id:new FormControl('',[Validators.required]),
     paymentMethod : new FormControl('',[Validators.required]),
-    customerPhoneNumber: new FormControl('')
+    customerPhoneNumber: new FormControl('',[Validators.required,Validators.pattern('\d')])
   })
   
   constructor(private os: OrderService,private ls : LocalStorageService) {
