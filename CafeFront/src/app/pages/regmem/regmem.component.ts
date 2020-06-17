@@ -49,6 +49,7 @@ export class RegmemComponent implements OnInit {
       }
     }
   }
+
   register(){
     if(!this.registerForm.valid){
       return alert("Register form is invalid.")
