@@ -10,10 +10,13 @@ import {LocalStorageService} from 'angular-web-storage'
 })
 export class RegshopComponent implements OnInit {
   id: String
+  Open: String
+  Close: String
   shopForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     imageProfile: new FormControl('https://cdn.onlinewebfonts.com/svg/img_148071.png', [Validators.required]),
-    time: new FormControl('', [Validators.required]),
+    timeO: new FormControl('', [Validators.required]),
+    timeC: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
@@ -42,6 +45,7 @@ export class RegshopComponent implements OnInit {
 
   addShop(){
     
+    console.log(this.shopForm.get("timeO").value)
     this.sh.addShop(this.shopForm.value).subscribe(
       data => {
         console.log(data)
