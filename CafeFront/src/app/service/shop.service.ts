@@ -11,15 +11,15 @@ export class ShopService {
   constructor(private http : HttpClient,private ls : LocalStorageService) { 
     
   }
-  headers:any = {'authorization': this.ls.get('user').token}
-  addShop(shop){
-    return this.http.post<any>('http://localhost:3000/shops/addshop',shop,{headers:this.headers}).pipe(map( data => {
+  
+  addShop(shop){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.post<any>('http://localhost:3000/shops/addshop',shop,{headers}).pipe(map( data => {
       return data
     }))
   }
 
-  getShop(id){
-    return this.http.get<any>(`http://localhost:3000/shops/getshop/${id}`,{headers:this.headers}).pipe(map( data => {
+  getShop(id){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`http://localhost:3000/shops/getshop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.shop = data
         console.log(data)
@@ -27,8 +27,8 @@ export class ShopService {
       return this.shop
     }))
   }
-  getShopOw(id){
-    return this.http.get<any>(`http://localhost:3000/shops/getshopow/${id}`,{headers:this.headers}).pipe(map( data => {
+  getShopOw(id){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`http://localhost:3000/shops/getshopow/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.shop = data
         console.log(data)
@@ -37,8 +37,8 @@ export class ShopService {
     }))
   }
 
-  getAllShops(){
-      return this.http.get<any>('http://localhost:3000/shops/getshop',{headers:this.headers}).pipe
+  getAllShops(){const headers = {'authorization': this.ls.get('user').token}
+      return this.http.get<any>('http://localhost:3000/shops/getshop',{headers}).pipe
       (map(data => {
         if(data){
           this.shop = data
