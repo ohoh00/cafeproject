@@ -12,7 +12,7 @@ export class OrderComponent implements OnInit {
   selectMenu:any[] = []
   shop:String
   constructor(private ms:MenuService,private os:OrderService,private ls : LocalStorageService) { 
-    this.shop = ls.get('shop').name.id
+    this.shop = this.ls.get('shop').id
   }
 
   ngOnInit(): void {

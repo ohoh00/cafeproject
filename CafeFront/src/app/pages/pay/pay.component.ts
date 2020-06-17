@@ -11,7 +11,7 @@ import {LocalStorageService} from 'angular-web-storage'
 export class PayComponent implements OnInit {
 
   Sum : any = 0
-  OrderList: any[]
+  OrderList: any
   OrderSlelct:any
   shop:any
 
@@ -23,7 +23,8 @@ export class PayComponent implements OnInit {
   })
   
   constructor(private os: OrderService,private ls : LocalStorageService) {
-    this.shop = ls.get('shop').name.id
+    this.shop = this.ls.get('shop').id
+    console.log(this.shop)
     this.os.getAllOrders(this.shop).subscribe( data => {
       this.OrderList = data
       this.OrderSlelct = this.OrderList[0].menu
