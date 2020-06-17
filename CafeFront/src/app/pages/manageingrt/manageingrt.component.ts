@@ -28,6 +28,7 @@ export class ManageingrtComponent implements OnInit {
 
   constructor(private is: IngredientsService,private local : LocalStorageService) { 
     try{
+      this.shop = this.local.get('shop').id
       this.manageinForm.get("shop").setValue(this.local.get('shop').id)
       
     }catch(err){
@@ -44,7 +45,7 @@ export class ManageingrtComponent implements OnInit {
     if(!this.manageinForm.valid){
       return alert('Manage ingredeints form is not valid')
     }
-    this.manageinForm.get("shop").setValue(this.local.get('shop').id)
+    this.manageinForm.get("shop").setValue(this.shop)
     this.is.addIngredient(this.manageinForm.value).subscribe(
       data => {
   
@@ -66,7 +67,7 @@ export class ManageingrtComponent implements OnInit {
       data => {
        
         alert('ingredient updated successfully');
-        this.resetForm();
+        this.updateForm.reset();
         this.onLoading();
        
         
@@ -78,7 +79,7 @@ export class ManageingrtComponent implements OnInit {
 
   onLoading() {
     try {
-      this.is.getIngredientShop(this.local.get('shop').id).subscribe(
+      this.is.getIngredientShop(this.shop).subscribe(
         data => {
           this.indata = data; 
       },
@@ -91,7 +92,8 @@ export class ManageingrtComponent implements OnInit {
   }
 
   resetForm(){
-    this.manageinForm.reset();
+    this.manageinForm.get('status').setValue('');
+    this.manageinForm.get('name').setValue('');
   }
 
 
