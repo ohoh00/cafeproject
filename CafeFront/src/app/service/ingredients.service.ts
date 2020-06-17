@@ -45,5 +45,14 @@ export class IngredientsService {
     return this.http.delete(`${this.URL}ingredients/delete/${id}`);
   }
 
+  getIngredientShop(id){
+    return this.http.get<any>(`http://localhost:3000/ingredients/getIngredientShop/${id}`).pipe(map( data => {
+      if(data){
+        this.ingredient = data
+        console.log(data)
+      }
+      return this.ingredient
+    }))
+  }
   
 }
