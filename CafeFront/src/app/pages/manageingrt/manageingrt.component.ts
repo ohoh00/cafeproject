@@ -22,8 +22,8 @@ export class ManageingrtComponent implements OnInit {
     status: new FormControl('', [Validators.required]),
   });
 
-  indata:any[]
-  id:any
+  indata:any
+
  
 
   constructor(private is: IngredientsService,private local : LocalStorageService) { 
@@ -62,7 +62,6 @@ export class ManageingrtComponent implements OnInit {
     }
     this.is.updateingredients(this.updateForm.value).subscribe(
       data => {
-       
         alert('ingredient updated successfully');
         this.onLoading();
       },
