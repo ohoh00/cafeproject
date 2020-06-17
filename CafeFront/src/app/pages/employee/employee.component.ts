@@ -33,7 +33,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.onLoading();
+    
   }
 
   
@@ -65,6 +65,7 @@ export class EmployeeComponent implements OnInit {
     }
   }
   deleteitem(id){
+    this.employeeForm.get("shop").setValue(this.local.get('shop').id)
     this.em.deleteitem(id).subscribe(res => {
       this.onLoading()
     });

@@ -68,6 +68,7 @@ export class CustomerComponent implements OnInit {
     }
   }
   deleteitem(id){
+    this.customerForm.get("shop").setValue(this.local.get('shop').id)
     this.cs.deleteitem(id).subscribe(res => {
       this.onLoading()
     });
