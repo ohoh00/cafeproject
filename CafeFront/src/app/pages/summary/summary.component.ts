@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {LocalStorageService} from 'angular-web-storage'
+import { MenuService } from '../../service/menu.service'
+import { OrderService } from '../../service/order.service'
+
+//getOrder that already paid
+
+
 import * as CanvasJS from '../../../assets/canvasjs.min.js';
+import { fromEventPattern } from 'rxjs';
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -7,34 +15,56 @@ import * as CanvasJS from '../../../assets/canvasjs.min.js';
 })
 export class SummaryComponent implements OnInit {
 
-  constructor() { }
+  dataIn : any[] = []
+  menuNumber:any[] = []
+  menuList:any[] = []
+  typeChart: any;
+  dataChart: any;
+  optionsChart: any;
+
+  constructor(private os : OrderService,private ms : MenuService,private ls : LocalStorageService) {
+    this.ms.getAllMenu().subscribe( data => {
+        data.forEach(item => {
+          this.menuList.push(item.name)
+        });
+        console.log('begin',this.menuList)
+        this.menuList.forEach(item => {
+          this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
+            this.menuNumber.push(data.y)
+            console.log('helloss',this.menuNumber)
+            this.rederChart(this.menuNumber)
+          })
+        });
+       
+    })
+    
+   
+   }
 
   ngOnInit(): void {
-    let chart = new CanvasJS.Chart("chartContainer", {
-      theme: "light2",
-      animationEnabled: true,
-      exportEnabled: true,
-      title:{
-        text: "Monthly Expense"
-      },
-      data: [{
-        type: "pie",
-        showInLegend: true,
-        toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
-        indexLabel: "{name} - #percent%",
-        dataPoints: [
-          { y: 450, name: "Food" },
-          { y: 120, name: "Insurance" },
-          { y: 300, name: "Traveling" },
-          { y: 800, name: "Housing" },
-          { y: 150, name: "Education" },
-          { y: 150, name: "Shopping"},
-          { y: 250, name: "Others" }
-        ]
-      }]
-    });
+    console.log(this.menuNumber)
+   
+  }
+  rederChart(data){
+    console.log(data)
+    this.typeChart = 'pie';   
+    this.dataChart = {
+      labels:this.menuList,
+      datasets: [
+        {
+          label: "สรุปรายจ่าย",
+          data: data,
+          backgroundColor: [
+            '#1abc9c', '#bdc3c7'
+          ]
+        }
+      ],
+     
+    };
+    this.optionsChart = {
+      responsive: true,
       
-    chart.render();
+    };
+  }
   }
 
-}

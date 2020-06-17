@@ -57,6 +57,7 @@ function addMenu(MenuDetails){
     })
 }
 
+
 router.route('/addMenu').post((req,res) => {
         const payload ={
             name:req.body.name,

@@ -84,6 +84,38 @@ function addOrder(orderDetails){
     })
 }
 
+function GetMenuFromOrders(shop,name){
+    return new Promise((resolve, reject) => {
+      Orders.find({"menu.name":name,shop:shop,paymentStatus:true},(err,data) => {
+          if(data){   
+            var menu = []
+
+              resolve({label:name,y:data.length})
+          }
+          else{
+              reject(new Error(err.message))
+          }
+      })
+    })
+}
+
+router.route('/findmenu/:shop/:name').get((req,res) => {
+    const shop = req.params.shop
+    const name = req.params.name
+    GetMenuFromOrders(shop,name).then( data => {
+        if(data){
+           
+           
+            res.status(200).json(data)
+        }
+        else{
+            res.status(404).send("No menu found.")
+        }
+    },err => {
+        res.status(500).send("Some thing wrong : ",err.message)
+    })
+})
+
 router.route('/updateOrder').put((req,res) => {
     const payload =  {
         paymentStatus: req.body.paymentStatus,

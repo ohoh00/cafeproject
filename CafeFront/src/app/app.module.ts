@@ -21,6 +21,7 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component';
 import { OrderComponent } from './pages/order/order.component';
+import { ChartModule } from 'angular2-chartjs';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { OrderComponent } from './pages/order/order.component';
     HttpClientModule,
     FormsModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

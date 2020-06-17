@@ -50,6 +50,17 @@ export class OrderService {
       })
     )
   }
+  getMenuFromOrders(shop,name){
+    return this.http.get<any>(`${this.URL}/orders/findmenu/${shop}/${name}`).pipe(
+      map(data => {
+        if(data){
+          this.order = data
+
+        }
+        return this.order
+      })
+    )
+  }
 
 
 
