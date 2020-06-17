@@ -4,17 +4,48 @@
         <app-funcbar></app-funcbar>
     </div>
     <div class="col-10">
+        <br>
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <div class="row">
-                    <div style="margin-left:auto;margin-right:auto;">สรุปรายจ่าย</div>
-                    <chart style="height: 500px; width: 100%; margin-left:auto;margin-right:auto;" [type]="typeChart" [data]="dataChart" [options]="optionsChart"></chart>
-                </div>
-                
+            <div class="col-4"></div>
+            <div class="col-4">
+                <h1 class="titleBack" style="text-align: center;">สรุปยอดการขาย</h1>
             </div>
-            
-            <div class="col-1"></div>
+            <div class="col-4"></div>
+        </div>
+        <br>
+        <div class="row">
+
+                    <div class="col-2"></div>
+                    <div class="col-8 ">
+                    <div class="bgfull">
+                        <chart style="height: 550px; width: 100%; " [type]="typeChart" [data]="dataChart" [options]="optionsChart"></chart>
+                    </div>
+                    
+                    </div>
+                    <div class="col-2"></div>
+                    
+                    
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <h1 class="titleWhiteSmall" style="text-align: center;">ออร์เดอร์ทั้งหมด</h1>
+            </div>
+            <div class="col-4">
+                <h1 class="titleWhiteSmall" style="text-align: center;">ราคาทั้งหมด</h1>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <h1 class="titleRedSmall" style="text-align: center;">15</h1>
+            </div>
+            <div class="col-4">
+                <h1 class="titleRedSmall" style="text-align: center;">16</h1>
+            </div>
+            <div class="col-2"></div>
         </div>
     </div>
 </div>

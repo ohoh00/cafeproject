@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators'
 })
 export class OwnerService {
   user: any
-  isLoggedin:boolean = false
+  isLoggedin:boolean = true;
   constructor(private http : HttpClient,private local : LocalStorageService) { }
 //
   addOwner(user){

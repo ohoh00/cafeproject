@@ -14,7 +14,6 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component';
 import { OrderComponent } from './pages/order/order.component';
-
 import {AuthGuardService} from './service/auth-guard.service'
 
 const routes: Routes = [

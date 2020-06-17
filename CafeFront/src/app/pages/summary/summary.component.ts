@@ -68,8 +68,8 @@ export class SummaryComponent implements OnInit {
   }
   getRandomColor() {
     var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+    var color = '#34';
+    for (var i = 0; i < 4; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
