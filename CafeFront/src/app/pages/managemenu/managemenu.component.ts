@@ -89,7 +89,7 @@ export class ManagemenuComponent implements OnInit {
   }
 
   updateMenu(){
-    if(!this.manageForm.valid){
+    if(!this.updateForm.valid){
       return alert('Menu form is not valid')
     }
     this.ms.updateMenu(this.updateForm.value).subscribe(
@@ -104,7 +104,7 @@ export class ManagemenuComponent implements OnInit {
   }
 
   onChange(id){
-    this.manageForm.get('id').setValue(id);
+    this.updateForm.get('id').setValue(id);
   }
 
   deleteitem(id){
