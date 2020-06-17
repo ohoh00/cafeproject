@@ -83,6 +83,16 @@ export class ManageingrtComponent implements OnInit {
     });
   }
 
+  get name(){
+    return this.manageinForm.get('name');
+  }
+
+  get status(){
+    return this.manageinForm.get('status');
+  }
+
+  
+
   
 
 }

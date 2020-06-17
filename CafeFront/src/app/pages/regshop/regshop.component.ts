@@ -19,13 +19,13 @@ export class RegshopComponent implements OnInit {
     timeO: new FormControl('', [Validators.required]),
     timeC: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required,Validators.pattern('\d{10}')]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
     address: new FormControl('', [Validators.required]),
     tumbon: new FormControl('', [Validators.required]),
     amphoe: new FormControl('', [Validators.required]),
     province: new FormControl('', [Validators.required]),
-    post: new FormControl('', [Validators.required,Validators.pattern('\d{5}')]),
-    owner: new FormControl('',),
+    post: new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5)]),
+    owner: new FormControl('', [Validators.required]),
   });
 
   shops:any
@@ -110,5 +110,46 @@ export class RegshopComponent implements OnInit {
         }
       });
     }
+
+  get name(){
+    return this.shopForm.get('name');
+  }
+
+  get phoneNumber(){
+    return this.shopForm.get('phoneNumber');
+  }
+
+  get description(){
+    return this.shopForm.get('description');
+  }
+
+  get timeO(){
+    return this.shopForm.get('timeO');
+  }
+
+  get timeC(){
+    return this.shopForm.get('timeC');
+  }
+
+  get address(){
+    return this.shopForm.get('address');
+  }
+
+  get tumbon(){
+    return this.shopForm.get('tumbon');
+  }
+
+  get amphoe(){
+    return this.shopForm.get('amphoe');
+  }
+
+  get province(){
+    return this.shopForm.get('province');
+  }
+
+  get post(){
+    return this.shopForm.get('post');
+  }
+
 
 }

@@ -64,56 +64,91 @@
 
                     <form [formGroup]="shopForm">
                     <div class="col-sm-9">
-                        <label class="col-md-6 control-label" for="textinput">ชื่อร้าน</label>
+                        <label class="col-md-6 control-label">ชื่อร้าน</label>
                         <input type="text" class="form-control input-md" formControlName="name">
-                          
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                            <div *ngIf="name.errors.required">
+                                กรุณากรอกชื่อร้าน
+                            </div>
+                         </div>
                         </div>&nbsp;
                     <div class="col-sm-5">
-                        <label class="col-md-6 control-label" for="textinput">เบอร์ติดต่อ</label>
+                        <label class="col-md-6 control-label">เบอร์ติดต่อ</label>
                         <input type="text" class="form-control input-md" formControlName="phoneNumber">
-                              
+                        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
+                            <div *ngIf="phoneNumber.errors.required">
+                                กรุณากรอกเบอร์โทร
+                            </div>
+                            <div *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">
+                                กรุณากรอกรูปแบบเบอร์โทร
+                          </div>
+                         </div>
                     </div>
                     &nbsp;
                     <div class="col-sm-9">
-                        <label class="col-md-6 control-label" for="textinput">คำอธิบายร้าน</label>
+                        <label class="col-md-6 control-label">คำอธิบายร้าน</label>
                         <input type="text" class="form-control input-md" formControlName="description">
-                              
+                        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-invalid">
+                            <div *ngIf="description.errors.required">
+                                กรุณากรอกคำอธิบายร้าน
+                            </div>
+                         </div>
                     </div>&nbsp;
 
                     <div class="row">
                         
                         <div class="col-sm-5" style="margin-left: 15px;">
-                          <label class="col-md-5 control-label" for="passwordinput">เวลาเปิด</label>
+                          <label class="col-md-5 control-label">เวลาเปิด</label>
                           <input type="time" class="form-control input-md" formControlName="timeO">
-                          
+                          <div *ngIf="timeO.invalid && (timeO.dirty || timeO.touched)" class="text-invalid">
+                            <div *ngIf="timeO.errors.required">
+                                กรุณาเลือกเวลาเปิด
+                            </div>
+                         </div>
                         </div>
                         
                         <div class="col-sm-5" style="margin-left: 28px;">
-                          <label class="col-md-5 control-label" for="passwordinput">เวลาปิด</label>
+                          <label class="col-md-5 control-label">เวลาปิด</label>
                           <input type="time" class="form-control input-md" formControlName="timeC">
-                          
+                          <div *ngIf="timeC.invalid && (timeC.dirty || timeC.touched)" class="text-invalid">
+                            <div *ngIf="timeC.errors.required">
+                                กรุณาเลือกเวลาปิด
+                            </div>
+                         </div>
                         </div>
             
                         
                         
                     </div>&nbsp;
                     <div class="col-sm-11">
-                        <label class="col-md-6 control-label" for="textinput">ที่อยู่ร้าน</label>
+                        <label class="col-md-6 control-label">ที่อยู่ร้าน</label>
                         <input type="text" class="form-control input-md" formControlName="address">
-                              
+                        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-invalid">
+                            <div *ngIf="address.errors.required">
+                                กรุณากรอกที่อยู่
+                            </div>
+                         </div>
                     </div>&nbsp;
                     <div class="row">
                         
                         <div class="col-sm-5" style="margin-left: 15px;">
-                          <label class="col-md-5 control-label" for="passwordinput">ตำบล</label>
+                          <label class="col-md-5 control-label">ตำบล</label>
                           <input type="text" class="form-control input-md" formControlName="tumbon">
-                          
+                          <div *ngIf="tumbon.invalid && (tumbon.dirty || tumbon.touched)" class="text-invalid">
+                            <div *ngIf="tumbon.errors.required">
+                                กรุณากรอกตำบล
+                            </div>
+                         </div>
                         </div>
                         
                         <div class="col-sm-5" style="margin-left: 28px;">
-                          <label class="col-md-5 control-label" for="passwordinput">อำเภอ</label>
+                          <label class="col-md-5 control-label">อำเภอ</label>
                           <input type="text" class="form-control input-md" formControlName="amphoe">
-                          
+                          <div *ngIf="amphoe.invalid && (amphoe.dirty || amphoe.touched)" class="text-invalid">
+                            <div *ngIf="amphoe.errors.required">
+                                กรุณากรอกอำเภอ
+                            </div>
+                         </div>
                         </div>
             
                         
@@ -122,15 +157,26 @@
                     <div class="row">
                         
                         <div class="col-sm-5" style="margin-left: 15px;">
-                          <label class="col-md-5 control-label" for="passwordinput">จังหวัด</label>
+                          <label class="col-md-5 control-label">จังหวัด</label>
                           <input type="text" class="form-control input-md" formControlName="province">
-                          
+                          <div *ngIf="province.invalid && (province.dirty || province.touched)" class="text-invalid">
+                            <div *ngIf="province.errors.required">
+                                กรุณากรอกจังหวัด
+                            </div>
+                         </div>
                         </div>
                         
                         <div class="col-sm-5" style="margin-left: 28px;">
-                          <label class="col-md-5 control-label" for="passwordinput">ไปรษณีย์</label>
+                          <label class="col-md-5 control-label">ไปรษณีย์</label>
                           <input type="text" class="form-control input-md" formControlName="post">
-                          
+                          <div *ngIf="post.invalid && (post.dirty || post.touched)" class="text-invalid">
+                            <div *ngIf="post.errors.required">
+                                กรุณากรอกรหัสไปรษณีย์
+                            </div>
+                            <div *ngIf="post.errors.minlength || post.errors.maxlength">
+                                กรุณากรอกรูปแบบรหัสไปรษณีย์
+                          </div>
+                         </div>
                         </div>
             
                         
