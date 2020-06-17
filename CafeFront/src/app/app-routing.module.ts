@@ -14,7 +14,7 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component';
 import { OrderComponent } from './pages/order/order.component';
-
+import {NotFoundComponent} from './pages/not-found/not-found.component'
 import {AuthGuardService} from './service/auth-guard.service'
 
 const routes: Routes = [
@@ -33,7 +33,9 @@ const routes: Routes = [
   { path: 'employee', component: EmployeeComponent,canActivate:[AuthGuardService]},
   { path: 'customer', component: CustomerComponent,canActivate:[AuthGuardService]},
   { path: 'manageingrt', component: ManageingrtComponent,canActivate:[AuthGuardService]},
-  { path: 'order', component: OrderComponent,canActivate:[AuthGuardService]}
+  { path: 'order', component: OrderComponent,canActivate:[AuthGuardService]},
+  { path: '**', component: NotFoundComponent}
+
 
 ];
 
