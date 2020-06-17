@@ -17,6 +17,11 @@ export class ManageingrtComponent implements OnInit {
     shop: new FormControl('', [Validators.required])
   });
 
+  updateForm = new FormGroup({
+    id: new FormControl('', [Validators.required]),
+    status: new FormControl('', [Validators.required]),
+  });
+
   indata:any[]
   id:any
  
@@ -51,11 +56,14 @@ export class ManageingrtComponent implements OnInit {
       });
   }
 
-  updateingredients(){
-    this.is.updateingredients(this.manageinForm.value).subscribe(
+  updateIngredients(){
+    if(!this.updateForm.valid){
+      return alert('Menu form is not valid')
+    }
+    this.is.updateingredients(this.updateForm.value).subscribe(
       data => {
         console.log(data)
-        alert('ingredient updated successfully');
+        alert('Menu updated successfully');
         this.onLoading();
       },
       err =>{
@@ -83,7 +91,7 @@ export class ManageingrtComponent implements OnInit {
 
 
   onChange(id){
-    this.id = id;
+    this.updateForm.get('id').setValue(id);
   }
 
   deleteitem(id){

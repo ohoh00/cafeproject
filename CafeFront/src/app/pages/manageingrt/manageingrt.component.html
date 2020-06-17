@@ -92,7 +92,7 @@
             </div>
   
             <div class="modal-body">
-              <form [formGroup]="manageinForm">
+              <form [formGroup]="updateForm">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">รายการ:</label>
                   <select class="form-control" formControlName="name" #t (change)="onChange(t.value)">
@@ -123,7 +123,7 @@
   
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateingredients()">บันทึก</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateIngredients()">บันทึก</button>
             </div>
           </div>
         </div>
