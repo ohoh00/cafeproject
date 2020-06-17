@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'regmem', component: RegmemComponent},
+  { path: '**', component: RegmemComponent},
   { path: 'slshop', component: SlshopComponent,canActivate:[AuthGuardService]},
   { path: 'regshop', component: RegshopComponent,canActivate:[AuthGuardService]},
   { path: 'home', component: HomeComponent,canActivate:[AuthGuardService]},
