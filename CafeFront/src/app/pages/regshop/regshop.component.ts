@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { ShopService } from '../../service/shop.service'
 import {LocalStorageService} from 'angular-web-storage'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-regshop',
@@ -18,19 +19,24 @@ export class RegshopComponent implements OnInit {
     timeO: new FormControl('', [Validators.required]),
     timeC: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.pattern('\d{10}')]),
     address: new FormControl('', [Validators.required]),
     tumbon: new FormControl('', [Validators.required]),
     amphoe: new FormControl('', [Validators.required]),
     province: new FormControl('', [Validators.required]),
+<<<<<<< HEAD
     post: new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5)]),
     owner: new FormControl('', [Validators.required]),
+=======
+    post: new FormControl('', [Validators.required,Validators.pattern('\d{5}')]),
+    owner: new FormControl('',),
+>>>>>>> 806b2070ab3f3434379f38f8660da1c2ccb3d977
   });
 
   shops:any
 
   constructor(private sh: ShopService,
-    private local : LocalStorageService,) {
+    private local : LocalStorageService, private router : Router) {
       try{
                   this.shopForm.get("owner").setValue(local.get('user').result.id)
                   
@@ -44,12 +50,16 @@ export class RegshopComponent implements OnInit {
   }
 
   addShop(){
-    
+    if(this.shopForm.valid){
+      this.getFormValidationErrors()
+      return alert('Shop form is invalid')
+    }
     console.log(this.shopForm.get("timeO").value)
     this.sh.addShop(this.shopForm.value).subscribe(
       data => {
         console.log(data)
         alert('Shop added successfully');
+        this.router.navigate(['/slshop'])
         this.onLoading();
         this.resetForm();
       },
@@ -94,6 +104,17 @@ export class RegshopComponent implements OnInit {
   resetForm(){
     this.shopForm.reset();
   }
+  getFormValidationErrors() {
+    Object.keys(this.shopForm.controls).forEach(key => {
+  
+    const controlErrors: ValidationErrors = this.shopForm.get(key).errors;
+    if (controlErrors != null) {
+          Object.keys(controlErrors).forEach(keyError => {
+            console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+          });
+        }
+      });
+    }
 
   get name(){
     return this.shopForm.get('name');

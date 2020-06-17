@@ -84,13 +84,30 @@ function addOrder(orderDetails){
     })
 }
 
+
 function GetMenuFromOrders(shop,name){
     return new Promise((resolve, reject) => {
       Orders.find({"menu.name":name,shop:shop,paymentStatus:true},(err,data) => {
           if(data){   
+            var Price = 0
             var menu = []
+                data.forEach(item => {
+                    var Cname = item.menu
+                    Cname.forEach(menuName => {
+                        menu.push(menuName.name)
+                        
+                    })
+                    Price += item.totalPrice
+                });
+                var count = 0
+                menu.forEach(x => {
+                   
+                    if(x == name){
+                        count += 1
+                    }
+                })
 
-              resolve({label:name,y:data.length})
+              resolve({label:name,y:data.length,data:count,totalPrice:Price})
           }
           else{
               reject(new Error(err.message))
