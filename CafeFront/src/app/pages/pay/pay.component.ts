@@ -19,7 +19,7 @@ export class PayComponent implements OnInit {
   orderForm = new FormGroup({
     id:new FormControl('',[Validators.required]),
     paymentMethod : new FormControl('',[Validators.required]),
-    customerPhoneNumber: new FormControl('',[Validators.required,Validators.pattern('\d{10}')])
+    customerPhoneNumber: new FormControl('',[Validators.pattern('\d{10}')])
   })
   
   constructor(private os: OrderService,private ls : LocalStorageService) {
@@ -53,6 +53,7 @@ export class PayComponent implements OnInit {
   }
   Pay(){
     if(!this.orderForm.valid){
+      console.log(this.orderForm.value)
       return alert('Payment form is not valid')
     }
     const payload = {
