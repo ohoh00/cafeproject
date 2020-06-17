@@ -5,7 +5,8 @@ const mongoose = require('mongoose')
 
 var schema = require('mongoose').Schema
 const shopSchema = schema({
-    time: String,
+    timeO: String,
+    timeC: String,
     imageProfile: String,
     name: String,
     description: String,
@@ -61,8 +62,8 @@ function getAllShops(){
 function insertShop(shopDetails){
     return new Promise((res,rej) => {
         var new_user = new Shop({
-            time: shopDetails.time,
-           
+            timeO: shopDetails.timeO,
+            timeC: shopDetails.timeC,
             imageProfile: shopDetails.imageProfile,
             name: shopDetails.name,
             description: shopDetails.description,
@@ -112,7 +113,8 @@ router.route('/getshopow/:id').get((req,res) => {
 
 router.route('/addshop').post((req,res) => {
         const payload ={
-            time: req.body.time,
+            timeO: req.body.timeO,
+            timeC: req.body.timeC,
             imageProfile: req.body.imageProfile,
             name: req.body.name,
             description: req.body.description,
