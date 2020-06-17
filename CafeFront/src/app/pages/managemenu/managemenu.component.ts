@@ -95,6 +95,9 @@ export class ManagemenuComponent implements OnInit {
   }
 
   updateMenu(){
+    if(!this.manageForm.valid){
+      return alert('Menu form is not valid')
+    }
     this.ms.updateMenu(this.updateForm.value).subscribe(
       data => {
         console.log(data)

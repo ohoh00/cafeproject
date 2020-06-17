@@ -12,21 +12,7 @@ export class ShopinfoComponent implements OnInit {
   
   id: String
   shops:any
-  shopForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    imageProfile: new FormControl('https://cdn.onlinewebfonts.com/svg/img_148071.png', [Validators.required]),
-    timeO: new FormControl('', [Validators.required]),
-    timeC: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
-    address: new FormControl('', [Validators.required]),
-    tumbon: new FormControl('', [Validators.required]),
-    amphoe: new FormControl('', [Validators.required]),
-    province: new FormControl('', [Validators.required]),
-    post: new FormControl('', [Validators.required]),
-    owner: new FormControl('', [Validators.required]),
-  });
-
+  
   constructor(private local : LocalStorageService,private sh: ShopService) {
     this.id = local.get('shop').id
     this.onLoading();

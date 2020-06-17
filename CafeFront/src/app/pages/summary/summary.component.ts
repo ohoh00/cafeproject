@@ -34,7 +34,7 @@ export class SummaryComponent implements OnInit {
         console.log('begin',this.menuList)
         this.menuList.forEach(item => {
           this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
-            this.totalPrice += data.totalPrice
+            
             console.log('hello',this.totalPrice)
             this.menuNumber.push(data.data)
             console.log('helloss',this.menuNumber)
@@ -53,11 +53,16 @@ export class SummaryComponent implements OnInit {
    
   }
   getOrders(){
+    var price = 0
 
-    var count = 0
-    this.os.getAllOrders(this.ls.get('shop').id).subscribe( data => {
+    this.os.getAllOrders(this.ls.get('shop').id,'true').subscribe( data => {
       console.log('wsd',data.length)
       this.orders = data.length
+      data.forEach(pr => {
+        price +=pr.totalPrice
+      });
+      
+      this.totalPrice = price
     })
     
   }

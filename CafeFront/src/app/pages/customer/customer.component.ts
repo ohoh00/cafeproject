@@ -40,6 +40,9 @@ export class CustomerComponent implements OnInit {
 
   
   addCustomer() {
+    if(!this.customerForm.valid){
+      return alert('Customer form is not valid')
+    }
     this.customerForm.get("shop").setValue(this.local.get('shop').id)
     this.cs.addCustomer(this.customerForm.value).subscribe(
       

@@ -35,6 +35,9 @@ export class ManageingrtComponent implements OnInit {
   }
 
   addIngredient(){
+    if(!this.manageinForm.valid){
+      return alert('Manage ingredeints form is not valid')
+    }
     this.manageinForm.get("shop").setValue(this.local.get('shop').id)
     this.is.addIngredient(this.manageinForm.value).subscribe(
       data => {

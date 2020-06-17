@@ -129,7 +129,7 @@ router.route('/findmenu/:shop/:name').get(auth,(req,res) => {
             res.status(404).send("No menu found.")
         }
     },err => {
-        res.status(500).send("Some thing wrong : ",err.message)
+        res.status(500).send(err.message)
     })
 })
 
