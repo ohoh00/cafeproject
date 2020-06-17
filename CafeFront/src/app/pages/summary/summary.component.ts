@@ -24,7 +24,7 @@ export class SummaryComponent implements OnInit {
   optionsChart: any;
 
   constructor(private os : OrderService,private ms : MenuService,private ls : LocalStorageService) {
-    this.ms.getAllMenu().subscribe( data => {
+    this.ms.getMenuShop(this.ls.get('shop').id).subscribe( data => {
         data.forEach(item => {
           this.menuList.push(item.name)
         });
