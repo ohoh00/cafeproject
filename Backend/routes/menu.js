@@ -57,6 +57,34 @@ function addMenu(MenuDetails){
     })
 }
 
+router.route('/delete/:id').delete(function (req,res){
+    Menu.findByIdAndRemove({_id: req.params.id},function(err,menu){
+        if(err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});
+
+
+
+router.route('/updatemenus').put((req,res) => {
+    const payload =  {
+
+        price:req.body.price
+
+    }
+    console.log(payload)
+    Menu.updateOne({_id:req.body.id},{price: payload.price},(err,data) => {
+        if(data){
+            res.status(200).json(data)
+        }
+        else{
+            res.status(500).send({message:'Update failed'+err.message})
+        }
+    })
+})
+
+
+
 router.route('/addMenu').post((req,res) => {
         const payload ={
             name:req.body.name,

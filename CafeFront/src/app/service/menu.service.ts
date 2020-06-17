@@ -31,4 +31,25 @@ export class MenuService {
       })
     )
   }
+
+
+  updateMenu(menu){
+    console.log(menu);
+    return this.http.put<any>(`${this.URL}menu/updatemenus`,menu).pipe(
+      map(data =>{
+        return data
+      })
+    )
+  }
+
+  deleteitem(id){
+    return this.http.delete(`${this.URL}menu/delete/${id}`);
+  }
+
+
+
 }
+
+
+
+
