@@ -8,12 +8,14 @@ import {map} from 'rxjs/operators'
 })
 export class OwnerService {
   user: any
-  isLoggedin:boolean = false
-  constructor(private http : HttpClient,private local : LocalStorageService) { }
+  isLoggedin:boolean = true
+  constructor(private http : HttpClient,private local : LocalStorageService) {
+
+   }
 //
   addOwner(user){
-    const headers = {'authorization': this.local.get('user').token}
-    return this.http.post<any>('http://localhost:3000/owner/signup',user,{headers})
+    
+    return this.http.post<any>('http://localhost:3000/owner/signup',user)
   }
 
   getOwner(id){
