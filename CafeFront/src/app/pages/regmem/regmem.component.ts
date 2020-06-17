@@ -48,6 +48,7 @@ export class RegmemComponent implements OnInit {
       }
     }
   }
+
   register(){
 
     this.getFormValidationErrors()

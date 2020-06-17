@@ -24,13 +24,14 @@ export class SummaryComponent implements OnInit {
   optionsChart: any;
 
   constructor(private os : OrderService,private ms : MenuService,private ls : LocalStorageService) {
-    this.ms.getAllMenu().subscribe( data => {
+    this.ms.getMenuShop(this.ls.get('shop').id).subscribe( data => {
         data.forEach(item => {
           this.menuList.push(item.name)
         });
         console.log('begin',this.menuList)
         this.menuList.forEach(item => {
           this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
+            console.log(data)
             this.menuNumber.push(data.y)
             console.log('helloss',this.menuNumber)
             this.color.push(this.getRandomColor())
@@ -68,8 +69,8 @@ export class SummaryComponent implements OnInit {
   }
   getRandomColor() {
     var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+    var color = '#34';
+    for (var i = 0; i < 4; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
