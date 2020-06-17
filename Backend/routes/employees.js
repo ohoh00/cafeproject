@@ -88,6 +88,12 @@ function getEmployeeShop(shop){
     })
     
 }
+router.route('/delete/:id').delete(function (req,res){
+    Employees.findByIdAndRemove({_id: req.params.id},function(err,employee){
+        if(err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});
 router.route('/getEmployeeShop/:id').get((req,res) => {
     const id = req.params.id
     getEmployeeShop(id).then( result => {

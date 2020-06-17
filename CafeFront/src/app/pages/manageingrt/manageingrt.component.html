@@ -5,14 +5,14 @@
   </div>
   <div class="col-9">
     <div class="column" style="padding: 20px;">
-      <h1 style="text-align: center;">รายการวัตถุดิบ</h1>
+      <h1 class="titleBack" style="text-align: center;">รายการวัตถุดิบ</h1>
     </div>
    
     <div class="row" >
       <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
         <div class="titleFunc">
           <i
-            class="fa fa-info-circle"
+            class="fa fa-plus"
             style="color: white; margin-right: 10px;"
           ></i
           >เพิ่มวัตถุดิบ
@@ -22,8 +22,8 @@
       <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#statusModal">
         <div class="titleFunc">
           <i
-            class="fa fa-info-circle"
-            style="color: white;"
+            class="fa fa-wrench"
+            style="color: white; margin-right: 10px;"
           ></i
           >เปลี่ยนสถานะ
         </div></button
@@ -38,7 +38,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">NEW Ingredients</h5>
+            <h5 class="modal-title" id="exampleModalLabel">วัตถุดิบใหม่</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -112,18 +112,20 @@
 
     <div style="padding-left: 20px;">
       <table class="table" style="background-color: white;">
-        <thead>
+        <thead class="thead-dark" style="text-align: center;">
           <tr>
+            <th scope="col">ลำดับ</th>
             <th scope="col">รายการ</th>
             <th scope="col">สถานะ</th>
             <th scope="col">ลบวัตถุดิบ</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style="text-align: center;">
           <tr *ngFor="let item of indata; index as i">
-            <th scope="row">{{item.name}}</th>
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.name}}</td>
             <td>{{item.status}}</td>
-            <td><a (click)="deleteitem(item._id)" class="btn btn-danger">Delete</a></td>
+            <td><a (click)="deleteitem(item._id)" class="btn btn-danger" style="color: white;">Delete</a></td>
           </tr>
         </tbody>
       </table>

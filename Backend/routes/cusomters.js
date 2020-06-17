@@ -97,6 +97,12 @@ router.route('/getCustomerShop/:id').get((req,res) => {
         res.status(500).send({message: `Error: ${err}`})
     })
 })
+router.route('/delete/:id').delete(function (req,res){
+    User.findByIdAndRemove({_id: req.params.id},function(err,user){
+        if(err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});
 router.route('/getCustomer').get((req,res) => {
     getAllCustomer().then( result => {
         if(result)

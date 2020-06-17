@@ -78,22 +78,24 @@
         
         <div style="padding-left: 32.5px; padding-right: 48px;">
             <table class="table" style="background-color: white; overflow-y:scroll">
-              <thead>
+              <thead class="thead-dark" style="text-align: center;">
                 <tr>
                   <th scope="col">ลำดับ</th>
                   <th scope="col">ชื่อ-นามสกุล</th>
                   <th scope="col">ตำแหน่ง</th>
                   <th scope="col">อีเมล</th>
                   <th scope="col">เบอร์โทร</th>
+                  <th scope="col">ลบ</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="text-align: center;">
                 <tr *ngFor="let item of employees; index as i">
                   <td>{{i+1}}</td>
                   <td>{{item.name}}</td>
                   <td>{{item.position}}</td>
                   <td>{{item.email}}</td>
                   <td>{{item.phoneNumber}}</td>
+                  <td><button class="button button3" style="border-radius: 100px; font-weight: bolder;" (click)="deleteitem(item._id)">X</button></td>
                 </tr>
               </tbody>
             </table>

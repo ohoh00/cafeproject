@@ -15,8 +15,8 @@ export class EmployeeComponent implements OnInit {
   employeeForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     position: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+    email: new FormControl('', [Validators.required,Validators.email]),
     shop: new FormControl('', [Validators.required])
   });
 
@@ -33,7 +33,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.onLoading();
+    
   }
 
   
@@ -63,6 +63,12 @@ export class EmployeeComponent implements OnInit {
     } catch (error) {
         console.log(error)
     }
+  }
+  deleteitem(id){
+    this.employeeForm.get("shop").setValue(this.local.get('shop').id)
+    this.em.deleteitem(id).subscribe(res => {
+      this.onLoading()
+    });
   }
   
 }

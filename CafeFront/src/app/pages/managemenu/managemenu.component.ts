@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuService } from '../../service/menu.service'
+import {LocalStorageService} from 'angular-web-storage'
 
 @Component({
   selector: 'app-managemenu',
@@ -9,18 +10,30 @@ import { MenuService } from '../../service/menu.service'
 })
 export class ManagemenuComponent implements OnInit {
 
+  shop: String
   manageForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
-    img: new FormControl('', [Validators.required])
+    img: new FormControl('', [Validators.required]),
+    shop: new FormControl('', [Validators.required])
+  });
+
+  updateForm = new FormGroup({
+    id: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
   });
 
   menus:any
-
   previewLoaded:boolean = false
 
-  constructor(private ms: MenuService) {
+  constructor(private ms: MenuService,private local : LocalStorageService) {
+    try{
+      this.manageForm.get("shop").setValue(this.local.get('shop').id)
+      
+    }catch(err){
+      console.log(err);
+    }
     this.onLoading();
    }
 
@@ -28,6 +41,7 @@ export class ManagemenuComponent implements OnInit {
   }
 
   addMenu(){
+    this.manageForm.get("shop").setValue(this.local.get('shop').id)
     this.ms.addMenu(this.manageForm.value).subscribe(
       data => {
         console.log(data)
@@ -63,7 +77,7 @@ export class ManagemenuComponent implements OnInit {
 
   onLoading() {
     try {
-      this.ms.getAllMenu().subscribe(
+      this.ms.getMenuShop(this.manageForm.get("shop").value).subscribe(
         data => {
           this.menus = data;       
       },
@@ -79,6 +93,30 @@ export class ManagemenuComponent implements OnInit {
     this.manageForm.reset();
     this.previewLoaded = false;
   }
+
+  updateMenu(){
+    this.ms.updateMenu(this.updateForm.value).subscribe(
+      data => {
+        console.log(data)
+        alert('Menu updated successfully');
+        this.onLoading();
+      },
+      err =>{
+        console.log(err);
+      });
+  }
+
+  onChange(id){
+    this.manageForm.get('id').setValue(id);
+  }
+
+  deleteitem(id){
+    this.ms.deleteitem(id).subscribe(res => {
+      this.onLoading()
+    });
+  }
+
+
 
 
 }

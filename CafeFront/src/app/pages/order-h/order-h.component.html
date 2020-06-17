@@ -13,7 +13,7 @@
         <br/>
         <div style="padding-right: 60px;">
             <table class="table" style="background-color: white;">
-              <thead>
+              <thead class="thead-dark" style="text-align: center;">
                 <tr>
                   <th scope="col">ออร์เดอร์</th>
                   <th scope="col">เบอร์สมาชิก</th>
@@ -23,7 +23,7 @@
                   <th scope="col">ราคารวม</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="text-align: center;">
                 <tr *ngFor="let item of OrderList; index as i">
                     <td scope="row">{{i+1}}</td>
                     <td>{{item.customerPhoneNumber}}</td>

@@ -57,7 +57,7 @@
                             
                                 <label for="message-text" class="col-form-label">อีเมล:</label>
                                 <div class="form-group">
-                                  <input type="text" class="form-control" formControlName='email'>
+                                  <input type="email" class="form-control" formControlName='email'>
                                 </div>
                            
                             
@@ -78,22 +78,24 @@
         
         <div style="padding-left: 32.5px; padding-right: 48px;">
             <table class="table" style="background-color: white; overflow-y:scroll">
-              <thead>
+              <thead class="thead-dark" style="text-align: center;">
                 <tr>
                   <th scope="col">ลำดับ</th>
                   <th scope="col">ชื่อ-นามสกุล</th>
                   <th scope="col">วันเกิด</th>
                   <th scope="col">อีเมล</th>
                   <th scope="col">เบอร์โทร</th>
+                  <th scope="col">ลบ</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="text-align: center;">
                 <tr *ngFor="let item of customers; index as i">
                   <td>{{i+1}}</td>
                   <td>{{item.name}}</td>
                   <td>{{datetoString(item.birth)}}</td>
                   <td>{{item.email}}</td>
                   <td>{{item.phoneNumber}}</td>
+                  <td><button class="button button3" style="border-radius: 100px; font-weight: bolder;" (click)="deleteitem(item._id)">X</button></td>
                 </tr>
               </tbody>
             </table>
