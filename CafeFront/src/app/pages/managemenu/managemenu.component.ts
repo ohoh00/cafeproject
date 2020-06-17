@@ -16,8 +16,12 @@ export class ManagemenuComponent implements OnInit {
     img: new FormControl('', [Validators.required])
   });
 
-  menus:any
+  updateForm = new FormGroup({
+    id: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+  });
 
+  menus:any
   previewLoaded:boolean = false
 
   constructor(private ms: MenuService) {
@@ -79,6 +83,30 @@ export class ManagemenuComponent implements OnInit {
     this.manageForm.reset();
     this.previewLoaded = false;
   }
+
+  updateMenu(){
+    this.ms.updateMenu(this.updateForm.value).subscribe(
+      data => {
+        console.log(data)
+        alert('Menu updated successfully');
+        this.onLoading();
+      },
+      err =>{
+        console.log(err);
+      });
+  }
+
+  onChange(id){
+    this.manageForm.get('id').setValue(id);
+  }
+
+  deleteitem(id){
+    this.ms.deleteitem(id).subscribe(res => {
+      this.onLoading()
+    });
+  }
+
+
 
 
 }
