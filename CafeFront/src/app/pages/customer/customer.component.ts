@@ -35,7 +35,7 @@ export class CustomerComponent implements OnInit {
   datetoString(date){
     return new Date(date).toLocaleDateString()
   }
-  ngOnInit(): void {
+  ngOnInit(): void {this.onLoading();
   }
 
   
