@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
 import {OwnerService} from '../../service/owner.service'
 import { variable } from '@angular/compiler/src/output/output_ast';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-regmem',
   templateUrl: './regmem.component.html',
@@ -23,11 +24,11 @@ export class RegmemComponent implements OnInit {
     personalId:new FormControl('',[Validators.required,Validators.maxLength(13),Validators.minLength(13)])
   })
 
-
+  chpass = new FormControl('',[Validators.required])
 
 
   previewLoaded:boolean = false
-  constructor(private os : OwnerService) {
+  constructor(private os : OwnerService,private router : Router) {
 
    }
 
@@ -64,6 +65,7 @@ export class RegmemComponent implements OnInit {
     this.os.addOwner(this.registerForm.value).subscribe(
       data =>{
         alert('Owner added successfully')
+        this.router.navigate(['/login'])
         this.registerForm.reset()
       }
 
@@ -113,6 +115,7 @@ export class RegmemComponent implements OnInit {
     get post(){
       return this.registerForm.get('post');
     }
+
 
 
 }

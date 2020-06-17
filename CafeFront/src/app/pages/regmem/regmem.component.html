@@ -68,8 +68,10 @@
             
             <div class="col-sm-4">
               <label class="col-md-5 control-label">ยืนยันรหัสผ่าน</label>
-              <input type="password" placeholder="" class="form-control input-md" required="">
-                
+              <input type="password" placeholder="" [formControl]="chpass" class="form-control input-md" required="">
+              <div *ngIf="chpass.value != password.value" class="text-invalid" >
+                   กรุณากรอกรหัสผ่านให้ตรงกัน
+            </div>
             </div>
 
             

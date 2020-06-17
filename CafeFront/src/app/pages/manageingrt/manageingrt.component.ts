@@ -19,6 +19,7 @@ export class ManageingrtComponent implements OnInit {
 
   indata:any[]
   id:any
+  previewLoaded:boolean = false
  
 
   constructor(private is: IngredientsService,private local : LocalStorageService) { 
@@ -44,6 +45,7 @@ export class ManageingrtComponent implements OnInit {
         console.log(data)
         alert('Ingredient added successfully');
         this.onLoading();
+        this.resetForm();
       },
       err =>{
         console.log(err);
@@ -56,6 +58,7 @@ export class ManageingrtComponent implements OnInit {
         console.log(data)
         alert('Ingredient updated successfully');
         this.onLoading();
+        this.resetForm();
       },
       err =>{
         console.log(err);
@@ -75,6 +78,12 @@ export class ManageingrtComponent implements OnInit {
         console.log(error)
     }
   }
+
+  resetForm(){
+    this.manageinForm.reset();
+    this.previewLoaded = false;
+  }
+
 
   onChange(id){
     this.id = id;

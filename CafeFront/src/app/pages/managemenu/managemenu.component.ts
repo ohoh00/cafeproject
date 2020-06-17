@@ -89,11 +89,6 @@ export class ManagemenuComponent implements OnInit {
     }
   }
 
-  resetForm(){
-    this.manageForm.reset();
-    this.previewLoaded = false;
-  }
-
   updateMenu(){
     if(!this.manageForm.valid){
       return alert('Menu form is not valid')
@@ -117,6 +112,11 @@ export class ManagemenuComponent implements OnInit {
     this.ms.deleteitem(id).subscribe(res => {
       this.onLoading()
     });
+  }
+
+  resetForm(){
+    this.manageForm.reset();
+    this.previewLoaded = false;
   }
 
   get name(){
