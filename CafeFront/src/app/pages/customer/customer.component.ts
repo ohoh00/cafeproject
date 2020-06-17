@@ -67,5 +67,9 @@ export class CustomerComponent implements OnInit {
         console.log(error)
     }
   }
-
+  deleteitem(id){
+    this.cs.deleteitem(id).subscribe(res => {
+      this.onLoading()
+    });
+  }
 }
