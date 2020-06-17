@@ -11,7 +11,7 @@
       <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
         <div class="titleFunc">
           <i
-            class="fa fa-info-circle"
+            class="fa fa-plus"
             style="color: white; margin-right: 10px;"
           ></i
           >เพิ่มเมนู
@@ -22,7 +22,7 @@
         <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#updateModal">
           <div class="titleFunc">
             <i
-              class="fa fa-ban"
+              class="fa fa-wrench"
               style="color: white; margin-right: 10px;"
             ></i
             >อัพเดทเมนู
@@ -52,7 +52,12 @@
               </div>
               <div class="form-group">
                 <label for="message-text" class="col-form-label">ประเภท:</label>
-                <input type="text" class="form-control" formControlName="type">
+                <select class="form-control" formControlName="type">
+                  <option value=""></option>
+                  <option>ร้อน</option>
+                  <option>เย็น</option>
+                  <option>ปั่น</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="message-text" class="col-form-label">ราคา:</label>
@@ -112,23 +117,24 @@
 
     <div style="padding-left: 20px;">
       <table class="table" style="background-color: white;">
-        <thead>
+        <thead class="thead-dark" style="text-align: center;">
           <tr>
             <th scope="col">ลำดับ</th>
             <th scope="col">รายการ</th>
             <th scope="col">ประเภท</th>
             <th scope="col">ราคา</th>
             <th scope="col">รูปภาพ</th>
+            <th scope="col">ลบเมนู</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style="text-align: center;">
           <tr *ngFor="let item of menus; index as i">
             <th scope="row">{{i+1}}</th>
             <td>{{item.name}}</td>
             <td>{{item.type}}</td>
             <td>{{item.price}}</td>
             <td><img [src]="item.img" style="height:100px;"></td>
-            <td><a (click)="deleteitem(item._id)" class="btn btn-danger">Delete</a></td>
+            <td><a (click)="deleteitem(item._id)" class="btn btn-danger" style="color: white;">Delete</a></td>
           </tr>
         </tbody>
       </table>

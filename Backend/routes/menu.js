@@ -68,9 +68,7 @@ router.route('/delete/:id').delete(function (req,res){
 
 router.route('/updatemenus').put((req,res) => {
     const payload =  {
-
         price:req.body.price
-
     }
     console.log(payload)
     Menu.updateOne({_id:req.body.id},{price: payload.price},(err,data) => {
