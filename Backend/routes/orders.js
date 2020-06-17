@@ -89,13 +89,15 @@ function GetMenuFromOrders(shop,name){
     return new Promise((resolve, reject) => {
       Orders.find({"menu.name":name,shop:shop,paymentStatus:true},(err,data) => {
           if(data){   
+            var Price = 0
             var menu = []
                 data.forEach(item => {
                     var Cname = item.menu
                     Cname.forEach(menuName => {
                         menu.push(menuName.name)
+                        
                     })
-                    
+                    Price += item.totalPrice
                 });
                 var count = 0
                 menu.forEach(x => {
@@ -105,7 +107,7 @@ function GetMenuFromOrders(shop,name){
                     }
                 })
 
-              resolve({label:name,y:data.length,data:count})
+              resolve({label:name,y:data.length,data:count,totalPrice:Price})
           }
           else{
               reject(new Error(err.message))

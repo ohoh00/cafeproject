@@ -19,11 +19,14 @@ export class SummaryComponent implements OnInit {
   menuNumber:any[] = []
   menuList:any[] = []
   color:any[] =[]
+  orders: Number = 0
+  totalPrice: Number = 0
   typeChart: any;
   dataChart: any;
   optionsChart: any;
 
   constructor(private os : OrderService,private ms : MenuService,private ls : LocalStorageService) {
+    this.getOrders()
     this.ms.getMenuShop(this.ls.get('shop').id).subscribe( data => {
         data.forEach(item => {
           this.menuList.push(item.name)
@@ -31,7 +34,8 @@ export class SummaryComponent implements OnInit {
         console.log('begin',this.menuList)
         this.menuList.forEach(item => {
           this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
-            console.log('hello',data.data)
+            this.totalPrice += data.totalPrice
+            console.log('hello',this.totalPrice)
             this.menuNumber.push(data.data)
             console.log('helloss',this.menuNumber)
             this.color.push(this.getRandomColor())
@@ -47,6 +51,15 @@ export class SummaryComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.menuNumber)
    
+  }
+  getOrders(){
+
+    var count = 0
+    this.os.getAllOrders(this.ls.get('shop').id).subscribe( data => {
+      console.log('wsd',data.length)
+      this.orders = data.length
+    })
+    
   }
   rederChart(data,color){
     console.log(data)
