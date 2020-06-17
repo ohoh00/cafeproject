@@ -23,7 +23,7 @@ export class RegshopComponent implements OnInit {
     tumbon: new FormControl('', [Validators.required]),
     amphoe: new FormControl('', [Validators.required]),
     province: new FormControl('', [Validators.required]),
-    post: new FormControl('', [Validators.required]),
+    post: new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5)]),
     owner: new FormControl('', [Validators.required]),
   });
 
@@ -94,5 +94,46 @@ export class RegshopComponent implements OnInit {
   resetForm(){
     this.shopForm.reset();
   }
+
+  get name(){
+    return this.shopForm.get('name');
+  }
+
+  get phoneNumber(){
+    return this.shopForm.get('phoneNumber');
+  }
+
+  get description(){
+    return this.shopForm.get('description');
+  }
+
+  get timeO(){
+    return this.shopForm.get('timeO');
+  }
+
+  get timeC(){
+    return this.shopForm.get('timeC');
+  }
+
+  get address(){
+    return this.shopForm.get('address');
+  }
+
+  get tumbon(){
+    return this.shopForm.get('tumbon');
+  }
+
+  get amphoe(){
+    return this.shopForm.get('amphoe');
+  }
+
+  get province(){
+    return this.shopForm.get('province');
+  }
+
+  get post(){
+    return this.shopForm.get('post');
+  }
+
 
 }

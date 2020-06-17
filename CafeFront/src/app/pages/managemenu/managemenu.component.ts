@@ -116,6 +116,19 @@ export class ManagemenuComponent implements OnInit {
     });
   }
 
+  get name(){
+    return this.manageForm.get('name');
+  }
+
+  get type(){
+    return this.manageForm.get('type');
+  }
+
+  get price(){
+    return this.manageForm.get('price');
+  }
+
+
 
 
 

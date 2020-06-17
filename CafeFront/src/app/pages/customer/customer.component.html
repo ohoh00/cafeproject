@@ -37,13 +37,22 @@
                               <label for="recipient-name" class="col-form-label">ชื่อ-นามสกุล:</label>
                                 <div class="form-group">
                                  <input type="text" class="form-control" formControlName='name'>
+                                 <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                                  <div *ngIf="name.errors.required">
+                                      กรุณากรอกชื่อ
+                                  </div>
+                               </div>
                                 </div>
                          
-
                             
                               <label for="message-text" class="col-form-label">วันเกิด:</label>
                                 <div class="form-group">
                                  <input type="date" class="form-control" formControlName='birth'>
+                                 <div *ngIf="birth.invalid && (birth.dirty || birth.touched)" class="text-invalid">
+                                  <div *ngIf="birth.errors.required">
+                                      กรุณาเลือกวันเกิด
+                                  </div>
+                               </div>
                                 </div>
                             
 
@@ -51,6 +60,14 @@
                               <label for="message-text" class="col-form-label">เบอร์โทร:</label>
                                 <div class="form-group">
                                  <input type="text" class="form-control" formControlName='phoneNumber'>
+                                 <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
+                                  <div *ngIf="phoneNumber.errors.required">
+                                      กรุณากรอกเบอร์โทร
+                                  </div>
+                                  <div *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">
+                                      กรุณากรอกรูปแบบเบอร์โทร
+                                </div>
+                               </div>
                                 </div>
                     
 
@@ -58,6 +75,14 @@
                                 <label for="message-text" class="col-form-label">อีเมล:</label>
                                 <div class="form-group">
                                   <input type="email" class="form-control" formControlName='email'>
+                                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-invalid">
+                                    <div *ngIf="email.errors.required">
+                                        กรุณากรอกEmail
+                                    </div>
+                                    <div *ngIf="email.errors.email">
+                                        กรุณากรอกรูปแบบEmail
+                                    </div>
+                                </div>
                                 </div>
                            
                             

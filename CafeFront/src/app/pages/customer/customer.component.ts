@@ -76,4 +76,17 @@ export class CustomerComponent implements OnInit {
   get email(){
     return this.customerForm.get('email');
   }
+
+  get name(){
+    return this.customerForm.get('name');
+  }
+
+  get phoneNumber(){
+    return this.customerForm.get('phoneNumber');
+  }
+
+  get birth(){
+    return this.customerForm.get('birth');
+  }
+
 }

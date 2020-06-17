@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
 import {OwnerService} from '../../service/owner.service'
+import { variable } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-regmem',
   templateUrl: './regmem.component.html',
@@ -18,13 +19,18 @@ export class RegmemComponent implements OnInit {
     tumbon: new FormControl('',[Validators.required]),
     amphoe: new FormControl('',[Validators.required]),
     province: new FormControl('',[Validators.required]),
-    post: new FormControl('',[Validators.maxLength(5),Validators.minLength(5)]),
-    personalId:new FormControl('',[Validators.maxLength(13),Validators.minLength(13)])
+    post: new FormControl('',[Validators.required,Validators.maxLength(5),Validators.minLength(5)]),
+    personalId:new FormControl('',[Validators.required,Validators.maxLength(13),Validators.minLength(13)])
   })
+
+
+
+
   previewLoaded:boolean = false
   constructor(private os : OwnerService) {
 
    }
+
 
   ngOnInit(): void {
   }
@@ -77,4 +83,46 @@ export class RegmemComponent implements OnInit {
         }
       });
     }
+
+    get email(){
+      return this.registerForm.get('email');
+    }
+
+    get password(){
+      return this.registerForm.get('password');
+    }
+
+    get name(){
+      return this.registerForm.get('name');
+    }
+
+    get phoneNumber(){
+      return this.registerForm.get('phoneNumber');
+    }
+
+    get personalId(){
+      return this.registerForm.get('personalId');
+    }
+
+    get address(){
+      return this.registerForm.get('address');
+    }
+
+    get tumbon(){
+      return this.registerForm.get('tumbon');
+    }
+
+    get amphoe(){
+      return this.registerForm.get('amphoe');
+    }
+
+    get province(){
+      return this.registerForm.get('province');
+    }
+
+    get post(){
+      return this.registerForm.get('post');
+    }
+
+
 }

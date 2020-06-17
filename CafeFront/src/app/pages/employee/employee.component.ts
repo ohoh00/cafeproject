@@ -70,5 +70,21 @@ export class EmployeeComponent implements OnInit {
       this.onLoading()
     });
   }
+
+  get name(){
+    return this.employeeForm.get('name');
+  }
+
+  get phoneNumber(){
+    return this.employeeForm.get('phoneNumber');
+  }
+
+  get email(){
+    return this.employeeForm.get('email');
+  }
+
+  get position(){
+    return this.employeeForm.get('position');
+  }
   
 }

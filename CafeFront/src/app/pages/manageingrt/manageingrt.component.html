@@ -50,6 +50,11 @@
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">รายการ:</label>
                 <input type="text" class="form-control" formControlName="name">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                  <div *ngIf="name.errors.required">
+                      กรุณากรอกข้อมูล
+                  </div>
+              </div>
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">สถานะ:</label>
@@ -58,6 +63,11 @@
                     <option>มี</option>
                     <option>หมด</option>
                   </select>
+                  <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-invalid">
+                    <div *ngIf="status.errors.required">
+                        กรุณาเลือกสถานะ
+                    </div>
+              </div>
               </div>
             </form>
           </div>
@@ -89,6 +99,11 @@
                     <option value=""></option>
                     <option *ngFor="let item of indata; index as i" [value] = "item._id">{{item.name}}</option>
                   </select>
+                  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                    <div *ngIf="name.errors.required">
+                        กรุณาเลือกรายการ
+                    </div>
+                </div>
                 </div>
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">สถานะ:</label>
@@ -97,6 +112,11 @@
                     <option>มี</option>
                     <option>หมด</option>
                   </select>
+                  <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-invalid">
+                    <div *ngIf="status.errors.required">
+                        กรุณาเลือกสถานะ
+                    </div>
+              </div>
                 </div>
               </form>
             </div>
