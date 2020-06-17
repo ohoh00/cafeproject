@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import {LocalStorageService} from 'angular-web-storage'
 import {map} from 'rxjs/operators'
 
 @Injectable({
@@ -9,19 +10,23 @@ export class CustomerService {
 
   customer: any
   URL = 'http://localhost:3000/'
+ 
+  
+  constructor(private http : HttpClient,private ls : LocalStorageService) { 
+    
+  }
+  
 
-  constructor(private http : HttpClient) { }
-
-  addCustomer(customer){
-    return this.http.post<any>(`${this.URL}customers/signup`,customer).pipe(
+  addCustomer(customer){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.post<any>(`${this.URL}customers/signup`,customer,{headers}).pipe(
       map(data =>{
         return data
       })
     )
   }
 
-  getAlluser(){
-    return this.http.get<any>(`${this.URL}customers/getCustomer`).pipe(
+  getAlluser(){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`${this.URL}customers/getCustomer`,{headers}).pipe(
       map(data => {
         if(data){
           this.customer = data
@@ -32,8 +37,8 @@ export class CustomerService {
     )
   }
 
-  getCustomerShop(id){
-    return this.http.get<any>(`http://localhost:3000/customers/getCustomerShop/${id}`).pipe(map( data => {
+  getCustomerShop(id){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`http://localhost:3000/customers/getCustomerShop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.customer = data
         console.log(data)
@@ -41,7 +46,7 @@ export class CustomerService {
       return this.customer
     }))
   }
-  deleteitem(id){
-    return this.http.delete(`${this.URL}customers/delete/${id}`);
+  deleteitem(id){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.delete(`${this.URL}customers/delete/${id}`,{headers});
   }
 }

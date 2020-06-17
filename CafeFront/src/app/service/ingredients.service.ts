@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {map} from 'rxjs/operators'
-
+import {LocalStorageService} from 'angular-web-storage'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,10 +10,13 @@ export class IngredientsService {
   ingredient: any
   URL = 'http://localhost:3000/'
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private ls : LocalStorageService) { 
+    
+  }
 
-  addIngredient(ingredient){
-    return this.http.post<any>(`${this.URL}ingredients/addIngredient`,ingredient).pipe(
+
+  addIngredient(ingredient){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.post<any>(`${this.URL}ingredients/addIngredient`,ingredient,{headers}).pipe(
       map(data =>{
         return data
       })
@@ -21,16 +24,16 @@ export class IngredientsService {
   }
 
   updateIngredient(ingredient,id){
-    console.log(ingredient);
-    return this.http.put<any>(`${this.URL}ingredients/update/${id}`,ingredient).pipe(
+    const headers = {'authorization': this.ls.get('user').token}
+    return this.http.put<any>(`${this.URL}ingredients/update/${id}`,ingredient,{headers}).pipe(
       map(data =>{
         return data
       })
     )
   }
 
-  getAllIngredients(){
-    return this.http.get<any>(`${this.URL}ingredients/getIngredients`).pipe(
+  getAllIngredients(){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`${this.URL}ingredients/getIngredients`,{headers}).pipe(
       map(data => {
         if(data){
           this.ingredient = data
@@ -41,12 +44,12 @@ export class IngredientsService {
     )
   }
 
-  deleteitem(id){
-    return this.http.delete(`${this.URL}ingredients/delete/${id}`);
+  deleteitem(id){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.delete(`${this.URL}ingredients/delete/${id}`,{headers});
   }
 
-  getIngredientShop(id){
-    return this.http.get<any>(`http://localhost:3000/ingredients/getIngredientShop/${id}`).pipe(map( data => {
+  getIngredientShop(id){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`http://localhost:3000/ingredients/getIngredientShop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.ingredient = data
         console.log(data)

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {map} from 'rxjs/operators'
-
+import {LocalStorageService} from 'angular-web-storage'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,10 +10,14 @@ export class OrderService {
   order : any
   URL = 'http://localhost:3000'
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private ls : LocalStorageService) { 
+    
+  }
+
 
   addOrder(order){
-    return this.http.post<any>(`${this.URL}/orders/addOrder`,order).pipe(
+     const headers = {'authorization': this.ls.get('user').token}
+    return this.http.post<any>(`${this.URL}/orders/addOrder`,order,{headers}).pipe(
       map(data => {
         console.log(data)
         return data
@@ -21,7 +25,8 @@ export class OrderService {
     )
   }
   updateOrder(newOrder){
-    return this.http.put<any>(`${this.URL}/orders/updateOrder`,newOrder).pipe(
+    const headers = {'authorization': this.ls.get('user').token}
+    return this.http.put<any>(`${this.URL}/orders/updateOrder`,newOrder,{headers}).pipe(
       map(data => {
         return data
       })
@@ -29,7 +34,8 @@ export class OrderService {
   }
 
   getOrder(id,shop){
-    return this.http.get<any>(`${this.URL}/orders/getdOrder/${shop}/${id}`).pipe(
+    const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`${this.URL}/orders/getdOrder/${shop}/${id}`,{headers}).pipe(
       map(data => {
         if(data){
           this.order = data
@@ -40,7 +46,8 @@ export class OrderService {
     )
   }
   getAllOrders(shop,paymentstatus='false'){
-    return this.http.get<any>(`${this.URL}/orders/getOrder/${shop}/${paymentstatus}`).pipe(
+    const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`${this.URL}/orders/getOrder/${shop}/${paymentstatus}`,{headers}).pipe(
       map(data => {
         if(data){
           this.order = data
@@ -51,7 +58,8 @@ export class OrderService {
     )
   }
   getMenuFromOrders(shop,name){
-    return this.http.get<any>(`${this.URL}/orders/findmenu/${shop}/${name}`).pipe(
+    const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`${this.URL}/orders/findmenu/${shop}/${name}`,{headers}).pipe(
       map(data => {
         if(data){
           this.order = data

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MenuService} from '../../service/menu.service'
 import {OrderService} from'../../service/order.service'
 import {LocalStorageService} from 'angular-web-storage'
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -16,7 +17,7 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ms.getAllMenu().subscribe( data => {
+    this.ms.getMenuShop( this.shop).subscribe( data => {
       this.menu = data
       console.log(this.menu)
     })
@@ -43,6 +44,9 @@ export class OrderComponent implements OnInit {
     return sumPrice
   }
   saveOrder(){
+    if(this.isMenuEmpty()){
+      return alert('No menu selected!.') 
+    }
     const payload = {
         menu:this.selectMenu,quantity:this.selectMenu.length,paymentDate:'',paymentStatus:false,paymentMethod:'',customerPhoneNumber:'',totalPrice:this.SumPrice(this.selectMenu),shop:this.shop
     }
@@ -54,6 +58,9 @@ export class OrderComponent implements OnInit {
       console.log(err)
     })
     console.log(payload)
+  }
+  isMenuEmpty(){
+    return this.selectMenu.length === 0 ? true : false
   }
 
 }

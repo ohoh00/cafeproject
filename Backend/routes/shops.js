@@ -2,7 +2,7 @@ var expressFunction = require('express')
 
 const router = expressFunction.Router()
 const mongoose = require('mongoose')
-
+const auth = require('../Auth')
 var schema = require('mongoose').Schema
 const shopSchema = schema({
     timeO: String,
@@ -99,7 +99,7 @@ function getShopOw(owner){
       })
     }) 
 }
-router.route('/getshopow/:id').get((req,res) => {
+router.route('/getshopow/:id').get(auth,(req,res) => {
     const id = req.params.id
     getShopOw(id).then( result => {
         if(result)
@@ -111,7 +111,7 @@ router.route('/getshopow/:id').get((req,res) => {
     })
 })
 
-router.route('/addshop').post((req,res) => {
+router.route('/addshop').post(auth,(req,res) => {
         const payload ={
             timeO: req.body.timeO,
             timeC: req.body.timeC,
@@ -138,7 +138,7 @@ router.route('/addshop').post((req,res) => {
 
 })
 
-router.route('/getshop/:id').get((req,res) => {
+router.route('/getshop/:id').get(auth,(req,res) => {
     const id = req.params.id
     getShop(id).then( result => {
         if(result)
@@ -150,7 +150,7 @@ router.route('/getshop/:id').get((req,res) => {
     })
 })
 
-router.route('/getshop').get((req,res) => {
+router.route('/getshop').get(auth,(req,res) => {
     getAllShops().then( result => {
         if(result)
             res.status(200).json(result)

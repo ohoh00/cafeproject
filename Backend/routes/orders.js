@@ -2,7 +2,7 @@ var expressFunction = require('express')
 
 const router = expressFunction.Router()
 const mongoose = require('mongoose')
-
+const auth = require('../Auth')
 var schema = require('mongoose').Schema
 const orderSchema = schema({
     menu: Array,
@@ -99,7 +99,7 @@ function GetMenuFromOrders(shop,name){
     })
 }
 
-router.route('/findmenu/:shop/:name').get((req,res) => {
+router.route('/findmenu/:shop/:name').get(auth,(req,res) => {
     const shop = req.params.shop
     const name = req.params.name
     GetMenuFromOrders(shop,name).then( data => {
@@ -116,7 +116,7 @@ router.route('/findmenu/:shop/:name').get((req,res) => {
     })
 })
 
-router.route('/updateOrder').put((req,res) => {
+router.route('/updateOrder').put(auth,(req,res) => {
     const payload =  {
         paymentStatus: req.body.paymentStatus,
         paymentDate: req.body.paymentDate,
@@ -134,7 +134,7 @@ router.route('/updateOrder').put((req,res) => {
     })
 })
 
-router.route('/addOrder').post((req,res) => {
+router.route('/addOrder').post(auth,(req,res) => {
         const payload ={
             menu: req.body.menu,
             totalPrice: req.body.totalPrice,
@@ -158,7 +158,7 @@ router.route('/addOrder').post((req,res) => {
 
 })
 
-router.route('/getdOrder/:shop/:id').get((req,res) => {
+router.route('/getdOrder/:shop/:id').get(auth,(req,res) => {
     const id = req.params.id
     const shop = req.params.shop
     getOrder(id,shop).then( result => {
@@ -171,7 +171,7 @@ router.route('/getdOrder/:shop/:id').get((req,res) => {
     })
 })
 
-router.route('/getOrder/:shop/:paymentStatus').get((req,res) => {
+router.route('/getOrder/:shop/:paymentStatus').get(auth,(req,res) => {
 
 
     getAllOrders(req.params.paymentStatus == "false" ? false : true,req.params.shop).then( result => {

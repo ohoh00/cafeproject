@@ -15,23 +15,25 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component';
 import { OrderComponent } from './pages/order/order.component';
 
+import {AuthGuardService} from './service/auth-guard.service'
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'regmem', component: RegmemComponent},
-  { path: 'slshop', component: SlshopComponent},
-  { path: 'regshop', component: RegshopComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'shopinfo', component: ShopinfoComponent},
-  { path: 'summary', component: SummaryComponent },
-  { path: 'orderh', component: OrderHComponent },
-  { path: 'pay', component: PayComponent},
-  { path: 'summary', component: SummaryComponent},
-  { path: 'managemenu', component: ManagemenuComponent},
-  { path: 'employee', component: EmployeeComponent},
-  { path: 'customer', component: CustomerComponent},
-  { path: 'manageingrt', component: ManageingrtComponent},
-  { path: 'order', component: OrderComponent}
+  { path: 'slshop', component: SlshopComponent,canActivate:[AuthGuardService]},
+  { path: 'regshop', component: RegshopComponent,canActivate:[AuthGuardService]},
+  { path: 'home', component: HomeComponent,canActivate:[AuthGuardService]},
+  { path: 'shopinfo', component: ShopinfoComponent,canActivate:[AuthGuardService]},
+  { path: 'summary', component: SummaryComponent,canActivate:[AuthGuardService] },
+  { path: 'orderh', component: OrderHComponent,canActivate:[AuthGuardService] },
+  { path: 'pay', component: PayComponent,canActivate:[AuthGuardService]},
+  { path: 'summary', component: SummaryComponent,canActivate:[AuthGuardService]},
+  { path: 'managemenu', component: ManagemenuComponent,canActivate:[AuthGuardService]},
+  { path: 'employee', component: EmployeeComponent,canActivate:[AuthGuardService]},
+  { path: 'customer', component: CustomerComponent,canActivate:[AuthGuardService]},
+  { path: 'manageingrt', component: ManageingrtComponent,canActivate:[AuthGuardService]},
+  { path: 'order', component: OrderComponent,canActivate:[AuthGuardService]}
 
 ];
 

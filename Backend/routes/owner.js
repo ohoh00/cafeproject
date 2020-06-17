@@ -74,7 +74,7 @@ router.route('/signup').post((req,res) => {
             name: req.body.name,
             phoneNumber: req.body.phoneNumber,
             birth: req.body.birth,
-            personalId: req.body.id,
+            personalId: req.body.personalId,
             address: req.body.address,
             tumbon: req.body.tumbon,
             amphoe: req.body.amphoe,
@@ -169,7 +169,7 @@ router.route('/login').post(async (req,res) => {
     }
 })
 
-router.route('/getOwner/:id').get((req,res) => {
+router.route('/getOwner/:id').get(auth,(req,res) => {
     const id = req.params.id
     getOwner(id).then( result => {
         if(result)

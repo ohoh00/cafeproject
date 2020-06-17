@@ -23,6 +23,9 @@ import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component'
 import { OrderComponent } from './pages/order/order.component';
 import { ChartModule } from 'angular2-chartjs';
 
+import {AuthGuardService} from './service/auth-guard.service';
+import { NotFoundComponent } from './pages/not-found/not-found.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,8 @@ import { ChartModule } from 'angular2-chartjs';
     EmployeeComponent,
     CustomerComponent,
     ManageingrtComponent,
-    OrderComponent
+    OrderComponent,
+    NotFoundComponent
 
   ],
   imports: [

@@ -18,6 +18,7 @@ export class SummaryComponent implements OnInit {
   dataIn : any[] = []
   menuNumber:any[] = []
   menuList:any[] = []
+  color:any[] =[]
   typeChart: any;
   dataChart: any;
   optionsChart: any;
@@ -32,7 +33,8 @@ export class SummaryComponent implements OnInit {
           this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
             this.menuNumber.push(data.y)
             console.log('helloss',this.menuNumber)
-            this.rederChart(this.menuNumber)
+            this.color.push(this.getRandomColor())
+            this.rederChart(this.menuNumber,this.color)
           })
         });
        
@@ -45,7 +47,7 @@ export class SummaryComponent implements OnInit {
     console.log(this.menuNumber)
    
   }
-  rederChart(data){
+  rederChart(data,color){
     console.log(data)
     this.typeChart = 'pie';   
     this.dataChart = {
@@ -54,9 +56,7 @@ export class SummaryComponent implements OnInit {
         {
           label: "สรุปรายจ่าย",
           data: data,
-          backgroundColor: [
-            '#1abc9c', '#bdc3c7'
-          ]
+          backgroundColor: color
         }
       ],
      
@@ -65,6 +65,14 @@ export class SummaryComponent implements OnInit {
       responsive: true,
       
     };
+  }
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
   }
 

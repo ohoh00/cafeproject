@@ -14,14 +14,14 @@ export class ManagemenuComponent implements OnInit {
   manageForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
+    price: new FormControl(0, [Validators.required]),
     img: new FormControl('', [Validators.required]),
     shop: new FormControl('', [Validators.required])
   });
 
   updateForm = new FormGroup({
     id: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
+    price: new FormControl(0, [Validators.required]),
   });
 
   menus:any

@@ -2,7 +2,7 @@ var expressFunction = require('express')
 
 const router = expressFunction.Router()
 const mongoose = require('mongoose')
-
+const auth = require('../Auth')
 var schema = require('mongoose').Schema
 const userSchema = schema({
     email: String,
@@ -88,13 +88,13 @@ function getEmployeeShop(shop){
     })
     
 }
-router.route('/delete/:id').delete(function (req,res){
+router.route('/delete/:id').delete(auth,function (req,res){
     Employees.findByIdAndRemove({_id: req.params.id},function(err,employee){
         if(err) res.json(err);
         else res.json('Successfully removed');
     });
 });
-router.route('/getEmployeeShop/:id').get((req,res) => {
+router.route('/getEmployeeShop/:id').get(auth,(req,res) => {
     const id = req.params.id
     getEmployeeShop(id).then( result => {
         if(result)
@@ -105,7 +105,7 @@ router.route('/getEmployeeShop/:id').get((req,res) => {
         res.status(500).send({message: `Error: ${err}`})
     })
 })
-router.route('/getEmployee').get((req,res) => {
+router.route('/getEmployee').get(auth,(req,res) => {
     getAllEmolyees().then( result => {
         if(result)
             res.status(200).json(result)
@@ -117,7 +117,7 @@ router.route('/getEmployee').get((req,res) => {
     })
 })
 
-router.route('/getEmployee/:id').get((req,res) => {
+router.route('/getEmployee/:id').get(auth,(req,res) => {
     const id = req.params.id
     getUser(id).then( result => {
         if(data)
@@ -128,7 +128,7 @@ router.route('/getEmployee/:id').get((req,res) => {
         res.status(500).send({message: `Error: ${err}`})
     })
 })
-router.route('/signup').post((req,res) => {
+router.route('/signup').post(auth,(req,res) => {
         const payload ={
             email: req.body.email,
             name: req.body.name,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {map} from 'rxjs/operators'
-
+import {LocalStorageService} from 'angular-web-storage'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,18 +10,20 @@ export class MenuService {
   menu: any
   URL = 'http://localhost:3000/'
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private ls : LocalStorageService) { 
+    
+  }
 
-  addMenu(menu){
-    return this.http.post<any>(`${this.URL}menu/addMenu`,menu).pipe(
+  addMenu(menu){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.post<any>(`${this.URL}menu/addMenu`,menu,{headers}).pipe(
       map(data =>{
         return data
       })
     )
   }
 
-  getAllMenu(){
-    return this.http.get<any>(`${this.URL}menu/getMenu`).pipe(
+  getAllMenu(){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`${this.URL}menu/getMenu`,{headers}).pipe(
       map(data => {
         if(data){
           this.menu = data
@@ -34,19 +36,19 @@ export class MenuService {
 
 
   updateMenu(menu){
-    console.log(menu);
-    return this.http.put<any>(`${this.URL}menu/updatemenus`,menu).pipe(
+   const headers = {'authorization': this.ls.get('user').token}
+    return this.http.put<any>(`${this.URL}menu/updatemenus`,menu,{headers}).pipe(
       map(data =>{
         return data
       })
     )
   }
 
-  deleteitem(id){
-    return this.http.delete(`${this.URL}menu/delete/${id}`);
+  deleteitem(id){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.delete(`${this.URL}menu/delete/${id}`,{headers});
   }
-  getMenuShop(id){
-    return this.http.get<any>(`http://localhost:3000/menu/getMenuShop/${id}`).pipe(map( data => {
+  getMenuShop(id){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`http://localhost:3000/menu/getMenuShop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.menu = data
         console.log(data)

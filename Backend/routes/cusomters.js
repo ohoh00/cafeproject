@@ -2,7 +2,7 @@ var expressFunction = require('express')
 
 const router = expressFunction.Router()
 const mongoose = require('mongoose')
-
+const auth = require('../Auth')
 var schema = require('mongoose').Schema
 const userSchema = schema({
     email: String,
@@ -86,7 +86,7 @@ function getCustomerShop(shop){
     })
     
 }
-router.route('/getCustomerShop/:id').get((req,res) => {
+router.route('/getCustomerShop/:id').get(auth,(req,res) => {
     const id = req.params.id
     getCustomerShop(id).then( result => {
         if(result)
@@ -97,13 +97,13 @@ router.route('/getCustomerShop/:id').get((req,res) => {
         res.status(500).send({message: `Error: ${err}`})
     })
 })
-router.route('/delete/:id').delete(function (req,res){
+router.route('/delete/:id').delete(auth,function (req,res){
     User.findByIdAndRemove({_id: req.params.id},function(err,user){
         if(err) res.json(err);
         else res.json('Successfully removed');
     });
 });
-router.route('/getCustomer').get((req,res) => {
+router.route('/getCustomer').get(auth,(req,res) => {
     getAllCustomer().then( result => {
         if(result)
             res.status(200).json(result)
@@ -114,7 +114,7 @@ router.route('/getCustomer').get((req,res) => {
         res.status(500).send({message: `Eroor: ${err}`})
     })
 })
-router.route('/getCustomer/:id').get((req,res) => {
+router.route('/getCustomer/:id').get(auth,(req,res) => {
     const id = req.params.id
     getUser(id).then( result => {
         if(data)
@@ -126,7 +126,7 @@ router.route('/getCustomer/:id').get((req,res) => {
     })
 })
 
-router.route('/signup').post((req,res) => {
+router.route('/signup').post(auth,(req,res) => {
         const payload ={
             email: req.body.email,
             name: req.body.name,

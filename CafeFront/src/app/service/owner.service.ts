@@ -8,15 +8,18 @@ import {map} from 'rxjs/operators'
 })
 export class OwnerService {
   user: any
+  isLoggedin:boolean = false
   constructor(private http : HttpClient,private local : LocalStorageService) { }
-
+//
   addOwner(user){
-    return this.http.post<any>('http://localhost:3000/owner/signup',user)
+    const headers = {'authorization': this.local.get('user').token}
+    return this.http.post<any>('http://localhost:3000/owner/signup',user,{headers})
   }
 
   getOwner(id){
-    console.log('getData',id)
-    return this.http.get<any>(`http://localhost:3000/owner/getOwner/`+id).pipe(map( data => {
+
+    const headers = {'authorization': this.local.get('user').token}
+    return this.http.get<any>(`http://localhost:3000/owner/getOwner/`+id,{headers}).pipe(map( data => {
       if(data){
         this.user = data
         console.log(data)
@@ -29,17 +32,21 @@ export class OwnerService {
     }))
   }
   login(user){
-    console.log(user);
+    
     return this.http.post('http://localhost:3000/owner/login',user).pipe(
       map(data=>{
         console.log(data);
         if(data){
           this.local.set('user',data,1,'w')
           console.log('write ',this.local.get('user'))
+          this.isLoggedin = true
         }
 
         return data
       })
     )
+  }
+  isLoggedIn(){
+    return this.isLoggedin
   }
 }

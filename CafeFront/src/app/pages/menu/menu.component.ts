@@ -41,6 +41,7 @@ export class MenuComponent implements OnInit {
   }
   logOut(){
     this.local.remove('user')
+    this.local.remove('shop')
     this.router.navigate(['/login'])
   }
 

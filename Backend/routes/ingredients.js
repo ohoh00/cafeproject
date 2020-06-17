@@ -2,7 +2,7 @@ var expressFunction = require('express')
 
 const router = expressFunction.Router()
 const mongoose = require('mongoose')
-
+const auth = require('../Auth')
 var schema = require('mongoose').Schema
 const ingredientSchema = schema({
    name:String,
@@ -67,7 +67,7 @@ function getIngredientShop(shop){
     })
     
 }
-router.route('/getIngredientShop/:id').get((req,res) => {
+router.route('/getIngredientShop/:id').get(auth,(req,res) => {
     const id = req.params.id
     getIngredientShop(id).then( result => {
         if(result)
@@ -79,7 +79,7 @@ router.route('/getIngredientShop/:id').get((req,res) => {
     })
 })
 
-router.route('/update/:id').put(function (req,res){
+router.route('/update/:id').put(auth,function (req,res){
     Ingredients.findById(req.params.id, function(err,ingredient){
         if(!ingredient)
            res.status(404).send("Record not found");
@@ -95,7 +95,7 @@ router.route('/update/:id').put(function (req,res){
     });
 });
 
-router.route('/delete/:id').delete(function (req,res){
+router.route('/delete/:id').delete(auth,function (req,res){
     Ingredients.findByIdAndRemove({_id: req.params.id},function(err,ingredient){
         if(err) res.json(err);
         else res.json('Successfully removed');
@@ -103,7 +103,7 @@ router.route('/delete/:id').delete(function (req,res){
 });
 
 
-router.route('/addIngredient').post((req,res) => {
+router.route('/addIngredient').post(auth,(req,res) => {
         const payload ={
             name:req.body.name,
             status:req.body.status,
@@ -122,7 +122,7 @@ router.route('/addIngredient').post((req,res) => {
 })
 
 
-router.route('/getIngredients').get((req,res) => {
+router.route('/getIngredients').get(auth,(req,res) => {
     getIngredients().then( result => {
         if(result)
             res.status(200).json(result)

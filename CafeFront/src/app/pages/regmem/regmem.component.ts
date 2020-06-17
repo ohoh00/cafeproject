@@ -19,7 +19,7 @@ export class RegmemComponent implements OnInit {
     tumbon: new FormControl('',[Validators.required]),
     amphoe: new FormControl('',[Validators.required]),
     province: new FormControl('',[Validators.required]),
-    post: new FormControl('',[Validators.maxLength(4),Validators.minLength(4)]),
+    post: new FormControl(0,[Validators.maxLength(5),Validators.minLength(5)]),
     personalId:new FormControl('',[Validators.maxLength(13),Validators.minLength(13)])
   })
   previewLoaded:boolean = false
@@ -50,10 +50,12 @@ export class RegmemComponent implements OnInit {
     }
   }
   register(){
+    if(!this.registerForm.valid){
+      return alert("Register form is invalid.")
+    }
     this.os.addOwner(this.registerForm.value).subscribe(
       data =>{
-        console.log(data)
-        alert('Product added successfully')
+        alert('Owner added successfully')
         this.registerForm.reset()
       }
 

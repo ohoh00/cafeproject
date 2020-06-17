@@ -2,7 +2,7 @@ var expressFunction = require('express')
 
 const router = expressFunction.Router()
 const mongoose = require('mongoose')
-
+const auth = require('../Auth')
 var schema = require('mongoose').Schema
 const menuSchema = schema({
    name:String,
@@ -71,7 +71,7 @@ function getMenuShop(shop){
     })
     
 }
-router.route('/getMenuShop/:id').get((req,res) => {
+router.route('/getMenuShop/:id').get(auth,(req,res) => {
     const id = req.params.id
     getMenuShop(id).then( result => {
         if(result)
@@ -83,7 +83,7 @@ router.route('/getMenuShop/:id').get((req,res) => {
     })
 })
 
-router.route('/delete/:id').delete(function (req,res){
+router.route('/delete/:id').delete(auth,function (req,res){
     Menu.findByIdAndRemove({_id: req.params.id},function(err,menu){
         if(err) res.json(err);
         else res.json('Successfully removed');
@@ -92,7 +92,7 @@ router.route('/delete/:id').delete(function (req,res){
 
 
 
-router.route('/updatemenus').put((req,res) => {
+router.route('/updatemenus').put(auth,(req,res) => {
     const payload =  {
         price:req.body.price
     }
@@ -110,7 +110,7 @@ router.route('/updatemenus').put((req,res) => {
 
 
 
-router.route('/addMenu').post((req,res) => {
+router.route('/addMenu').post(auth,(req,res) => {
         const payload ={
             name:req.body.name,
             type:req.body.type,
@@ -131,7 +131,7 @@ router.route('/addMenu').post((req,res) => {
 })
 
 
-router.route('/getMenu').get((req,res) => {
+router.route('/getMenu').get(auth,(req,res) => {
     getMenu().then( result => {
         if(result)
             res.status(200).json(result)
