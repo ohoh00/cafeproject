@@ -6,7 +6,8 @@ const mongoose = require('mongoose')
 var schema = require('mongoose').Schema
 const ingredientSchema = schema({
    name:String,
-   status:String
+   status:String,
+   shop:String
 },{
     collection: 'ingredients'
 })
@@ -39,8 +40,8 @@ function addIngredient(ingredientDetails){
     return new Promise((res,rej) => {
         var new_user = new Ingredients({
             name:ingredientDetails.name,
-            status:ingredientDetails.status
-
+            status:ingredientDetails.status,
+            shop:ingredientDetails.shop
         })
         new_user.save((err,data) => {
             if(err){
@@ -52,7 +53,31 @@ function addIngredient(ingredientDetails){
         })
     })
 }
-
+function getIngredientShop(shop){
+    return new Promise((resolve, reject) => {
+        Ingredients.find({shop:shop},(err,data) => {
+            if(err)
+              reject(new Error('Connot get employee'))
+            else
+              if(data)
+                  resolve(data)
+              else
+                  reject(new Error(`Employee ID ${id} is not exist`))
+        })
+    })
+    
+}
+router.route('/getIngredientShop/:id').get((req,res) => {
+    const id = req.params.id
+    getIngredientShop(id).then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(404).send({message : `Cannot find employee with ID  ${id}`})
+    }).catch( err => {
+        res.status(500).send({message: `Error: ${err}`})
+    })
+})
 
 router.route('/update/:id').put(function (req,res){
     Ingredients.findById(req.params.id, function(err,ingredient){
@@ -81,7 +106,8 @@ router.route('/delete/:id').delete(function (req,res){
 router.route('/addIngredient').post((req,res) => {
         const payload ={
             name:req.body.name,
-            status:req.body.status
+            status:req.body.status,
+            shop:req.body.shop
         }
         console.log(payload)
         addIngredient(payload)

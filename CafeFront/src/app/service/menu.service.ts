@@ -45,7 +45,15 @@ export class MenuService {
   deleteitem(id){
     return this.http.delete(`${this.URL}menu/delete/${id}`);
   }
-
+  getMenuShop(id){
+    return this.http.get<any>(`http://localhost:3000/menu/getMenuShop/${id}`).pipe(map( data => {
+      if(data){
+        this.menu = data
+        console.log(data)
+      }
+      return this.menu
+    }))
+  }
 
 
 }

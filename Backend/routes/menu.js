@@ -9,7 +9,7 @@ const menuSchema = schema({
    type: String,
    price: Number,
    img: String,
-   
+   shop: String
 },{
     collection: 'menu'
 })
@@ -44,7 +44,8 @@ function addMenu(MenuDetails){
             name:MenuDetails.name,
             type:MenuDetails.type,
             price:MenuDetails.price,
-            img:MenuDetails.img
+            img:MenuDetails.img,
+            shop:MenuDetails.shop
         })
         new_user.save((err,data) => {
             if(err){
@@ -56,6 +57,31 @@ function addMenu(MenuDetails){
         })
     })
 }
+function getMenuShop(shop){
+    return new Promise((resolve, reject) => {
+        Menu.find({shop:shop},(err,data) => {
+            if(err)
+              reject(new Error('Connot get employee'))
+            else
+              if(data)
+                  resolve(data)
+              else
+                  reject(new Error(`Employee ID ${id} is not exist`))
+        })
+    })
+    
+}
+router.route('/getMenuShop/:id').get((req,res) => {
+    const id = req.params.id
+    getMenuShop(id).then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(404).send({message : `Cannot find employee with ID  ${id}`})
+    }).catch( err => {
+        res.status(500).send({message: `Error: ${err}`})
+    })
+})
 
 router.route('/delete/:id').delete(function (req,res){
     Menu.findByIdAndRemove({_id: req.params.id},function(err,menu){
@@ -88,7 +114,8 @@ router.route('/addMenu').post((req,res) => {
             name:req.body.name,
             type:req.body.type,
             price:req.body.price,
-            img:req.body.img
+            img:req.body.img,
+            shop:req.body.shop
         }
         console.log(payload)
         addMenu(payload)
