@@ -14,7 +14,8 @@ export class ManagemenuComponent implements OnInit {
   manageForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
-    price: new FormControl(0, [Validators.required]),
+    variation: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
     img: new FormControl('', [Validators.required]),
     shop: new FormControl('', [Validators.required])
   });
@@ -41,12 +42,16 @@ export class ManagemenuComponent implements OnInit {
   }
 
   addMenu(){
+    if(!this.manageForm.valid){
+      this.resetForm();
+      return alert('Menu form is not valid')
+    }
     this.manageForm.get("shop").setValue(this.local.get('shop').id)
     this.ms.addMenu(this.manageForm.value).subscribe(
       data => {
         alert('Menu added successfully');
-        this.onLoading();
         this.resetForm();
+        this.onLoading();
       },
       err =>{
         console.log(err);
@@ -105,6 +110,7 @@ export class ManagemenuComponent implements OnInit {
 
   onChange(id){
     this.updateForm.get('id').setValue(id);
+    console.log(id)
   }
 
   deleteitem(id){
@@ -114,7 +120,11 @@ export class ManagemenuComponent implements OnInit {
   }
 
   resetForm(){
-    this.manageForm.reset();
+    this.manageForm.get('name').setValue('');
+    this.manageForm.get('type').setValue('');
+    this.manageForm.get('variation').setValue('');
+    this.manageForm.get('price').setValue('');
+    this.manageForm.get('img').setValue('');
     this.previewLoaded = false;
   }
 

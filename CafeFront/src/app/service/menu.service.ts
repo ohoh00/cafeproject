@@ -47,8 +47,18 @@ export class MenuService {
   deleteitem(id){const headers = {'authorization': this.ls.get('user').token}
     return this.http.delete(`${this.URL}menu/delete/${id}`,{headers});
   }
+
   getMenuShop(id){const headers = {'authorization': this.ls.get('user').token}
     return this.http.get<any>(`http://localhost:3000/menu/getMenuShop/${id}`,{headers}).pipe(map( data => {
+      if(data){
+        this.menu = data
+
+      }
+      return this.menu
+    }))
+  }
+  getMenuTypeShop(shop,type){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`http://localhost:3000/menu/getType/${shop}/${type}`,{headers}).pipe(map( data => {
       if(data){
         this.menu = data
 

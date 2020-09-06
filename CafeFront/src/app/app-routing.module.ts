@@ -15,7 +15,8 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import { ManageingrtComponent } from './pages/manageingrt/manageingrt.component';
 import { OrderComponent } from './pages/order/order.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component'
-import {AuthGuardService} from './service/auth-guard.service'
+import {AuthGuardService} from './service/auth-guard.service';
+import { PromotionComponent } from './pages/promotion/promotion.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'customer', component: CustomerComponent,canActivate:[AuthGuardService]},
   { path: 'manageingrt', component: ManageingrtComponent,canActivate:[AuthGuardService]},
   { path: 'order', component: OrderComponent,canActivate:[AuthGuardService]},
+  { path: 'promotion', component: PromotionComponent,canActivate:[AuthGuardService]},
   { path: '**', component: NotFoundComponent}
 
 

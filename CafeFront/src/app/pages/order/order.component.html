@@ -1,50 +1,69 @@
 <app-menu></app-menu>
 <div class="row">
-    <div class="col-2" style="background-color: #343a40; opacity: 80%;">
+    <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 5%;">
         <app-funcbar></app-funcbar>
     </div>
     <div class="col-10">
         &nbsp;
-            <div class="row">
-                
-
-                <div class="col-1">
-                    <button class="learn-more" style="background-color: white; border-radius: 25px;">
-                        <span class="circle" aria-hidden="true">
-                          <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-text">ร้อน</span>
-                      </button>
-                </div>
-
-                <div class="col-1">
-                    <button class="learn-more" style="background-color: white; border-radius: 25px;">
-                        <span class="circle" aria-hidden="true">
-                          <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-text">เย็น</span>
-                      </button>
-                </div>
-
-                <div class="col-1">
-                    <button class="learn-more" style="background-color: white; border-radius: 25px;">
-                        <span class="circle" aria-hidden="true">
-                          <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-text">ปั่น</span>
-                      </button>
-                </div>
-
-                <div class="col-8">
-                
-                </div>
-            </div>
+            
             <div  class="row " >
                 <div class="col-9"  >
+                    <div class="row">
+                
+
+                        <div class="col-2">
+                            <button class="learn-more" style="background-color: white; border-radius: 25px; " (click)="Tea()">
+                                <span class="circle" aria-hidden="true">
+                                  <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">ชา</span>
+                              </button>
+                        </div>
+        
+                        <div class="col-2">
+                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Coffee()">
+                                <span class="circle" aria-hidden="true">
+                                  <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">กาแฟ</span>
+                              </button>
+                        </div>
+        
+                        <div class="col-2">
+                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Milk()">
+                                <span class="circle" aria-hidden="true">
+                                  <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">นม</span>
+                              </button>
+                        </div>
+
+                        <div class="col-2">
+                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Soda()">
+                                <span class="circle" aria-hidden="true">
+                                  <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">โซดา</span>
+                              </button>
+                        </div>
+
+                        <div class="col-2">
+                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Snack()">
+                                <span class="circle" aria-hidden="true">
+                                  <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">ขนม</span>
+                              </button>
+                        </div>
+        
+                        <div class="col-2">
+                        
+                        </div>
+                    </div>
                     <!--เมนูอยู่นี่นะ-->
                     <br>
                     <div class="row" >
-                    <div class="card" style="width: 200px; height: 200px;" *ngFor="let item of menu; index as i" >
+                    <div class="card" style="width: 200px; height: 200px; margin-left: 33px; margin-bottom: 15px;" *ngFor="let item of menu; index as i" >
                         <a (click)="addMenu({name:item.name,id:item._id,type:item.type,price:item.price})">  <img [src]="item.img" style="height: 150px; width: 200px;" alt="Avatar"></a>
                        
                         <div class="card-body">
@@ -54,13 +73,13 @@
                     </div>                 
 
                 </div>
-                <div class="col-3 " style="background-color: white; padding-top: 50px; margin-top: -72px; height: 800px;">
+                <div class="col-3 " style="background-color: white; padding-top: 1%; margin-top: 0px; height: 100%;">
                     <div class="titleBack" style="padding-left: 5px;">รายการที่เลือก</div>
                     <br>
                     <div class="" style="padding-left: 5px; margin-right: 80px;">
                        
                         <!--ชาเขียวกับกากะบาท-->
-                        <div *ngFor="let item of selectMenu; index as i" class="row" style="margin-left: 1px">
+                        <div *ngFor="let item of selectMenu; index as i" class="row" style="margin-left: 0px">
                             
                             <div class="col-10">
                                 <div class="row menutext" style="pad: 10;margin: 10;">
@@ -76,6 +95,7 @@
                         <!--ชาเขียวกับกากะบาท-->
                         
                     </div>
+                    
                 </div>
             </div>
             <div class="row">

@@ -32,7 +32,6 @@ export class MenuComponent implements OnInit {
     this.getOwner()
   }
   getOwner(){
-    var cust
     this.os.getOwner(this.id).subscribe(data => {
       this.owner = {name:data.name,email:data.email,img:data.imageProfile}
 

@@ -38,14 +38,17 @@ export class EmployeeComponent implements OnInit {
 
   
   addEmployee() {
+    if(!this.employeeForm.valid){
+      this.resetForm();
+      return alert('Employee form is not valid')
+    }
     this.employeeForm.get("shop").setValue(this.local.get('shop').id)
     this.em.addEmployee(this.employeeForm.value).subscribe(
       
       data => {
-      
         alert('Employee added successfully');
+        this.resetForm();
         this.onLoading();
-        this.employeeForm.reset();
       },
       err => {
         console.log(err);
@@ -70,7 +73,12 @@ export class EmployeeComponent implements OnInit {
       this.onLoading()
     });
   }
-
+  resetForm(){
+    this.employeeForm.get('name').setValue('');
+    this.employeeForm.get('position').setValue('');
+    this.employeeForm.get('phoneNumber').setValue('');
+    this.employeeForm.get('email').setValue('');
+  }
   get name(){
     return this.employeeForm.get('name');
   }

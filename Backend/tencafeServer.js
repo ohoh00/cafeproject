@@ -38,6 +38,7 @@ expressApp.use('/menu', require('./routes/menu'))
 expressApp.use('/employees', require('./routes/employees'))
 expressApp.use('/ingredients', require('./routes/ingredients'))
 expressApp.use('/customers', require('./routes/cusomters'))
+expressApp.use('/promotions', require('./routes/promotions'))
 expressApp.listen(3000, () => {
     console.log('Listening on port 3000')
 })

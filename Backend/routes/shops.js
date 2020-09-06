@@ -16,6 +16,7 @@ const shopSchema = schema({
     amphoe: String,
     province: String,
     post: String,
+    promptpay: String,
     owner: String
 },{
     collection: 'shops'
@@ -73,6 +74,7 @@ function insertShop(shopDetails){
             amphoe: shopDetails.amphoe,
             province: shopDetails.province,
             post: shopDetails.post,
+            promptpay: shopDetails.promptpay,
             owner: shopDetails.owner
 
         })
@@ -124,6 +126,7 @@ router.route('/addshop').post(auth,(req,res) => {
             amphoe: req.body.amphoe,
             province: req.body.province,
             post: req.body.post,
+            promptpay: req.body.promptpay,
             owner: req.body.owner
         }
         console.log(payload)

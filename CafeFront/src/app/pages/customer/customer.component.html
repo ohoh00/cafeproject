@@ -1,6 +1,6 @@
 <app-menu></app-menu>
 <div class="row">
-    <div class="col-2" style="background-color: #343a40; opacity: 80%;">
+    <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 4%;">
         <app-funcbar></app-funcbar>
     </div>
     <div class="col-10">
@@ -110,6 +110,7 @@
                   <th scope="col">วันเกิด</th>
                   <th scope="col">อีเมล</th>
                   <th scope="col">เบอร์โทร</th>
+                  <th scope="col">แต้มสะสม</th>
                   <th scope="col">ลบ</th>
                 </tr>
               </thead>
@@ -120,6 +121,7 @@
                   <td>{{datetoString(item.birth)}}</td>
                   <td>{{item.email}}</td>
                   <td>{{item.phoneNumber}}</td>
+                  <td>{{item.point}}</td>
                   <td><button class="button button3" style="border-radius: 100px; font-weight: bolder;" (click)="deleteitem(item._id)">X</button></td>
                 </tr>
               </tbody>

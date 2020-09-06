@@ -24,7 +24,8 @@ import { OrderComponent } from './pages/order/order.component';
 import { ChartModule } from 'angular2-chartjs';
 
 import {AuthGuardService} from './service/auth-guard.service';
-import { NotFoundComponent } from './pages/not-found/not-found.component'
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PromotionComponent } from './pages/promotion/promotion.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component'
     CustomerComponent,
     ManageingrtComponent,
     OrderComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PromotionComponent
 
   ],
   imports: [

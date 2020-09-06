@@ -22,7 +22,36 @@ export class OrderComponent implements OnInit {
       console.log(this.menu)
     })
   }
-
+  Tea(){
+    this.ms.getMenuTypeShop(this.shop,"ชา").subscribe( data => {
+      this.menu = data
+      console.log(this.menu)
+    })
+  }
+  Coffee(){
+    this.ms.getMenuTypeShop(this.shop,"กาแฟ").subscribe( data => {
+      this.menu = data
+      console.log(this.menu)
+    })
+  }
+  Milk(){
+    this.ms.getMenuTypeShop(this.shop,"นม").subscribe( data => {
+      this.menu = data
+      console.log(this.menu)
+    })
+  }
+  Soda(){
+    this.ms.getMenuTypeShop(this.shop,"โซดา").subscribe( data => {
+      this.menu = data
+      console.log(this.menu)
+    })
+  }
+  Snack(){
+    this.ms.getMenuTypeShop(this.shop,"ขนม").subscribe( data => {
+      this.menu = data
+      console.log(this.menu)
+    })
+  }
   addMenu(selMenu){
      this.selectMenu.push(selMenu)
      console.log(this.selectMenu)

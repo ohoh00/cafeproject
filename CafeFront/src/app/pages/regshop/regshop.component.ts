@@ -25,6 +25,7 @@ export class RegshopComponent implements OnInit {
     amphoe: new FormControl('', [Validators.required]),
     province: new FormControl('', [Validators.required]),
     post: new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5),Validators.pattern('[0-9]{5}')]),
+    promptpay: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]{10}')]),
     owner: new FormControl('', [Validators.required]),
   });
 
@@ -151,5 +152,8 @@ export class RegshopComponent implements OnInit {
     return this.shopForm.get('post');
   }
 
+  get promptpay(){
+    return this.shopForm.get('promptpay');
+  }
 
 }

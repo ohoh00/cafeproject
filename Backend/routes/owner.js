@@ -158,7 +158,7 @@ router.route('/login').post(async (req,res) => {
             res.status(200).json({result,token,status})
         }
         else{
-            res.status(200).json({status})
+            res.status(404).json({status})
         }
     } catch (error) {
         res.status(404).send(error)

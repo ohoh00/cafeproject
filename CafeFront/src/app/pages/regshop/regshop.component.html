@@ -63,7 +63,7 @@
                     &nbsp;
 
                     <form [formGroup]="shopForm">
-                    <div class="col-sm-9">
+                    <div class="col-sm-11">
                         <label class="col-md-6 control-label">ชื่อร้าน</label>
                         <input type="text" class="form-control input-md" formControlName="name">
                         <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
@@ -72,20 +72,34 @@
                             </div>
                          </div>
                         </div>&nbsp;
-                    <div class="col-sm-5">
-                        <label class="col-md-6 control-label">เบอร์ติดต่อ</label>
-                        <input type="text" class="form-control input-md" formControlName="phoneNumber">
-                        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
-                            <div *ngIf="phoneNumber.errors.required">
+                    <div class="row">
+                        <div class="col-sm-5" style="margin-left: 15px;">
+                         <label class="col-md-6 control-label">เบอร์ติดต่อ</label>
+                         <input type="text" class="form-control input-md" formControlName="phoneNumber">
+                          <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
+                              <div *ngIf="phoneNumber.errors.required">
                                 กรุณากรอกเบอร์โทร
-                            </div>
-                            <div *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">
-                                กรุณากรอกรูปแบบเบอร์โทร
-                          </div>
-                         </div>
+                              </div>
+                             <div *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">
+                                  กรุณากรอกรูปแบบเบอร์โทร
+                             </div>
+                             </div>
+                        </div>
+                        <div class="col-sm-5" style="margin-left: 28px;">
+                            <label class="col-md-6 control-label">เบอร์พร้อมเพย์</label>
+                            <input type="text" class="form-control input-md" formControlName="promptpay">
+                             <div *ngIf="promptpay.invalid && (promptpay.dirty || promptpay.touched)" class="text-invalid">
+                                 <div *ngIf="promptpay.errors.required">
+                                   กรุณากรอกเบอร์โทร
+                                 </div>
+                                <div *ngIf="promptpay.errors.minlength || promptpay.errors.maxlength">
+                                     กรุณากรอกรูปแบบเบอร์โทร
+                                </div>
+                                </div>
+                           </div>
                     </div>
                     &nbsp;
-                    <div class="col-sm-9">
+                    <div class="col-sm-11">
                         <label class="col-md-6 control-label">คำอธิบายร้าน</label>
                         <input type="text" class="form-control input-md" formControlName="description">
                         <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-invalid">

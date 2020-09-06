@@ -46,7 +46,31 @@ export class CustomerService {
       return this.customer
     }))
   }
+  
   deleteitem(id){const headers = {'authorization': this.ls.get('user').token}
     return this.http.delete(`${this.URL}customers/delete/${id}`,{headers});
   }
+
+  getCustomerTel(shop,tel){const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`http://localhost:3000/customers/getTel/${shop}/${tel}`,{headers}).pipe(map( data => {
+      if(data){
+        this.customer = data
+
+        return this.customer
+      }
+      else{
+        return false
+      }
+    }))
+  }
+
+  updateCustomer(newCustomer){
+    const headers = {'authorization': this.ls.get('user').token}
+    return this.http.put<any>(`${this.URL}customers/updateCustomer`,newCustomer,{headers}).pipe(
+      map(data => {
+        return data
+      })
+    )
+  }
+  
 }

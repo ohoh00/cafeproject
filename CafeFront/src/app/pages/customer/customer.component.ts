@@ -17,7 +17,8 @@ export class CustomerComponent implements OnInit {
     birth: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]{10}')]),
     email: new FormControl('', [Validators.required,Validators.email]),
-    shop: new FormControl('', [Validators.required])
+    shop: new FormControl('', [Validators.required]),
+    point: new FormControl('0', [Validators.required])
   });
 
   constructor(private cs: CustomerService,
@@ -41,6 +42,7 @@ export class CustomerComponent implements OnInit {
   
   addCustomer() {
     if(!this.customerForm.valid){
+      this.resetForm();
       return alert('Customer form is not valid')
     }
     this.customerForm.get("shop").setValue(this.local.get('shop').id)
@@ -49,8 +51,8 @@ export class CustomerComponent implements OnInit {
       data => {
      
         alert('Customer added successfully');
+        this.resetForm();
         this.onLoading();
-        this.customerForm.reset();
       },
       err => {
         console.log(err);
@@ -74,6 +76,13 @@ export class CustomerComponent implements OnInit {
     this.cs.deleteitem(id).subscribe(res => {
       this.onLoading()
     });
+  }
+  resetForm(){
+    this.customerForm.get('name').setValue('');
+    this.customerForm.get('birth').setValue('');
+    this.customerForm.get('phoneNumber').setValue('');
+    this.customerForm.get('email').setValue('');
+    this.customerForm.get('point').setValue('');
   }
 
   get email(){

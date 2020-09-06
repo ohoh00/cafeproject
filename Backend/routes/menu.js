@@ -7,6 +7,7 @@ var schema = require('mongoose').Schema
 const menuSchema = schema({
    name:String,
    type: String,
+   variation: String,
    price: Number,
    img: String,
    shop: String
@@ -43,6 +44,7 @@ function addMenu(MenuDetails){
         var new_user = new Menu({
             name:MenuDetails.name,
             type:MenuDetails.type,
+            variation:MenuDetails.variation,
             price:MenuDetails.price,
             img:MenuDetails.img,
             shop:MenuDetails.shop
@@ -61,7 +63,7 @@ function getMenuShop(shop){
     return new Promise((resolve, reject) => {
         Menu.find({shop:shop},(err,data) => {
             if(err)
-              reject(new Error('Connot get employee'))
+              reject(new Error('Connot get menu'))
             else
               if(data)
                   resolve(data)
@@ -71,13 +73,40 @@ function getMenuShop(shop){
     })
     
 }
+function getMenuTypeShop(shop,type){
+    return new Promise((resolve, reject) => {
+        Menu.find({shop:shop,type:type},(err,data) => {
+            if(err)
+              reject(new Error('Connot get menu'))
+            else
+              if(data)
+                  resolve(data)
+              else
+                  reject(new Error(`menu ID ${id} is not exist`))
+        })
+    })
+    
+}
+router.route('/getType/:shop/:type').get(auth,(req,res) => {
+    const shop = req.params.shop
+    const type = req.params.type
+    getMenuTypeShop(shop,type).then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(204).send({message : `Document is empty.`})
+    })
+    .catch( err => {
+        res.status(500).send({message: `Eroor: ${err}`})
+    })
+})
 router.route('/getMenuShop/:id').get(auth,(req,res) => {
     const id = req.params.id
     getMenuShop(id).then( result => {
         if(result)
             res.status(200).json(result)
         else
-            res.status(404).send({message : `Cannot find employee with ID  ${id}`})
+            res.status(404).send({message : `Cannot find menu with ID  ${id}`})
     }).catch( err => {
         res.status(500).send({message: `Error: ${err}`})
     })
@@ -114,6 +143,7 @@ router.route('/addMenu').post(auth,(req,res) => {
         const payload ={
             name:req.body.name,
             type:req.body.type,
+            variation:req.body.variation,
             price:req.body.price,
             img:req.body.img,
             shop:req.body.shop

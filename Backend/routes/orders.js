@@ -12,6 +12,7 @@ const orderSchema = schema({
     quantity:Number,
     paymentMethod:String,
     customerPhoneNumber:String,
+    promotion:String,
     shop:String
 
 },{
@@ -70,6 +71,7 @@ function addOrder(orderDetails){
             paymentMethod:orderDetails.paymentMethod,
             quantity:orderDetails.quantity,
             customerPhoneNumber:orderDetails.customerPhoneNumber,
+            promotion:orderDetails.promotion,
             shop:orderDetails.shop
 
         })
@@ -138,7 +140,9 @@ router.route('/updateOrder').put(auth,(req,res) => {
         paymentStatus: req.body.paymentStatus,
         paymentDate: req.body.paymentDate,
         paymentMethod:req.body.paymentMethod,
-        customerPhoneNumber:req.body.customerPhoneNumber
+        customerPhoneNumber:req.body.customerPhoneNumber,
+        promotion:req.body.promotion,
+        totalPrice: req.body.totalPrice
     }
     console.log(payload)
     Orders.updateOne({_id:req.body.id},payload,(err,data) => {
@@ -160,6 +164,7 @@ router.route('/addOrder').post(auth,(req,res) => {
             paymentMethod:req.body.paymentMethod,
             quantity:req.body.quantity,
             customerPhoneNumber:req.body.customerPhoneNumber,
+            promotion:req.body.promotion,
             shop:req.body.shop
 
         }

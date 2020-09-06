@@ -1,9 +1,9 @@
 <app-menu></app-menu>
 <div class="row">
-  <div class="col-2" style="background-color: #343a40; opacity: 80%;">
+  <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 5%;">
     <app-funcbar></app-funcbar>
   </div>
-  <div class="col-9">
+  <div class="col-10">
     <div class="column" style="padding: 20px;">
       <h1 class="titleBack" style="text-align: center;">รายการเมนู</h1>
     </div>
@@ -56,12 +56,29 @@
               </div>
               </div>
               <div class="form-group">
-                <label for="message-text" class="col-form-label">ประเภท:</label>
+                <label for="message-text" class="col-form-label">หมวดหมู่:</label>
                 <select class="form-control" formControlName="type">
+                  <option value=""></option>
+                  <option>ชา</option>
+                  <option>กาแฟ</option>
+                  <option>นม</option>
+                  <option>โซดา</option>
+                  <option>ขนม</option>
+                </select>
+                <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
+                  <div *ngIf="type.errors.required">
+                      กรุณาเลือกประเภท
+                  </div>
+              </div>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">ประเภท:</label>
+                <select class="form-control" formControlName="variation">
                   <option value=""></option>
                   <option>ร้อน</option>
                   <option>เย็น</option>
                   <option>ปั่น</option>
+                  <option>ขนม</option>
                 </select>
                 <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
                   <div *ngIf="type.errors.required">
@@ -130,12 +147,13 @@
 
 
 
-    <div style="padding-left: 20px;">
+    <div style="padding-left: 0px;">
       <table class="table" style="background-color: white;">
         <thead class="thead-dark" style="text-align: center;">
           <tr>
             <th scope="col">ลำดับ</th>
             <th scope="col">รายการ</th>
+            <th scope="col">หมวดหมู่</th>
             <th scope="col">ประเภท</th>
             <th scope="col">ราคา</th>
             <th scope="col">รูปภาพ</th>
@@ -147,6 +165,7 @@
             <th scope="row">{{i+1}}</th>
             <td>{{item.name}}</td>
             <td>{{item.type}}</td>
+            <td>{{item.variation}}</td>
             <td>{{item.price}}</td>
             <td><img [src]="item.img" style="height:100px;"></td>
             <td><a (click)="deleteitem(item._id)" class="btn btn-danger" style="color: white;">Delete</a></td>

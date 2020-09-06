@@ -9,7 +9,8 @@ const userSchema = schema({
     name: String,
     phoneNumber: String,
     birth: Date,
-    shop: String
+    shop: String,
+    point: Number
 },{
     collection: 'customers'
 })
@@ -29,7 +30,8 @@ function insertUser(dataUsers){
             name: dataUsers.name,
             phoneNumber: dataUsers.phoneNumber,
             birth: dataUsers.birth,
-            shop: dataUsers.shop
+            shop: dataUsers.shop,
+            point: dataUsers.point
         })
         new_user.save((err,data) => {
             if(err){
@@ -81,11 +83,38 @@ function getCustomerShop(shop){
               if(data)
                   resolve(data)
               else
-                  reject(new Error(`Employee ID ${id} is not exist`))
+                  reject(new Error(`Customer ID ${id} is not exist`))
         })
     })
     
 }
+function getCustomerTel(shop,phoneNumber){
+    return new Promise((resolve, reject) => {
+        User.find({shop:shop,phoneNumber:phoneNumber},(err,data) => {
+            if(err)
+              reject(new Error('Connot get Customer'))
+            else
+              if(data)
+                  resolve(data)
+              else
+                  reject(new Error(`Customer ID ${id} is not exist`))
+        })
+    })
+    
+}
+router.route('/getTel/:shop/:phoneNumber').get(auth,(req,res) => {
+    const shop = req.params.shop
+    const phoneNumber = req.params.phoneNumber
+    getCustomerTel(shop,phoneNumber).then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(204).send({message : `Document is empty.`})
+    })
+    .catch( err => {
+        res.status(500).send({message: `Eroor: ${err}`})
+    })
+})
 router.route('/getCustomerShop/:id').get(auth,(req,res) => {
     const id = req.params.id
     getCustomerShop(id).then( result => {
@@ -125,14 +154,28 @@ router.route('/getCustomer/:id').get(auth,(req,res) => {
         res.status(500).send({message: `Error: ${err}`})
     })
 })
-
+router.route('/updateCustomer').put(auth,(req,res) => {
+    const changepoint =  {
+        point: req.body.point
+    }
+    console.log(changepoint)
+    User.updateOne({_id:req.body.id},changepoint,(err,data) => {
+        if(data){
+            res.status(200).json(data)
+        }
+        else{
+            res.status(500).send({message:'Update failed'+err.message})
+        }
+    })
+})
 router.route('/signup').post(auth,(req,res) => {
         const payload ={
             email: req.body.email,
             name: req.body.name,
             phoneNumber: req.body.phoneNumber,
             birth: req.body.birth,
-            shop: req.body.shop
+            shop: req.body.shop,
+            point: req.body.point
         }
         console.log(payload)
         insertUser(payload)
