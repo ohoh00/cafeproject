@@ -57,14 +57,19 @@
                         </div>
         
                         <div class="col-2">
-                        
+                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Promotion()">
+                                <span class="circle" aria-hidden="true">
+                                  <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">โปรโมชั่น</span>
+                              </button>
                         </div>
                     </div>
                     <!--เมนูอยู่นี่นะ-->
                     <br>
                     <div class="row" >
                     <div class="card" style="width: 200px; height: 200px; margin-left: 33px; margin-bottom: 15px;" *ngFor="let item of menu; index as i" >
-                        <a (click)="addMenu({name:item.name,id:item._id,type:item.type,price:item.price})">  <img [src]="item.img" style="height: 150px; width: 200px;" alt="Avatar"></a>
+                        <a (click)="addMenu({name:item.name,id:item._id,type:item.type,price:item.price,variation:item.variation})">  <img [src]="item.img" style="height: 150px; width: 200px;" alt="Avatar"></a>
                        
                         <div class="card-body">
                           <p class="card-text">{{item.name}}</p>
@@ -83,8 +88,9 @@
                             
                             <div class="col-10">
                                 <div class="row menutext" style="pad: 10;margin: 10;">
-                                    <div class="col-9">{{item.name}}</div>
-                                    <div class="col-3">{{item.type}}</div>
+                                    <div class="col-9">&nbsp;{{item.name}}</div>
+                                    
+                                    <div class="col-3">{{item.variation}}</div>
                                 </div>
                             </div>
                             <div class="col-2">

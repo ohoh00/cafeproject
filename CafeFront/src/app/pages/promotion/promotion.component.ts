@@ -15,8 +15,8 @@ export class PromotionComponent implements OnInit {
   promotionForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
-    discount: new FormControl('', [Validators.required]),
-    point: new FormControl('', [Validators.required]),
+    discount: new FormControl('', [Validators.required,Validators.min(0),Validators.max(100)]),
+    point: new FormControl('', [Validators.required,Validators.min(0)]),
     shop: new FormControl('', [Validators.required])
   });
 

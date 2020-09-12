@@ -11,8 +11,8 @@
         </button>
         </div>
         <br/>
-        <div style="padding-right: 60px;">
-            <table class="table" style="background-color: white;">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+            <table class="table table-bordered table-striped mb-0" style="background-color: white;">
               <thead class="thead-dark" style="text-align: center;">
                 <tr>
                   <th scope="col">ออร์เดอร์</th>
@@ -20,6 +20,7 @@
                   <th scope="col">วันที่จ่าย</th>
                   <th scope="col">การจ่าย</th>
                   <th scope="col">จำนวนเมนู</th>
+                  <th scope="col">โปรโมชั่นที่ใช้</th>
                   <th scope="col">ราคารวม</th>
                 </tr>
               </thead>
@@ -30,6 +31,7 @@
                     <td>{{item.paymentDate}}</td>
                     <td>{{item.paymentMethod}}</td>
                     <td>{{item.quantity}}</td>
+                    <td>{{item.promotion}}</td>
                     <td>{{item.totalPrice}}</td>
 
                 </tr>

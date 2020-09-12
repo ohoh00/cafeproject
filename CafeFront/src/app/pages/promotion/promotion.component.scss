@@ -52,3 +52,11 @@
     color: orange;
     opacity: 0.9;
 }
+.my-custom-scrollbar {
+  position: relative;
+  height: 650px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }

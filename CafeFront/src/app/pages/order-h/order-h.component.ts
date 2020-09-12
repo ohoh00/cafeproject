@@ -28,8 +28,10 @@ export class OrderHComponent implements OnInit {
           ,totalPrice:element.totalPrice
           ,paymentStatus:element.paymentStatus
           ,menu:element.menu
+          ,promotion:element.promotion
         }
         this.OrderList.push(item)
+        console.log(item)
       });
      
 

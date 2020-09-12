@@ -64,6 +64,7 @@
                   <option>นม</option>
                   <option>โซดา</option>
                   <option>ขนม</option>
+                  <option>เมนูโปรโมชั่น</option>
                 </select>
                 <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
                   <div *ngIf="type.errors.required">
@@ -73,12 +74,40 @@
               </div>
               <div class="form-group">
                 <label for="message-text" class="col-form-label">ประเภท:</label>
-                <select class="form-control" formControlName="variation">
+                <select *ngIf="this.manageForm.get('type').value == 'ชา' " class="form-control" formControlName="variation">
                   <option value=""></option>
                   <option>ร้อน</option>
                   <option>เย็น</option>
                   <option>ปั่น</option>
-                  <option>ขนม</option>
+                </select>
+                <select *ngIf="this.manageForm.get('type').value == 'กาแฟ' " class="form-control" formControlName="variation">
+                  <option value=""></option>
+                  <option>ร้อน</option>
+                  <option>เย็น</option>
+                  <option>ปั่น</option>
+                </select>
+                <select *ngIf="this.manageForm.get('type').value == 'นม' " class="form-control" formControlName="variation">
+                  <option value=""></option>
+                  <option>ร้อน</option>
+                  <option>เย็น</option>
+                  <option>ปั่น</option>
+                </select>
+                <select *ngIf="this.manageForm.get('type').value == 'โซดา' " class="form-control" formControlName="variation">
+                  <option value=""></option>
+                  <option>เย็น</option>
+                </select>
+                <select *ngIf="this.manageForm.get('type').value == 'ขนม' " class="form-control" formControlName="variation">
+                  <option value=""></option>
+                  <option>เค้ก</option>
+                  <option>แซนวิช</option>
+                  <option>ขนมปัง</option>
+                  <option>อื่นๆ</option>
+                </select>
+                <select *ngIf="this.manageForm.get('type').value == 'เมนูโปรโมชั่น' " class="form-control" formControlName="variation">
+                  <option value=""></option>
+                  <option>1แถม1</option>
+                  <option>1แถม2</option>
+                  <option>1แถม3</option>
                 </select>
                 <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
                   <div *ngIf="type.errors.required">
@@ -93,6 +122,9 @@
                   <div *ngIf="price.errors.required">
                       กรุณากรอกราคาสินค้า
                   </div>
+                  <div *ngIf="price.errors.min">
+                    กรุณากรอกราคาให้ถูกต้อง
+                </div>
               </div>
               </div>
               <div class="form-group">
@@ -147,8 +179,8 @@
 
 
 
-    <div style="padding-left: 0px;">
-      <table class="table" style="background-color: white;">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar" style="padding-left: 0px;">
+      <table class="table table-bordered table-striped mb-0" style="background-color: white;">
         <thead class="thead-dark" style="text-align: center;">
           <tr>
             <th scope="col">ลำดับ</th>

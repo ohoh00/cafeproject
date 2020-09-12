@@ -52,6 +52,13 @@ export class OrderComponent implements OnInit {
       console.log(this.menu)
     })
   }
+  Promotion(){
+    this.ms.getMenuTypeShop(this.shop,"เมนูโปรโมชั่น").subscribe( data => {
+      this.menu = data
+      console.log(this.menu)
+      console.log(this.menu[0].variation)
+    })
+  }
   addMenu(selMenu){
      this.selectMenu.push(selMenu)
      console.log(this.selectMenu)

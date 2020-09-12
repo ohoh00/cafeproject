@@ -16,8 +16,8 @@
           </select>
           </div>
         </div>
-        <div style="padding-right: 60px;">
-          <table class="table" style="background-color: white;">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+          <table class="table table-bordered table-striped mb-0" style="background-color: white;">
             <thead class="thead-dark" style="text-align: center;">
               <tr>
                 <th scope="col">ลำดับ</th>
@@ -33,16 +33,17 @@
               </tr>
           </tbody>
           </table>
-          <p class="text-right titleWhite" >
-            <b>ราคารวม: {{this.Sum}} บาท </b>
-            </p>
+          
         </div>
+        <p class="text-right titleWhite" style="margin-right: 5%" >
+          <b>ราคารวม: {{this.Sum}} บาท </b>
+          </p>
         <form [formGroup]= "orderForm">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
               <label for="message-text" class="col-md-5 control-label titleWhite2" >เบอร์มือถือสมาชิก</label>
-              <input type="text" class="form-control" style="width: 25%;" formControlName="customerPhoneNumber">
+              <input type="text" class="form-control" style="width: 25%; margin-left: 30px;" formControlName="customerPhoneNumber">
             </div>
             
           </div>
@@ -113,7 +114,8 @@
           </div>
             
             </div>
-            <img src="https://promptpay.io/0879267920/150.png">
+            <!--img src="https://promptpay.io/{{this.promptpay}}/{{this.Sumex}}.png"-->
+            <div [innerHTML]="data"></div>
             
           </form>
         </div>

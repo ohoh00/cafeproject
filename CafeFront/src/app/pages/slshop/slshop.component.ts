@@ -35,7 +35,7 @@ export class SlshopComponent implements OnInit {
   }
 
   clickShop(data){
-    
+    console.log(data)
     
     this.local.set('shop',data,1,'w')
 

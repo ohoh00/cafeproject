@@ -15,7 +15,7 @@ export class ManagemenuComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
     variation: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required,Validators.min(1)]),
     img: new FormControl('', [Validators.required]),
     shop: new FormControl('', [Validators.required])
   });
@@ -27,6 +27,8 @@ export class ManagemenuComponent implements OnInit {
 
   menus:any
   previewLoaded:boolean = false
+
+  
 
   constructor(private ms: MenuService,private local : LocalStorageService) {
     try{
