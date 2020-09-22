@@ -1,132 +1,134 @@
 <app-menu></app-menu>
-<div class="row">
-    <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 4%;">
-        <app-funcbar></app-funcbar>
-    </div>
-    <div class="col-10">
-        <br>
-        <br>
-        <div class="row" style="background-color: white; width: 1500px; margin-left: 33px;">
-            <div class="column" style="padding: 20px;">
-                <div class="titleFunc" >จัดการพนักงาน</div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-1">
+
+          </div>
+
+          <div class="col-10">
+            <br/>
+            <div class="col text-center">
+              <div class="mitfFont fontre">พนักงาน</div>
             </div>
-                
-                <div style="margin-top: 70px; margin-left: 500px;">
-                    <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal" style="width: 200px; height: 50px; border-radius: 25px; margin-top: -50px; margin-left: 500px;">
-                      <div class="buttext" style="margin-left: 20px;">
-                        เพิ่มพนักงาน
-                        <i class="fa fa-plus-circle" style="color: white; margin-right: 10px;"></i>
-                      </div></button>&nbsp;
-                </div>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">เพิ่มพนักงาน</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-              
-                      <!-- modal -->
-                        <div class="modal-body">
-
-                          <form [formGroup]="employeeForm">
-
-                            
-                              <label for="recipient-name" class="col-form-label">ชื่อ-นามสกุล:</label>
-                                <div class="form-group">
-                                 <input type="text" class="form-control" formControlName='name'>
-                                 <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
-                                  <div *ngIf="name.errors.required">
-                                      กรุณากรอกชื่อ
-                                  </div>
-                               </div>
-                                </div>
-                         
-
-                            
-                              <label for="message-text" class="col-form-label">ตำแหน่ง:</label>
-                                <div class="form-group">
-                                 <input type="text" class="form-control" formControlName='position'>
-                                 <div *ngIf="position.invalid && (position.dirty || position.touched)" class="text-invalid">
-                                  <div *ngIf="position.errors.required">
-                                      กรุณากรอกชื่อตำแหน่ง
-                                  </div>
-                               </div>
-                                </div>
-                            
-
-                        
-                              <label for="message-text" class="col-form-label">เบอร์โทร:</label>
-                                <div class="form-group">
-                                 <input type="text" class="form-control" formControlName='phoneNumber'>
-                                 <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
-                                  <div *ngIf="phoneNumber.errors.required">
-                                      กรุณากรอกเบอร์โทร
-                                  </div>
-                                  <div *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">
-                                      กรุณากรอกรูปแบบเบอร์โทร
-                                </div>
-                               </div>
-                                </div>
-                    
-
-                            
-                                <label for="message-text" class="col-form-label">อีเมล:</label>
-                                <div class="form-group">
-                                  <input type="text" class="form-control" formControlName='email'>
-                                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-invalid">
-                                    <div *ngIf="email.errors.required">
-                                        กรุณากรอกEmail
-                                    </div>
-                                    <div *ngIf="email.errors.email">
-                                        กรุณากรอกรูปแบบEmail
-                                    </div>
-                                </div>
-                                </div>
-                           
-                            
-                          </form>
-                        </div>
-              
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" (click)="addEmployee()" data-dismiss="modal">บันทึก</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            
-                       
-                          
-                        </div>
-                      </div>
-                    </div>
-                </div>
-        </div>
+            <br/>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary btn-lg btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
+                <div class="mitfFont" style="margin-left: 20px;">
+                  เพิ่ม
+                  <i class="fa fa-plus-circle" style="color: white; margin-right: 10px;"></i>
+                </div></button>
+            </div>
+            <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mitfFontHev" id="exampleModalLabel">เพิ่มพนักงาน</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
         
-        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="padding-left: 32.5px; padding-right: 48px;">
-            <table class="table table-bordered table-striped mb-0" style="background-color: white; overflow-y:scroll">
-              <thead class="thead-dark" style="text-align: center;">
-                <tr>
-                  <th scope="col">ลำดับ</th>
-                  <th scope="col">ชื่อ-นามสกุล</th>
-                  <th scope="col">ตำแหน่ง</th>
-                  <th scope="col">อีเมล</th>
-                  <th scope="col">เบอร์โทร</th>
-                  <th scope="col">ลบ</th>
-                </tr>
-              </thead>
-              <tbody style="text-align: center;">
-                <tr *ngFor="let item of employees; index as i">
-                  <td>{{i+1}}</td>
-                  <td>{{item.name}}</td>
-                  <td>{{item.position}}</td>
-                  <td>{{item.email}}</td>
-                  <td>{{item.phoneNumber}}</td>
-                  <td><button class="button button3" style="border-radius: 100px; font-weight: bolder;" (click)="deleteitem(item._id)">X</button></td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
+                <!-- modal -->
+                  <div class="modal-body mitfFont">
 
-    </div>
-    
-</div>
+                    <form [formGroup]="employeeForm">
+
+                      
+                        <label for="recipient-name" class="col-form-label">ชื่อ-นามสกุล:</label>
+                          <div class="form-group">
+                           <input type="text" class="form-control" formControlName='name'>
+                           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                            <div *ngIf="name.errors.required">
+                                กรุณากรอกชื่อ
+                            </div>
+                         </div>
+                          </div>
+                   
+
+                      
+                        <label for="message-text" class="col-form-label">ตำแหน่ง:</label>
+                          <div class="form-group">
+                           <input type="text" class="form-control" formControlName='position'>
+                           <div *ngIf="position.invalid && (position.dirty || position.touched)" class="text-invalid">
+                            <div *ngIf="position.errors.required">
+                                กรุณากรอกชื่อตำแหน่ง
+                            </div>
+                         </div>
+                          </div>
+                      
+
+                  
+                        <label for="message-text" class="col-form-label">เบอร์โทร:</label>
+                          <div class="form-group">
+                           <input type="text" class="form-control" formControlName='phoneNumber'>
+                           <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
+                            <div *ngIf="phoneNumber.errors.required">
+                                กรุณากรอกเบอร์โทร
+                            </div>
+                            <div *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">
+                                กรุณากรอกรูปแบบเบอร์โทร
+                          </div>
+                         </div>
+                          </div>
+              
+
+                      
+                          <label for="message-text" class="col-form-label">อีเมล:</label>
+                          <div class="form-group">
+                            <input type="text" class="form-control" formControlName='email'>
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-invalid">
+                              <div *ngIf="email.errors.required">
+                                  กรุณากรอกEmail
+                              </div>
+                              <div *ngIf="email.errors.email">
+                                  กรุณากรอกรูปแบบEmail
+                              </div>
+                          </div>
+                          </div>
+                     
+                      
+                    </form>
+                  </div>
+        
+                  <div class="modal-footer mitfFont">
+                      <button type="button" class="btn btn-primary" (click)="addEmployee()" data-dismiss="modal">บันทึก</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                      
+                 
+                    
+                  </div>
+                </div>
+              </div>
+          </div>
+            <br/>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+              <table class="table table-bordered table-striped mb-0" style="background-color: white;">
+                <thead class="thead-dark mitfFontlight" style="text-align: center;">
+                  <tr>
+                    <th scope="col">ลำดับ</th>
+                    <th scope="col">ชื่อ-นามสกุล</th>
+                    <th scope="col">ตำแหน่ง</th>
+                    <th scope="col">อีเมล</th>
+                    <th scope="col">เบอร์โทร</th>
+                    <th scope="col">ลบ</th>
+                  </tr>
+                </thead>
+                <tbody class="mitfFont" style="text-align: center;">
+                  <tr *ngFor="let item of employees; index as i">
+                    <td scope="row">{{i+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.position}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                    <td><button class="button button3" style="border-radius: 100px; font-weight: bolder;" (click)="deleteitem(item._id)">X</button></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+          </div>
+
+          <div class="col-1">
+
+          </div>
+        </div>
+      </div>

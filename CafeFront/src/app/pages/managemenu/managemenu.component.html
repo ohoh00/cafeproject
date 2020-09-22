@@ -1,211 +1,213 @@
 <app-menu></app-menu>
-<div class="row">
-  <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 5%;">
-    <app-funcbar></app-funcbar>
-  </div>
-  <div class="col-10">
-    <div class="column" style="padding: 20px;">
-      <h1 class="titleBack" style="text-align: center;">รายการเมนู</h1>
-    </div>
-    <div class="row">
-      <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
-        <div class="titleFunc">
-          <i
-            class="fa fa-plus"
-            style="color: white; margin-right: 10px;"
-          ></i
-          >เพิ่มเมนู
-        </div></button
-      >&nbsp;
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-1">
 
-      <div>
-        <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#updateModal">
-          <div class="titleFunc">
-            <i
-              class="fa fa-wrench"
-              style="color: white; margin-right: 10px;"
-            ></i
-            >อัพเดทเมนู
-          </div></button
-        >&nbsp;
-      </div>
-
-    </div>
-
-    <!-- head -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">เมนูใหม่</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
 
-        <!-- modal -->
-          <div class="modal-body">
-            <form [formGroup]="manageForm">
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">รายการ:</label>
-                <input type="text" class="form-control" formControlName="name">
-                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
-                  <div *ngIf="name.errors.required">
-                      กรุณาเลือกรายการ
+          <div class="col-10">
+
+            <br/>
+            <div class="col text-center">
+              <div class="mitfFont fontre">จัดการเมนู</div>
+            </div>
+            <br/>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary btn-lg btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
+                <div class="mitfFontlight">
+                  <i
+                    class="fa fa-plus"
+                    style="color: white; margin-right: 10px;"
+                  ></i
+                  >เพิ่มเมนู
+                </div>
+              </button>
+                <button type="button" class="btn btn-primary btn-lg btn-rounded-corners" data-toggle="modal" data-target="#updateModal">
+                  <div class="mitfFontlight">
+                    <i
+                      class="fa fa-wrench"
+                      style="color: white; margin-right: 10px;"
+                    ></i
+                    >อัพเดทเมนู
                   </div>
-              </div>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label">หมวดหมู่:</label>
-                <select class="form-control" formControlName="type">
-                  <option value=""></option>
-                  <option>ชา</option>
-                  <option>กาแฟ</option>
-                  <option>นม</option>
-                  <option>โซดา</option>
-                  <option>ขนม</option>
-                  <option>เมนูโปรโมชั่น</option>
-                </select>
-                <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
-                  <div *ngIf="type.errors.required">
-                      กรุณาเลือกประเภท
+                </button>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header mitfFontHev">
+                    <h5 class="modal-title" id="exampleModalLabel">เมนูใหม่</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
-              </div>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label">ประเภท:</label>
-                <select *ngIf="this.manageForm.get('type').value == 'ชา' " class="form-control" formControlName="variation">
-                  <option value=""></option>
-                  <option>ร้อน</option>
-                  <option>เย็น</option>
-                  <option>ปั่น</option>
-                </select>
-                <select *ngIf="this.manageForm.get('type').value == 'กาแฟ' " class="form-control" formControlName="variation">
-                  <option value=""></option>
-                  <option>ร้อน</option>
-                  <option>เย็น</option>
-                  <option>ปั่น</option>
-                </select>
-                <select *ngIf="this.manageForm.get('type').value == 'นม' " class="form-control" formControlName="variation">
-                  <option value=""></option>
-                  <option>ร้อน</option>
-                  <option>เย็น</option>
-                  <option>ปั่น</option>
-                </select>
-                <select *ngIf="this.manageForm.get('type').value == 'โซดา' " class="form-control" formControlName="variation">
-                  <option value=""></option>
-                  <option>เย็น</option>
-                </select>
-                <select *ngIf="this.manageForm.get('type').value == 'ขนม' " class="form-control" formControlName="variation">
-                  <option value=""></option>
-                  <option>เค้ก</option>
-                  <option>แซนวิช</option>
-                  <option>ขนมปัง</option>
-                  <option>อื่นๆ</option>
-                </select>
-                <select *ngIf="this.manageForm.get('type').value == 'เมนูโปรโมชั่น' " class="form-control" formControlName="variation">
-                  <option value=""></option>
-                  <option>1แถม1</option>
-                  <option>1แถม2</option>
-                  <option>1แถม3</option>
-                </select>
-                <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
-                  <div *ngIf="type.errors.required">
-                      กรุณาเลือกประเภท
+        
+                <!-- modal -->
+                  <div class="modal-body">
+                    <form [formGroup]="manageForm">
+                      <div class="form-group mitfFont">
+                        <label for="recipient-name" class="col-form-label">รายการ:</label>
+                        <input type="text" class="form-control" formControlName="name">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                          <div *ngIf="name.errors.required">
+                              กรุณาเลือกรายการ
+                          </div>
+                      </div>
+                      </div>
+                      <div class="form-group mitfFont">
+                        <label for="message-text" class="col-form-label">หมวดหมู่:</label>
+                        <select class="form-control" formControlName="type">
+                          <option value=""></option>
+                          <option>ชา</option>
+                          <option>กาแฟ</option>
+                          <option>นม</option>
+                          <option>โซดา</option>
+                          <option>ขนม</option>
+                          <option>เมนูโปรโมชั่น</option>
+                        </select>
+                        <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
+                          <div *ngIf="type.errors.required">
+                              กรุณาเลือกประเภท
+                          </div>
+                      </div>
+                      </div>
+                      <div class="form-group mitfFont">
+                        <label for="message-text" class="col-form-label">ประเภท:</label>
+                        <select *ngIf="this.manageForm.get('type').value == 'ชา' " class="form-control" formControlName="variation">
+                          <option value=""></option>
+                          <option>ร้อน</option>
+                          <option>เย็น</option>
+                          <option>ปั่น</option>
+                        </select>
+                        <select *ngIf="this.manageForm.get('type').value == 'กาแฟ' " class="form-control" formControlName="variation">
+                          <option value=""></option>
+                          <option>ร้อน</option>
+                          <option>เย็น</option>
+                          <option>ปั่น</option>
+                        </select>
+                        <select *ngIf="this.manageForm.get('type').value == 'นม' " class="form-control" formControlName="variation">
+                          <option value=""></option>
+                          <option>ร้อน</option>
+                          <option>เย็น</option>
+                          <option>ปั่น</option>
+                        </select>
+                        <select *ngIf="this.manageForm.get('type').value == 'โซดา' " class="form-control" formControlName="variation">
+                          <option value=""></option>
+                          <option>เย็น</option>
+                        </select>
+                        <select *ngIf="this.manageForm.get('type').value == 'ขนม' " class="form-control" formControlName="variation">
+                          <option value=""></option>
+                          <option>เค้ก</option>
+                          <option>แซนวิช</option>
+                          <option>ขนมปัง</option>
+                          <option>อื่นๆ</option>
+                        </select>
+                        <select *ngIf="this.manageForm.get('type').value == 'เมนูโปรโมชั่น' " class="form-control" formControlName="variation">
+                          <option value=""></option>
+                          <option>1แถม1</option>
+                          <option>1แถม2</option>
+                          <option>1แถม3</option>
+                        </select>
+                        <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
+                          <div *ngIf="type.errors.required">
+                              กรุณาเลือกประเภท
+                          </div>
+                      </div>
+                      </div>
+                      <div class="form-group mitfFont">
+                        <label for="message-text" class="col-form-label">ราคา:</label>
+                        <input type="number" class="form-control" formControlName="price">
+                        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-invalid">
+                          <div *ngIf="price.errors.required">
+                              กรุณากรอกราคาสินค้า
+                          </div>
+                          <div *ngIf="price.errors.min">
+                            กรุณากรอกราคาให้ถูกต้อง
+                        </div>
+                      </div>
+                      </div>
+                      <div class="form-group mitfFont">
+                        <label>รูปภาพ</label>
+                        <input type="file" class="form-control-file" (change)="onChangeImg($event)">
+                      </div>
+                    </form>
                   </div>
-              </div>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label">ราคา:</label>
-                <input type="number" class="form-control" formControlName="price">
-                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-invalid">
-                  <div *ngIf="price.errors.required">
-                      กรุณากรอกราคาสินค้า
+        
+                  <div class="modal-footer mitfFont">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addMenu()">บันทึก</button>
                   </div>
-                  <div *ngIf="price.errors.min">
-                    กรุณากรอกราคาให้ถูกต้อง
                 </div>
               </div>
+            </div>
+        
+          <!-- อัพเดตเมนู -->
+            <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+              <div class="modal-dialog mitfFont" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">เปลี่ยนราคาเมนู</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+        
+                  <div class="modal-body">
+                    <form [formGroup]="updateForm">
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">รายการ:</label>
+                        <select class="form-control" formControlName="id"  #t (change)="onChange(t.value)">
+                          <option value=""></option>
+                          <option *ngFor="let item of menus; index as i"  [value] = "item._id">{{item.name}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="message-text" class="col-form-label">ราคา:</label>
+                          <input type="number" class="form-control" formControlName="price">
+                      </div>
+                    </form>
+                  </div>
+        
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateMenu()">บันทึก</button>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label>รูปภาพ</label>
-                <input type="file" class="form-control-file" (change)="onChangeImg($event)">
-              </div>
-            </form>
+            </div>
+            <br/>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar " style="padding-left: 0px;">
+              <table class="table table-bordered table-striped mb-0" style="background-color: white;">
+                <thead class="thead-dark mitfFontlight" style="text-align: center;">
+                  <tr>
+                    <th scope="col">ลำดับ</th>
+                    <th scope="col">รายการ</th>
+                    <th scope="col">หมวดหมู่</th>
+                    <th scope="col">ประเภท</th>
+                    <th scope="col">ราคา</th>
+                    <th scope="col">รูปภาพ</th>
+                    <th scope="col">ลบเมนู</th>
+                  </tr>
+                </thead>
+                <tbody class="mitfFont"style="text-align: center;">
+                  <tr *ngFor="let item of menus; index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.type}}</td>
+                    <td>{{item.variation}}</td>
+                    <td>{{item.price}}</td>
+                    <td><img [src]="item.img" style="height:100px;"></td>
+                    <td><a (click)="deleteitem(item._id)" class="btn btn-danger" style="color: white;">Delete</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
           </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addMenu()">บันทึก</button>
+          <div class="col-1">
+
           </div>
         </div>
       </div>
-    </div>
-
-  <!-- อัพเดตเมนู -->
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="updateModalLabel">เปลี่ยนราคาเมนู</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <form [formGroup]="updateForm">
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">รายการ:</label>
-                <select class="form-control" formControlName="id"  #t (change)="onChange(t.value)">
-                  <option value=""></option>
-                  <option *ngFor="let item of menus; index as i"  [value] = "item._id">{{item.name}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                  <label for="message-text" class="col-form-label">ราคา:</label>
-                  <input type="number" class="form-control" formControlName="price">
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateMenu()">บันทึก</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" style="padding-left: 0px;">
-      <table class="table table-bordered table-striped mb-0" style="background-color: white;">
-        <thead class="thead-dark" style="text-align: center;">
-          <tr>
-            <th scope="col">ลำดับ</th>
-            <th scope="col">รายการ</th>
-            <th scope="col">หมวดหมู่</th>
-            <th scope="col">ประเภท</th>
-            <th scope="col">ราคา</th>
-            <th scope="col">รูปภาพ</th>
-            <th scope="col">ลบเมนู</th>
-          </tr>
-        </thead>
-        <tbody style="text-align: center;">
-          <tr *ngFor="let item of menus; index as i">
-            <th scope="row">{{i+1}}</th>
-            <td>{{item.name}}</td>
-            <td>{{item.type}}</td>
-            <td>{{item.variation}}</td>
-            <td>{{item.price}}</td>
-            <td><img [src]="item.img" style="height:100px;"></td>
-            <td><a (click)="deleteitem(item._id)" class="btn btn-danger" style="color: white;">Delete</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    
-  </div>
-</div>

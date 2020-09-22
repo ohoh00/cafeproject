@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Nunito:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Mali:wght@300&display=swap" rel="stylesheet');
+@import "../node_modules/bootstrap-scss/bootstrap.scss";
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400&display=swap');
 $turquoise: #44ddd0;
 $blue: #276dd7;
 $dark-blue: #1985e4;
 $danger: #e27e7e;
+$light2: #c9c9c9;
 
 $light: #f4f4f4;
 
@@ -16,7 +19,7 @@ $input-shadow: none;
 
 
 html, body {
-    background: linear-gradient(to right top, $turquoise, $blue);
+    background: linear-gradient(to right top, $light2, $light2);
 }
 
 html, body{
@@ -27,7 +30,34 @@ html, body{
 .white-text{
     color: white;
 }
-
+.mitfFont{
+    font-family: "Mitr";
+    font-weight:300
+}
+.mitfFontlight{
+    font-family: "Mitr";
+    font-weight:200
+}
+.mitfFontHev{
+    font-family: "Mitr";
+    font-weight:400
+}
+@media screen and (min-width: 601px) {
+    .fontre {
+      font-size: 40px;
+    }
+  }
+@media screen and (max-width: 600px) {
+      .fontre {
+        font-size: 30px;
+      }
+    }
+.functbar{
+    width: 15.625%;
+    height: 100%;
+    background-color: #343a40; 
+    opacity: 80%;
+}
 .title {
     color: white;
     font-family: "Lato";

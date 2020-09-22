@@ -1,156 +1,153 @@
 <app-menu></app-menu>
-<div class="row">
-  <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 5%;">
-    <app-funcbar></app-funcbar>
-  </div>
-  <div class="col-10">
-    <div class="column" style="padding: 20px;">
-      <h1 class="titleBack" style="text-align: center;">รายการวัตถุดิบ</h1>
-    </div>
-   
-    <div class="row" >
-      <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
-        <div class="titleFunc">
-          <i
-            class="fa fa-plus"
-            style="color: white; margin-right: 10px;"
-          ></i
-          >เพิ่มวัตถุดิบ
-        </div></button
-      >&nbsp;
-    <div>
-      <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#statusModal">
-        <div class="titleFunc">
-          <i
-            class="fa fa-wrench"
-            style="color: white; margin-right: 10px;"
-          ></i
-          >เปลี่ยนสถานะ
-        </div></button
-      >&nbsp;
-    </div>
-      
-    </div>
-    
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-1">
 
-    <!-- เพิ่มวัตถุดิบ -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">วัตถุดิบใหม่</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
+      </div>
+      <div class="col-10">
+        <br/>
+            <div class="col text-center">
+              <div class="mitfFont fontre">จัดการส่วนผสม</div>
+            </div>
+        <br/>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary btn-lg btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
+            <div class="mitfFontlight">
+              <i
+                class="fa fa-plus"
+                style="color: white; margin-right: 10px;"
+              ></i
+              >วัตถุดิบ
+            </div>
+          </button>
+          <button type="button" class="btn btn-primary btn-lg btn-rounded-corners" data-toggle="modal" data-target="#statusModal">
+            <div class="mitfFontlight">
+              <i
+                class="fa fa-wrench"
+                style="color: white; margin-right: 10px;"
+              ></i
+              >สถานะ
+            </div>
+          </button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title mitfFontHev" id="exampleModalLabel">เพิ่มวัตถุดิบ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
     
-          <div class="modal-body">
-            <form [formGroup]="manageinForm">
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">รายการ:</label>
-                <input type="text" class="form-control" formControlName="name">
-                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
-                  <div *ngIf="name.errors.required">
-                      กรุณากรอกข้อมูล
+        
+              <div class="modal-body mitfFont">
+                <form [formGroup]="manageinForm">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">รายการ:</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                      <div *ngIf="name.errors.required">
+                          กรุณากรอกข้อมูล
+                      </div>
                   </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">สถานะ:</label>
+                    <select class="form-control" formControlName="status">
+                        <option value=""></option>
+                        <option>มี</option>
+                        <option>หมด</option>
+                      </select>
+                      <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-invalid">
+                        <div *ngIf="status.errors.required">
+                            กรุณาเลือกสถานะ
+                        </div>
+                  </div>
+                  </div>
+                </form>
               </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">สถานะ:</label>
-                <select class="form-control" formControlName="status">
-                    <option value=""></option>
-                    <option>มี</option>
-                    <option>หมด</option>
-                  </select>
-                  <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-invalid">
-                    <div *ngIf="status.errors.required">
-                        กรุณาเลือกสถานะ
-                    </div>
-              </div>
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addIngredient()">บันทึก</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- เปลี่ยนสถานะ -->
-    <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="statusModalLabel">เปลี่ยนสถานะวัตถุดิบ</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-  
-            <div class="modal-body">
-              <form [formGroup]="updateForm">
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">รายการ:</label>
-                  <select class="form-control" formControlName="name" #t (change)="onChange(t.value)">
-                    <option value=""></option>
-                    <option *ngFor="let item of indata; index as i" [value] = "item._id">{{item.name}}</option>
-                  </select>
-                  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
-                    <div *ngIf="name.errors.required">
-                        กรุณาเลือกรายการ
-                    </div>
-                </div>
-                </div>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">สถานะ:</label>
-                  <select class="form-control" formControlName="status">
-                    <option value=""></option>
-                    <option>มี</option>
-                    <option>หมด</option>
-                  </select>
-                  <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-invalid">
-                    <div *ngIf="status.errors.required">
-                        กรุณาเลือกสถานะ
-                    </div>
-              </div>
-                </div>
-              </form>
-            </div>
-  
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateIngredients()">บันทึก</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" style="padding-left: 0px;">
-      <table class="table table-bordered table-striped mb-0" style="background-color: white;">
-        <thead class="thead-dark" style="text-align: center;">
-          <tr>
-            <th scope="col">ลำดับ</th>
-            <th scope="col">รายการ</th>
-            <th scope="col">สถานะ</th>
-            <th scope="col">ลบวัตถุดิบ</th>
-          </tr>
-        </thead>
-        <tbody style="text-align: center;">
-          <tr *ngFor="let item of indata; index as i">
-            <th scope="row">{{i+1}}</th>
-            <td>{{item.name}}</td>
-            <td>{{item.status}}</td>
-            <td><a (click)="deleteitem(item._id)" class="btn btn-danger" style="color: white;">Delete</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
     
+              <div class="modal-footer mitfFont">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addIngredient()">บันทึก</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- เปลี่ยนสถานะ -->
+        <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header mitfFontHev">
+                  <h5 class="modal-title" id="statusModalLabel">เปลี่ยนสถานะวัตถุดิบ</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+      
+                <div class="modal-body mitfFont">
+                  <form [formGroup]="updateForm">
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">รายการ:</label>
+                      <select class="form-control" formControlName="name" #t (change)="onChange(t.value)">
+                        <option value=""></option>
+                        <option *ngFor="let item of indata; index as i" [value] = "item._id">{{item.name}}</option>
+                      </select>
+                      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                        <div *ngIf="name.errors.required">
+                            กรุณาเลือกรายการ
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">สถานะ:</label>
+                      <select class="form-control" formControlName="status">
+                        <option value=""></option>
+                        <option>มี</option>
+                        <option>หมด</option>
+                      </select>
+                      <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-invalid">
+                        <div *ngIf="status.errors.required">
+                            กรุณาเลือกสถานะ
+                        </div>
+                  </div>
+                    </div>
+                  </form>
+                </div>
+      
+                <div class="modal-footer mitfFont">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateIngredients()">บันทึก</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <br/>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="padding-left: 0px;">
+          <table class="table table-bordered table-striped mb-0" style="background-color: white;">
+            <thead class="thead-dark mitfFontlight" style="text-align: center;">
+              <tr>
+                <th scope="col">ลำดับ</th>
+                <th scope="col">รายการ</th>
+                <th scope="col">สถานะ</th>
+                <th scope="col">ลบวัตถุดิบ</th>
+              </tr>
+            </thead>
+            <tbody  class="mitfFont" style="text-align: center;">
+              <tr *ngFor="let item of indata; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.status}}</td>
+                <td><a (click)="deleteitem(item._id)" class="btn btn-danger" style="color: white;">Delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-1">
+
+      </div>
   </div>
 </div>
