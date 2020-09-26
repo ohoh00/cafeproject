@@ -42,15 +42,45 @@ html, body{
     font-family: "Mitr";
     font-weight:400
 }
+.fontrepay {
+    font-size: 25px;
+}
+.fontrepay2 {
+    font-size: 20px;
+}
 @media screen and (min-width: 601px) {
     .fontre {
-      font-size: 40px;
+        font-size: 40px;
+    }
+    .font30x{
+        font-size: 30px;   
+    }
+    .font25x{
+        font-size: 25px;
+    }
+    .font10x{
+        font-size: 18px;
     }
   }
-@media screen and (max-width: 600px) {
-      .fontre {
+  @media screen and (max-width: 768px) {
+    .fontrepay {
+        font-size: 18px;
+    }
+    .fontre {
         font-size: 30px;
-      }
+    }
+    .font30x{
+        font-size: 20px;   
+    }
+    .font25x{
+        font-size: 20px;
+    }
+    .font10x{
+        font-size: 10px;
+    }
+}
+@media screen and (max-width: 600px) {
+        
     }
 .functbar{
     width: 15.625%;

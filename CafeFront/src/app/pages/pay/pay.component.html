@@ -1,129 +1,115 @@
 <app-menu></app-menu>
-<div class="row">
-    <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 4%;">
-        <app-funcbar></app-funcbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+
     </div>
     <div class="col-10">
-        <br/>
-        <div class="row">
-          <button class="btn btn-primary btn-lg btn-block btn-rounded-corners" >
-            <div class="titleFunc"><i class="fa fa-credit-card"  style="color: white; margin-right: 10px;" ></i>ชำระเงิน</div>
-          </button>
-
-          <div class ="form-group">
-          <select class="custom-select  mb-3 form-control"  #t (click)="onChange(t.value)">
-            <option *ngFor="let item of OrderList; index as  i" [value]="i"  >Order {{i+1}}</option>
-          </select>
-          </div>
-        </div>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar" >
-          <table class="table table-bordered table-striped mb-0" style="background-color: white;">
-            <thead class="thead-dark" style="text-align: center;">
-              <tr>
-                <th scope="col">ลำดับ</th>
-                <th scope="col">รายการ</th>
-                <th scope="col">ราคา</th>
-              </tr>
-            </thead>
-            <tbody style="text-align: center;">
-              <tr *ngFor="let item of OrderSelect; index as i">
-                  <td scope="row">{{i+1}}</td>
-                  <td>{{item.name}}</td>
-                  <td>{{item.price}}</td>
-              </tr>
-          </tbody>
-          </table>
-          
-        </div>
-        <p class="text-right titleWhite" style="margin-right: 5%" >
-          <b>ราคารวม: {{this.Sum}} บาท </b>
-          </p>
-        <form [formGroup]= "orderForm">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <label for="message-text" class="col-md-5 control-label titleWhite2" >เบอร์มือถือสมาชิก</label>
-              <input type="text" class="form-control" style="width: 25%; margin-left: 30px;" formControlName="customerPhoneNumber">
+      <br/>
+            <div class="col text-center">
+              <div class="mitfFont fontre">ชำระเงิน</div>
             </div>
-            
-          </div>
-                
-        </div>
-      </form>
-        &nbsp;
-        <div class="row">
-          <div class="col-sm-12">
-
-            <label for="message-text" class="col-md-5 control-label titleWhite2" >โค้ดโปรโมชั่น</label>&nbsp;
-            
-          </div>
-               
-        </div>
-
-        <div class="row">
-          <div class="col-sm-12">
-            <select class="custom-select  form-control "  style="width: 25%;" #x (change)="selectPromotion(x.value)">
-              <option value=null>ไม่ใช้โปร</option>
-              <option *ngFor="let item of promotionList; index as  i" [value]="i"  >{{this.promotionList[i].name}}</option>
-            </select>
-          </div>
-        </div>
-        
-        &nbsp;
-          <div class="row">
-            
-            <button type="button" class="btn btn-success btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal" (click)="getCustomerTel()">
-              <div class="titleFunc">
-                ชำระเงิน
-              </div></button>&nbsp;
-              
-          </div>
-    </div>
-</div>
-
-  <!-- head -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ชำระเงิน</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-      <!-- modal -->
-        <div class="modal-body">
-          <div class="textBlackMali">คุณ :      {{this.name}}</div>&nbsp;
-          <div class="textBlackMali">แต้มสะสม : {{this.customerPoint}}</div>&nbsp;
-          
-          <form [formGroup]= "orderForm">
-            <div class="form-group">
-              <label for="recipient-name" class="textBlackMali">ราคา: {{this.Sumfinal}} บาท </label> &nbsp;
+            <br/>
+            <div class="text-center">
+              <div class ="form-group">
+                <select class="custom-select  mb-3 form-control mitfFont"  #t (click)="onChange(t.value)">
+                  <option *ngFor="let item of OrderList; index as  i" [value]="i"  >Order {{i+1}}</option>
+                </select>
+             </div>
+             <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+              <table class="table table-bordered table-striped mb-0" style="background-color: white;">
+                <thead class="thead-dark mitfFontlight" style="text-align: center;">
+                  <tr>
+                    <th scope="col">ลำดับ</th>
+                    <th scope="col">รายการ</th>
+                    <th scope="col">ราคา</th>
+                  </tr>
+                </thead>
+                <tbody class="mitfFont" style="text-align: center;">
+                  <tr *ngFor="let item of OrderSelect; index as i">
+                      <td scope="row">{{i+1}}</td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.price}}</td>
+                  </tr>
+              </tbody>
+              </table>
             </div>
-            <div class="form-group">
-              <label for="message-text" class="textBlackMali">ช่องทางการชำระ:</label>&nbsp;
-              <select class="mb-3" formControlName="paymentMethod" >
-                <option value="โอนเงิน">โอนเงิน</option>
-                <option value="เงินสด">เงินสด</option>
-            </select>
-            <div *ngIf="paymentMethod.invalid && (paymentMethod.dirty || paymentMethod.touched)" class="text-invalid">
-              <div *ngIf="paymentMethod.errors.required">
-                  กรุณาเลือกวิธีการชำระเงิน
+            <br/>
+              <div class="text-right mitfFont fontrepay">
+                ราคารวม: {{this.Sum}} บาท
               </div>
-          </div>
-            
             </div>
-            <!--img src="https://promptpay.io/{{this.promptpay}}/{{this.Sumex}}.png"-->
-            <div [innerHTML]="data"></div>
-            
-          </form>
-        </div>
+            <div class="">
+              <form [formGroup]= "orderForm">
+                <div class="form-group mitfFont fontrepay2">
+                  <label for="message-text">เบอร์มือถือ</label>
+                  <input type="text" class="form-control" style="width: 20vw; border-radius: 15px" formControlName="customerPhoneNumber">
+                </div>
+                <label for="message-text" class="mitfFont fontrepay2">โค้ดโปรโมชั่น</label>
+                <div class="row form-group mitfFont fontrepay2">
+                  <div class="col-9">
+                    <select class="custom-select2  form-control "#x (change)="selectPromotion(x.value)">
+                      <option value=null>ไม่ใช้โปร</option>
+                      <option *ngFor="let item of promotionList; index as  i" [value]="i"  >{{this.promotionList[i].name}}</option>
+                    </select>
+                  </div>
+                  <button type="button" class="btn btn-success btn-lg btn-block btn-rounded-corners" style="float: right; width: 20%;" data-toggle="modal" data-target="#exampleModal" (click)="getCustomerTel()">
+                    <div class="mitfFont fontrepay">
+                      ชำระเงิน
+                    </div>
+                  </button>
+                </div>
+              </form>
+              
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mitfFontHev" id="exampleModalLabel">ชำระเงิน</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+          
+                <!-- modal -->
+                  <div class="modal-body">
+                    <div class="mitfFont">คุณ :      {{this.name}}</div>&nbsp;
+                    <div class="mitfFont">แต้มสะสม : {{this.customerPoint}}</div>&nbsp;
+                    
+                    <form [formGroup]= "orderForm">
+                      <div class="form-group">
+                        <label for="recipient-name" class="mitfFont">ราคา: {{this.Sumfinal}} บาท </label> &nbsp;
+                      </div>
+                      <div class="form-group">
+                        <label for="message-text" class="mitfFont">ช่องทางการชำระ:</label>&nbsp;
+                        <select class="mb-3 mitfFont" formControlName="paymentMethod" >
+                          <option value="โอนเงิน">โอนเงิน</option>
+                          <option value="เงินสด">เงินสด</option>
+                      </select>
+                      <div *ngIf="paymentMethod.invalid && (paymentMethod.dirty || paymentMethod.touched)" class="text-invalid">
+                        <div class="mitfFont" *ngIf="paymentMethod.errors.required">
+                            กรุณาเลือกวิธีการชำระเงิน
+                        </div>
+                    </div>
+                      
+                      </div>
+                      <!--img src="https://promptpay.io/{{this.promptpay}}/{{this.Sumex}}.png"-->
+                      <div [innerHTML]="data" style="width: 300px; height: 300px; margin-left: auto; margin-right: auto;"></div>
+                      
+                    </form>
+                  </div>
+          
+                  <div class="modal-footer mitfFont">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="reset()">ยกเลิก</button>
+                    <button type="button" class="btn btn-success"  data-dismiss="modal"  (click)="Pay()" >ชำระเงิน</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+    <div class="col-1">
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="reset()">ยกเลิก</button>
-          <button type="button" class="btn btn-success"  data-dismiss="modal"  (click)="Pay()" >ชำระเงิน</button>
-        </div>
-      </div>
     </div>
   </div>
+</div>

@@ -95,6 +95,7 @@ export class PayComponent implements OnInit  {
     this.getQRcode(qrtel,Sumex)
   }
   async getQRcode(phone,Sumex){
+  
     const qrcode = require('qrcode')
     const generatePayload = require('promptpay-qr') 
     const amount = Sumex

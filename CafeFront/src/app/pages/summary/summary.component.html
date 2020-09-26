@@ -1,49 +1,18 @@
 <app-menu></app-menu>
-<div class="row">
-    <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 5%;">
-        <app-funcbar></app-funcbar>
-    </div>
-    <div class="col-10">
-        <br>
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <h1 class="titleBack" style="text-align: center;">สรุปยอดการขาย</h1>
-            </div>
-            <div class="col-4"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1">
+
         </div>
-        <br>
-        <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8 ">
-                    <div class="bgfull">
-                        <chart style="height: 550px; width: 100%; " [type]="typeChart" [data]="dataChart" [options]="optionsChart"></chart>
-                    </div>       
-                    </div>
-                    <div class="col-2"></div>
-                    
-                    
+        <div class="col-10">
+            <br/>
+            <div class="col text-center">
+                <div class="mitfFont fontre">สรุปยอด</div>
+            </div>
+            <chart  [type]="typeChart" [data]="dataChart" [options]="optionsChart"></chart>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-4">
-                <h1 class="titleWhiteSmall" style="text-align: center;">ออร์เดอร์ทั้งหมด</h1>
-            </div>
-            <div class="col-4">
-                <h1 class="titleWhiteSmall" style="text-align: center;">ราคาทั้งหมด</h1>
-            </div>
-            <div class="col-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-4">
-                <h1 class="titleRedSmall" style="text-align: center;">{{orders}}</h1>
-            </div>
-            <div class="col-4">
-                <h1 class="titleRedSmall" style="text-align: center;">{{totalPrice}}</h1>
-            </div>
-            <div class="col-2"></div>
+        <div class="col-1">
+
         </div>
     </div>
 </div>

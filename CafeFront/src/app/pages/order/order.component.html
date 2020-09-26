@@ -1,115 +1,63 @@
 <app-menu></app-menu>
-<div class="row" style="height: 92.4%;">
-  <div class="functbar">
-    <app-funcbar></app-funcbar>
-</div>
-    <div class="col-10">
-        &nbsp;
-            
-            <div  class="row " >
-                <div class="col-9"  >
-                    <div class="row">
-                
-
-                        <div class="col-2">
-                            <button class="learn-more" style="background-color: white; border-radius: 25px; " (click)="Tea()">
-                                <span class="circle" aria-hidden="true">
-                                  <span class="icon arrow"></span>
-                                </span>
-                                <span class="button-text">ชา</span>
-                              </button>
-                        </div>
-        
-                        <div class="col-2">
-                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Coffee()">
-                                <span class="circle" aria-hidden="true">
-                                  <span class="icon arrow"></span>
-                                </span>
-                                <span class="button-text">กาแฟ</span>
-                              </button>
-                        </div>
-        
-                        <div class="col-2">
-                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Milk()">
-                                <span class="circle" aria-hidden="true">
-                                  <span class="icon arrow"></span>
-                                </span>
-                                <span class="button-text">นม</span>
-                              </button>
-                        </div>
-
-                        <div class="col-2">
-                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Soda()">
-                                <span class="circle" aria-hidden="true">
-                                  <span class="icon arrow"></span>
-                                </span>
-                                <span class="button-text">โซดา</span>
-                              </button>
-                        </div>
-
-                        <div class="col-2">
-                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Snack()">
-                                <span class="circle" aria-hidden="true">
-                                  <span class="icon arrow"></span>
-                                </span>
-                                <span class="button-text">ขนม</span>
-                              </button>
-                        </div>
-        
-                        <div class="col-2">
-                            <button class="learn-more" style="background-color: white; border-radius: 25px;" (click)="Promotion()">
-                                <span class="circle" aria-hidden="true">
-                                  <span class="icon arrow"></span>
-                                </span>
-                                <span class="button-text">โปรโมชั่น</span>
-                              </button>
-                        </div>
-                    </div>
-                    <!--เมนูอยู่นี่นะ-->
-                    <br>
-                    <div class="row" >
-                    <div class="card" style="width: 200px; height: 200px; margin-left: 33px; margin-bottom: 15px;" *ngFor="let item of menu; index as i" >
-                        <a (click)="addMenu({name:item.name,id:item._id,type:item.type,price:item.price,variation:item.variation})">  <img [src]="item.img" style="height: 150px; width: 200px;" alt="Avatar"></a>
-                       
-                        <div class="card-body">
-                          <p class="card-text">{{item.name}}</p>
-                        </div>
-                      </div>     
-                    </div>                 
-
-                </div>
-                <div class="col-3 " style="background-color: white; padding-top: 1%; margin-top: 0px; height: 100%;">
-                    <div class="titleBack" style="padding-left: 5px;">รายการที่เลือก</div>
-                    <br>
-                    <div class="" style="padding-left: 5px; margin-right: 80px;">
-                       
-                        <!--ชาเขียวกับกากะบาท-->
-                        <div *ngFor="let item of selectMenu; index as i" class="row" style="margin-left: 0px">
-                            
-                            <div class="col-10">
-                                <div class="row menutext" style="pad: 10;margin: 10;">
-                                    <div class="col-9">&nbsp;{{item.name}}</div>
-                                    
-                                    <div class="col-3">{{item.variation}}</div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <button class="button button3" style="border-radius: 100px;"(click)="deletSelect(i)">X</button>
-                            </div>
-                            <br>
-                        </div>
-                        <!--ชาเขียวกับกากะบาท-->
-                        
-                    </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-9">
+        <br/>
+            <div class="col text-left" style="padding-left: 2%;">
+              <div class="mitfFont fontre">เมนู</div>
+            </div>
+            <button type="button" class="btn btn-secondary btnRound  mitfFont" (click)="Coffee()">กาแฟ</button>
+            <button type="button" class="btn btn-secondary btnRound  mitfFont" (click)="Tea()">ชา</button>
+            <button type="button" class="btn btn-secondary btnRound  mitfFont" (click)="Milk()">นม</button>
+            <button type="button" class="btn btn-secondary btnRound  mitfFont" (click)="Soda()">โซดา</button>
+            <button type="button" class="btn btn-secondary btnRound  mitfFont" (click)="Snack()">ขนม</button>
+            <button type="button" class="btn btn-secondary btnRound2  mitfFont" (click)="Promotion()">โปรโมชั่น</button>
+        <br/>
+        <br/>
+        <div class="row" >
+          
+          <div class="card" style="width: 10vw; height: 15vw; margin-left: 1vw; margin-bottom: 1vw;" *ngFor="let item of menu; index as i" >
+            <a (click)="addMenu({name:item.name,id:item._id,type:item.type,price:item.price,variation:item.variation})">  
+              <img [src]="item.img" class="image" style="width: 10vw; height: 10vw;" alt="Avatar">
+            </a>
+           
+            <div class="card-body mitfFont" style="font-size: 1vw;">
+              <div class="card-text">{{item.name}} ({{item.variation}})</div>
+            </div>
+        </div> 
+        </div>  
+      </div>
+      <div class="col-3">
+        <br/>
+        <div class="mitfFont font25x" style="padding-left: 5px;">รายการที่เลือก</div>
+        <br/>
+        <div class="container my-custom-scrollbar" style="height: 38vw;">
+          <!--ชาเขียวกับกากะบาท-->
+          <div *ngFor="let item of selectMenu; index as i" class="row" style="margin-left: 0px">
+                              
+            <div class="col-10">
+                <div class="row menutext mitfFont" style="font-size: 1vw; width: 10vw;">
+                  <div style="margin-left: 10%;">
+                    {{item.name}}
                     
+                    {{item.variation}}
+                  </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-9"></div>
-                <div class="col-3 " style="background-color: white; height: 58px;" >
-                    <button class="btn btn-primary btn-rounded-corners btn_slshop titleBmedA " style="background-color: black; width: 150px; margin-left: 5px;" (click)="deleteAllSelect()" >ล้างรายการ</button>
-                    <button class="btn btn-primary btn-rounded-corners btn_slshop titleBmedA " style="background-color: #0b83f6; width: 150px; margin-left: 50px;" (click)="saveOrder()"  >บันทึก</button>
-                </div>
+            <div class="col-2">
+              <div class="row  mitfFont" style="font-size: 1vw;">
+                <button  style="border-radius: 100px;"(click)="deletSelect(i)">X</button>
+              </div>
+                
             </div>
+            <br/>
+            
+          </div> 
+          <!--ชาเขียวกับกากะบาท-->
+       </div>
+      <button class="btn btn-primary btn-rounded-corners btn_slshop mitfFont " style="font-size: 0.75vw; background-color: black; width: 8vw; margin-left: 5px;" (click)="deleteAllSelect()" >ล้าง</button>
+      <button class="btn btn-primary btn-rounded-corners btn_slshop mitfFont " style="font-size: 0.75vw; background-color: #0b83f6; width: 8vw; margin-left: 50px;" (click)="saveOrder()"  >บันทึก</button>
+      </div>        
+
     </div>
-</div>
+  </div>

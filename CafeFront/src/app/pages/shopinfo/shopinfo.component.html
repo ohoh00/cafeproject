@@ -1,113 +1,91 @@
 <app-menu></app-menu>
 <div class="row">
-    <div class="col-2" style="background-color: #343a40; opacity: 80%; padding-bottom: 5%;">
-        <app-funcbar></app-funcbar>
-    </div>
-    <div class="col-10 bgfull" >
+    <div class="col-md-6">
+        <br/>
         <div class="row">
-            <div class="col-6"> 
-                <br>
-                <div class="row">
-                    
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-11">
-                            <div class="form-group">
+
+            <div class="col-md-2">
                 
-                            </div>
-                            <div class="titleBack" style="margin-left: 0px;">ร้าน {{this.shops.name}}</div>
-                            <br>
-                        </div>
-                        
-                </div>
-                <div class="form-group">
-                
-                </div>
-                    <div class="row">
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-11">
-                            <img [src]="this.shops.imageProfile" style="width:650px; height: 650px;" alt="Avatar">
-                            
-                        </div>
-                        
-                    </div>
-                    
             </div>
-            <div class="col-6 bggrey">
-                <div class="form-group">
-                
-                </div>
-                <div class="row">
-                    
-                    
-                        <div class="col-sm-10">
-                            <br>
-                            <div class="form-group">
-                
-                            </div>
-                            <div class="titleMedBack" style="margin-left: 20px; ">ข้อมูลร้าน</div>
-                        </div>
-                        <div class="col-sm-2">
-                            <a ><i class="fa fa-edit fa-2x"  style="color: white; margin-left: 30px; margin-top: 20px;"></i></a>
-                        </div>
-                  
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-            
-                        </div>
-                        <div class="titleMedBackNB" style="margin-left: 20px;">เบอร์ติดต่อ &nbsp;: {{this.shops.phoneNumber}}</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-            
-                        </div>
-                        <div class="titleMedBackNB" style="margin-left: 20px;">เวลาเปิดปิด : {{this.shops.timeO}} - {{this.shops.timeC}}</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-            
-                        </div>
-                        <div class="titleMedBackNB" style="margin-left: 20px;">ที่อยู่ร้าน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{this.shops.address}} {{this.shops.tumbon}} {{this.shops.amphoe}} {{this.shops.province}} 
-               ไปรษณีย์{{this.shops.post}}</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                
-                </div>&nbsp;
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-            
-                        </div>
-                        <div class="titleMedBackNB" style="margin-left: 20px;">.........................................................................................................</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <div class="titleMedBack" style="margin-left: 20px;">เกี่ยวกับร้าน</div>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <div class="form-group">
-                </div>
-
-                <div style="height: 500px;">
-                    <div class="titleMedBackNB" style="margin-left: 20px;">{{this.shops.description}}</div>
-                </div>
-
+            <div class="col-md-10">
+                <div class="mitfFontHev font30x" style="margin-left: 20px;">ร้าน {{this.shops.name}}</div>
             </div>
             
         </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-2">
+                
+            </div>
+            <div class="col-md-10">
+                <img [src]="this.shops.imageProfile" style="width:100%; height: 95%;" alt="Avatar">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <br/>
+            <div class="row">
+                
+                    <div class="col-sm-10">
+                        
+                        <div class="mitfFontHev font25x" style="margin-left: 20px;">ข้อมูลร้าน</div>
+                    </div>
+                    <div class="col-sm-2">
+                        
+                    </div>
+              
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+        
+                    </div>
+                    <div class="mitfFontlight font25x" style="margin-left: 20px;">เบอร์ติดต่อ : {{this.shops.phoneNumber}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+        
+                    </div>
+                    <div class="mitfFontlight font25x" style="margin-left: 20px;">เวลาเปิดปิด : {{this.shops.timeO}} - {{this.shops.timeC}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+        
+                    </div>
+                    <div class="mitfFontlight font25x" style="margin-left: 20px;">ที่อยู่ร้าน &nbsp;&nbsp;&nbsp;: {{this.shops.address}} {{this.shops.tumbon}} {{this.shops.amphoe}} {{this.shops.province}} 
+           ไปรษณีย์{{this.shops.post}}</div>
+                </div>
+            </div>
+            <div class="form-group">
+            
+            </div>&nbsp;
+            <div class="row">
+                <div class="col-sm">
+                    <br/>
+                    <div class="titleMedBackNB" style="margin-left: 20px;">...............................................</div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <div class="mitfFontHev font25x" style="margin-left: 20px;">เกี่ยวกับร้าน</div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <br/>
+
+            <div style="height: 500px;">
+                <div class="mitfFontlight font25x" style="margin-left: 20px;">{{this.shops.description}}</div>
+            </div>
+
+        
     </div>
 </div>
