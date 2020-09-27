@@ -13,7 +13,7 @@ export class RegmemComponent implements OnInit {
   registerForm  = new FormGroup({
     email: new FormControl('',[Validators.email,Validators.required]),
     password: new FormControl('',[Validators.required]),
-    imageProfile: new FormControl('https://static.thenounproject.com/png/363633-200.png',[Validators.required]),
+    imageProfile: new FormControl('../../../assets/regmem.png',[Validators.required]),
     name:new FormControl('',[Validators.required]),
     phoneNumber: new FormControl('',[Validators.minLength(10),Validators.maxLength(10),Validators.required,Validators.pattern('[0-9]{10}')]),
     address: new FormControl('',[Validators.required]),//"123"

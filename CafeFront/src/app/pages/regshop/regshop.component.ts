@@ -15,7 +15,7 @@ export class RegshopComponent implements OnInit {
   Close: String
   shopForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    imageProfile: new FormControl('https://cdn.onlinewebfonts.com/svg/img_148071.png', [Validators.required]),
+    imageProfile: new FormControl('../../../assets/regshop.png', [Validators.required]),
     timeO: new FormControl('', [Validators.required]),
     timeC: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
