@@ -1,110 +1,107 @@
 <app-menu></app-menu>
-<div class="row">
-    <div class="col-2" style="background-color: #343a40; opacity: 80%;padding-bottom: 4%;">
-        <app-funcbar></app-funcbar>
-        
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+
     </div>
     <div class="col-10">
-        <br>
-        <br>
-        <div class="row" style="background-color: white; width: 1500px; margin-left: 33px;">
-            <div class="column" style="padding: 20px;">
-                <div class="titleFunc" >โปรโมชั่น</div>
+      <br/>
+      <div class="col text-center">
+        <div class="mitfFont fontre">โค้ดโปรโมชั่น</div>
+      </div>
+      <br/>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary btn-lg btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
+                <div class="mitfFont" style="margin-left: 20px;">
+                  เพิ่ม
+                  <i class="fa fa-plus-circle" style="color: white; margin-right: 10px;"></i>
+                </div></button>
             </div>
-                
-                <div style="margin-top: 70px; margin-left: 500px;">
-                    <button type="button" class="btn btn-primary btn-lg btn-block btn-rounded-corners" data-toggle="modal" data-target="#exampleModal" style="width: 200px; height: 50px; border-radius: 25px; margin-top: -50px; margin-left: 500px;">
-                      <div class="buttext" style="margin-left: 20px;">
-                        เพิ่มโปรโมชั่น
-                        <i class="fa fa-plus-circle" style="color: white; margin-right: 10px;"></i>
-                      </div></button>&nbsp;
-                </div>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">เพิ่มโปรโมชั่น</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mitfFontHev" id="exampleModalLabel">เพิ่มโปรโมชั่น</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+        
+                <!-- modal -->
+                  <div class="modal-body mitfFont">
+
+                    <form [formGroup]="promotionForm">
+
+                      
+                      <label for="recipient-name" class="col-form-label">โค้ดโปรโมชั่น:</label>
+                      <div class="form-group">
+                       <input type="text" class="form-control" formControlName='name'>
+                       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                        <div *ngIf="name.errors.required">
+                            กรุณากรอกโค้ด
                         </div>
-              
-                      <!-- modal -->
-                        <div class="modal-body">
-
-                          <form [formGroup]="promotionForm">
-
-                            
-                            <label for="recipient-name" class="col-form-label">โค้ดโปรโมชั่น:</label>
-                            <div class="form-group">
-                             <input type="text" class="form-control" formControlName='name'>
-                             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
-                              <div *ngIf="name.errors.required">
-                                  กรุณากรอกโค้ด
-                              </div>
-                           </div>
-                            </div>
-                                 
-                                 <br>
-                            
-                            <div class="form-group">
-                                  <label for="message-text" class="col-form-label">ประเภท</label>&nbsp;
-                                  <select class="mb-3" formControlName="type" >
-                                    <option value="ส่วนลด">ส่วนลด</option>
-                                    <option value="แถม">แถม</option>
-                                </select>
-                                <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
-                                  <div *ngIf="type.errors.required">
-                                      กรุณาเลือกประเภท
-                                  </div>
-                              </div>
-                            </div>
-                                 
-                            
-                                <br>
-                        
-                            <label for="message-text" class="col-form-label">กี่เปอร์เซ็นต์</label>
-                                <div class="form-group">
-                                 <input type="text" class="form-control" formControlName='discount'>
-                                 <div *ngIf="discount.invalid && (discount.dirty || discount.touched)" class="text-invalid">
-                                  <div *ngIf="discount.errors.required">
-                                      กรุณากรอกเปอร์เซ็นต์ที่ต้องการ
-                                  </div>
-                               </div>
-                                </div>
-
-                                 <br>
-                        
-                            <label for="message-text" class="col-form-label">แต้มที่ใช้</label>
-                                 <div class="form-group">
-                                  <input type="text" class="form-control" formControlName='point'>
-                                  <div *ngIf="point.invalid && (point.dirty || point.touched)" class="text-invalid">
-                                   <div *ngIf="point.errors.required">
-                                       กรุณากรอกแต้มที่ใช้่
-                                   </div>
-                                </div>
-                                 </div>
-                                  
+                     </div>
+                      </div>
                            
-                                </form>
-                          
-                        </div>
-              
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" (click)="addPromotion()" data-dismiss="modal">บันทึก</button>
-                            <button type="button" class="btn btn-secondary" (click)="resetForm()"data-dismiss="modal">ยกเลิก</button>
-                            
-                       
-                          
+                           <br>
+                      
+                      <div class="form-group">
+                            <label for="message-text" class="col-form-label">ประเภท</label>&nbsp;
+                            <select class="mb-3" formControlName="type" >
+                              <option value="ส่วนลด">ส่วนลด</option>
+                              <option value="แถม">แถม</option>
+                          </select>
+                          <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
+                            <div *ngIf="type.errors.required">
+                                กรุณาเลือกประเภท
+                            </div>
                         </div>
                       </div>
-                    </div>
-                </div>
-        </div>
+                           
+                      
+                          <br>
+                  
+                      <label for="message-text" class="col-form-label">กี่เปอร์เซ็นต์</label>
+                          <div class="form-group">
+                           <input type="text" class="form-control" formControlName='discount'>
+                           <div *ngIf="discount.invalid && (discount.dirty || discount.touched)" class="text-invalid">
+                            <div *ngIf="discount.errors.required">
+                                กรุณากรอกเปอร์เซ็นต์ที่ต้องการ
+                            </div>
+                         </div>
+                          </div>
+
+                           <br>
+                  
+                      <label for="message-text" class="col-form-label">แต้มที่ใช้</label>
+                           <div class="form-group">
+                            <input type="text" class="form-control" formControlName='point'>
+                            <div *ngIf="point.invalid && (point.dirty || point.touched)" class="text-invalid">
+                             <div *ngIf="point.errors.required">
+                                 กรุณากรอกแต้มที่ใช้่
+                             </div>
+                          </div>
+                           </div>
+                            
+                     
+                          </form>
+                    
+                  </div>
         
-        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="padding-left: 32.5px; padding-right: 48px;">
+                  <div class="modal-footer mitfFont">
+                      <button type="button" class="btn btn-primary" (click)="addPromotion()" data-dismiss="modal">บันทึก</button>
+                      <button type="button" class="btn btn-secondary" (click)="resetForm()"data-dismiss="modal">ยกเลิก</button>
+                      
+                 
+                    
+                  </div>
+                </div>
+              </div>
+          </div>
+          <br/>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar" style="padding-left: 32.5px; padding-right: 48px;">
             <table class="table table-bordered table-striped mb-0" style="background-color: white; overflow-y:scroll">
-              <thead class="thead-dark" style="text-align: center;">
+              <thead class="thead-dark mitfFontlight" style="text-align: center;">
                 <tr>
                   <th scope="col">ลำดับ</th>
                   <th scope="col">โค้ดโปรโมชั่น</th>
@@ -114,7 +111,7 @@
                   <th scope="col">ลบ</th>
                 </tr>
               </thead>
-              <tbody style="text-align: center;">
+              <tbody class="mitfFont" style="text-align: center;">
                 <tr *ngFor="let item of promotions; index as i">
                   <td>{{i+1}}</td>
                   <td>{{item.name}}</td>
@@ -127,4 +124,8 @@
             </table>
         </div>
     </div>
+    <div class="col-1">
+
+    </div>
+  </div>
 </div>

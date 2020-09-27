@@ -56,14 +56,9 @@
                       </div>
                       <div class="form-group mitfFont">
                         <label for="message-text" class="col-form-label">หมวดหมู่:</label>
-                        <select class="form-control" formControlName="type">
-                          <option value=""></option>
-                          <option>ชา</option>
-                          <option>กาแฟ</option>
-                          <option>นม</option>
-                          <option>โซดา</option>
-                          <option>ขนม</option>
-                          <option>เมนูโปรโมชั่น</option>
+                        <select class="form-control" formControlName="type" #x (change)="selectType(x.value)">
+                          <option value=null>เลือกหมวดหมู่</option>
+                          <option *ngFor="let item of typeList; index as  i"   >{{this.typeList[i].type}}</option>
                         </select>
                         <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
                           <div *ngIf="type.errors.required">
@@ -73,11 +68,9 @@
                       </div>
                       <div class="form-group mitfFont">
                         <label for="message-text" class="col-form-label">ประเภท:</label>
-                        <select *ngIf="this.manageForm.get('type').value == 'ชา' " class="form-control" formControlName="variation">
-                          <option value=""></option>
-                          <option>ร้อน</option>
-                          <option>เย็น</option>
-                          <option>ปั่น</option>
+                        <select class="form-control" formControlName="variation" #x (change)="selectVariation(x.value)">
+                          <option value=null>เลือกประเภท</option>
+                          <option *ngFor="let item of variationList; index as  i"   >{{this.variationList[i].variation}}</option>
                         </select>
                         <select *ngIf="this.manageForm.get('type').value == 'กาแฟ' " class="form-control" formControlName="variation">
                           <option value=""></option>

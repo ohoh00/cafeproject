@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IngredientsService } from '../../service/ingredients.service';
+import { StatusService } from '../../service/status.service';
 import {LocalStorageService} from 'angular-web-storage'
 
 @Component({
@@ -9,7 +10,7 @@ import {LocalStorageService} from 'angular-web-storage'
   styleUrls: ['./manageingrt.component.scss']
 })
 export class ManageingrtComponent implements OnInit {
-
+  statusList: any
   shop: String
   manageinForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -26,7 +27,7 @@ export class ManageingrtComponent implements OnInit {
 
  
 
-  constructor(private is: IngredientsService,private local : LocalStorageService) { 
+  constructor(private is: IngredientsService,private local : LocalStorageService,private st: StatusService) { 
     try{
       this.shop = this.local.get('shop').id
       this.manageinForm.get("shop").setValue(this.local.get('shop').id)
@@ -35,10 +36,21 @@ export class ManageingrtComponent implements OnInit {
       console.log(err);
     }
     this.onLoading();
+    this.st.getStatus().subscribe( data => {
+      this.statusList = data
+      console.log(this.statusList)
+    })
   }
 
   ngOnInit(): void {
     this.onLoading()
+  }
+  getStatus(){
+    this.st.getStatus().subscribe( data => {
+      this.statusList = data
+    
+    })
+    console.log(this.statusList)
   }
 
   addIngredient(){
@@ -68,7 +80,7 @@ export class ManageingrtComponent implements OnInit {
         alert('ingredient updated successfully');
         this.updateForm.reset();
         this.onLoading();
-       
+        console.log(this.updateForm.value)
         
       },
       err =>{
@@ -114,7 +126,11 @@ export class ManageingrtComponent implements OnInit {
     return this.manageinForm.get('status');
   }
 
-  
+  selectStatus(x){
+    this.updateForm.get('status').setValue(this.statusList[x].status)
+    console.log(this.updateForm.get('status').value)
+    console.log(x)
+  }
 
   
 

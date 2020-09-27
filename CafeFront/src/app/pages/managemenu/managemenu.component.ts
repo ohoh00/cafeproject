@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuService } from '../../service/menu.service'
+import { VariationService } from '../../service/variation.service'
+import { TypeService } from '../../service/type.service'
 import {LocalStorageService} from 'angular-web-storage'
 
 @Component({
@@ -19,7 +21,8 @@ export class ManagemenuComponent implements OnInit {
     img: new FormControl('', [Validators.required]),
     shop: new FormControl('', [Validators.required])
   });
-
+  variationList: any
+  typeList: any
   updateForm = new FormGroup({
     id: new FormControl('', [Validators.required]),
     price: new FormControl(0, [Validators.required]),
@@ -30,7 +33,7 @@ export class ManagemenuComponent implements OnInit {
 
   
 
-  constructor(private ms: MenuService,private local : LocalStorageService) {
+  constructor(private ms: MenuService,private local : LocalStorageService,private vr: VariationService,private ty: TypeService) {
     try{
       this.manageForm.get("shop").setValue(this.local.get('shop').id)
       
@@ -38,11 +41,32 @@ export class ManagemenuComponent implements OnInit {
       console.log(err);
     }
     this.onLoading();
+    this.vr.getVariation().subscribe( data => {
+      this.variationList = data
+      console.log(this.variationList)
+    })
+    this.ty.getType().subscribe( data => {
+      this.typeList = data
+      console.log(this.typeList)
+    })
    }
 
   ngOnInit(): void {
   }
-
+  getVariation(){
+    this.vr.getVariation().subscribe( data => {
+      this.variationList = data
+    
+    })
+    console.log(this.variationList)
+  }
+  getType(){
+    this.ty.getType().subscribe( data => {
+      this.typeList = data
+    
+    })
+    console.log(this.typeList)
+  }
   addMenu(){
     if(!this.manageForm.valid){
       this.resetForm();
@@ -142,7 +166,16 @@ export class ManagemenuComponent implements OnInit {
     return this.manageForm.get('price');
   }
 
-
+  selectVariation(x){
+    this.manageForm.get('variation').setValue(this.variationList[x].variation)
+    console.log(this.updateForm.get('variation').value)
+    console.log(x)
+  }
+  selectType(x){
+    this.manageForm.get('type').setValue(this.typeList[x].type)
+    console.log(this.updateForm.get('type').value)
+    console.log(x)
+  }
 
 
 

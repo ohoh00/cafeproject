@@ -1,93 +1,58 @@
-
-&nbsp;
-<div class="form-group">
-            
-</div>&nbsp;
-
-<div class="row">
-    
-    <div class="col-sm-1">
-
-    </div>
-    <div class="col-sm-10">
-        <div class="card" style="max-width: 100%; height: 800px; border-radius: 20px;">
-            &nbsp;
-            <div class="row">
-                <h1 class="titleBlack col-sm-3">เพิ่มร้านค้าของคุณ</h1>
-            </div>
-            &nbsp;
-            <div class="row"> 
-
-                <div class="col-sm-3">
-                    <div class="row">  
-                        <div class="col-sm-1">
-
-                        </div>
-                        <div class="col-sm-11">
-                            <form [formGroup]="shopForm">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1">
+            <br/>
+            <a class="underlineHover mitfFontHev font30x" routerLink="/slshop" style=" font-size: 1.2vw; color: black;"href="#">กลับ</a>
+        </div>
+        <div class="col-sm-10">
+            <br/>
+            <br/>
+            <div class="card" >
+                <br/>
+                
+                <div class="mitfFont fontre" style="margin-left: 1%;">เพิ่มร้านค้าของคุณ</div>
+                <br/>
+                <div class="row">
+                    <div class="col-sm">
+                        <form [formGroup]="shopForm">
                             <img class="card-img-top"
                                     [src]="this.shopForm.value.imageProfile"
-                                    alt="Card image" style="height: 300px; width: 300px;"></form>
-                            <div class="form-group">
-                            <label class="col-md-4 control-label" for="filebutton">รูปโปรไฟล์</label>
+                                    alt="Card image" style="width: 12vw; height: 12vw; margin-left: 5%;">
+                        </form>
+                        <br/>
+                        <div class="form-group" style="margin-left: 5%;">
+                            <label class="col-md-12 control-label mitfFont" for="filebutton">รูปโปรไฟล์</label>
                             <div class="col-md-4">
-                                <form [formGroup]="shopForm">
-                                <input class="form-control-file" type="file" (change)="onChangeImg($event)">
+                                <form [formGroup]="shopForm" style="width: 200px;">
+                                <input class="form-control-file mitfFont"  type="file" (change)="onChangeImg($event)">
                                 </form>
                             </div>
-                            </div>
-                            &nbsp;
-                            <div class="form-group">
-                            </div>
-                            &nbsp;
-                            <div class="form-group">
-                            </div>
-                            &nbsp;
-                            <div class="form-group">
-                            </div>&nbsp;
-                            <div class="form-group">
-                            </div>&nbsp;
-                            <div class="form-group">
-                            </div>&nbsp;
-                            <div class="form-group">
-                            </div>&nbsp;
-                            <div class="form-group">      
-                            </div>
-                            <a class="underlineHover titleBack " routerLink="/slshop" href="#">ย้อนกลับ</a>
                         </div>
-                    
-                        </div>
-                </div>
+                    </div>
+                    <div class="col-sm mitfFont">
+                        <form [formGroup]="shopForm">
 
-                <div class="col-sm-5">
-                    &nbsp;
+                            <label class=" control-label">ชื่อร้าน</label>
+                                <input type="text" class="form-control input-md" formControlName="name" style="width: 80%; border-radius: 25px;">
+                                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                                        <div *ngIf="name.errors.required">
+                                            กรุณากรอกชื่อร้าน
+                                        </div>
+                                </div>
 
-                    <form [formGroup]="shopForm">
-                    <div class="col-sm-11">
-                        <label class="col-md-6 control-label">ชื่อร้าน</label>
-                        <input type="text" class="form-control input-md" formControlName="name">
-                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
-                            <div *ngIf="name.errors.required">
-                                กรุณากรอกชื่อร้าน
-                            </div>
-                         </div>
-                        </div>&nbsp;
-                    <div class="row">
-                        <div class="col-sm-5" style="margin-left: 15px;">
-                         <label class="col-md-6 control-label">เบอร์ติดต่อ</label>
-                         <input type="text" class="form-control input-md" formControlName="phoneNumber">
-                          <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
-                              <div *ngIf="phoneNumber.errors.required">
-                                กรุณากรอกเบอร์โทร
-                              </div>
+                             <label class=" control-label">เบอร์ติดต่อ</label>
+                                <input type="text" class="form-control input-md" formControlName="phoneNumber" style="width: 80%; border-radius: 25px;">
+                                <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
+                                        <div *ngIf="phoneNumber.errors.required">
+                                        กรุณากรอกเบอร์โทร
+                                        </div>
                              <div *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">
                                   กรุณากรอกรูปแบบเบอร์โทร
                              </div>
-                             </div>
-                        </div>
-                        <div class="col-sm-5" style="margin-left: 28px;">
-                            <label class="col-md-6 control-label">เบอร์พร้อมเพย์</label>
-                            <input type="text" class="form-control input-md" formControlName="promptpay">
+                          </div> 
+
+                          <label class="control-label">เบอร์พร้อมเพย์</label>
+                            <input type="text" class="form-control input-md" formControlName="promptpay" style="width: 80%; border-radius: 25px;">
                              <div *ngIf="promptpay.invalid && (promptpay.dirty || promptpay.touched)" class="text-invalid">
                                  <div *ngIf="promptpay.errors.required">
                                    กรุณากรอกเบอร์โทร
@@ -95,94 +60,83 @@
                                 <div *ngIf="promptpay.errors.minlength || promptpay.errors.maxlength">
                                      กรุณากรอกรูปแบบเบอร์โทร
                                 </div>
-                                </div>
-                           </div>
-                    </div>
-                    &nbsp;
-                    <div class="col-sm-11">
-                        <label class="col-md-6 control-label">คำอธิบายร้าน</label>
-                        <input type="text" class="form-control input-md" formControlName="description">
-                        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-invalid">
-                            <div *ngIf="description.errors.required">
-                                กรุณากรอกคำอธิบายร้าน
-                            </div>
-                         </div>
-                    </div>&nbsp;
+                              </div>
 
-                    <div class="row">
-                        
-                        <div class="col-sm-5" style="margin-left: 15px;">
-                          <label class="col-md-5 control-label">เวลาเปิด</label>
-                          <input type="time" class="form-control input-md" formControlName="timeO">
-                          <div *ngIf="timeO.invalid && (timeO.dirty || timeO.touched)" class="text-invalid">
-                            <div *ngIf="timeO.errors.required">
-                                กรุณาเลือกเวลาเปิด
+                          <div class="row">
+                              <div class="col-6">
+                                <label class=" control-label">เวลาเปิด</label>
+                            <input type="time" class="form-control input-md" formControlName="timeO" style="width: 90%; border-radius: 25px;">
+                            <div *ngIf="timeO.invalid && (timeO.dirty || timeO.touched)" class="text-invalid">
+                              <div *ngIf="timeO.errors.required" >
+                                  กรุณาเลือกเวลาเปิด
+                              </div>
                             </div>
-                         </div>
-                        </div>
+                              </div>
+                              <div class="col-6">
+                                <label class=" control-label">เวลาปิด</label>
+                            <input type="time" class="form-control input-md" formControlName="timeC" style="width: 80%; border-radius: 25px;">
+                            <div *ngIf="timeC.invalid && (timeC.dirty || timeC.touched)" class="text-invalid">
+                              <div *ngIf="timeC.errors.required">
+                                  กรุณาเลือกเวลาปิด
+                              </div>
+                           </div>
+                              </div>
+                            
+  
+                            
+                          </div>
+                          
+                          
                         
-                        <div class="col-sm-5" style="margin-left: 28px;">
-                          <label class="col-md-5 control-label">เวลาปิด</label>
-                          <input type="time" class="form-control input-md" formControlName="timeC">
-                          <div *ngIf="timeC.invalid && (timeC.dirty || timeC.touched)" class="text-invalid">
-                            <div *ngIf="timeC.errors.required">
-                                กรุณาเลือกเวลาปิด
-                            </div>
-                         </div>
-                        </div>
-            
+                              <label class=" control-label">คำอธิบายร้าน</label>
+                                <input type="text" class="form-control input-md" formControlName="description" style="width: 80%; border-radius: 25px;">
+                                <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-invalid">
+                                    <div *ngIf="description.errors.required">
+                                        กรุณากรอกคำอธิบายร้าน
+                                    </div>
+                                </div>
+
+                        </form>
                         
-                        
-                    </div>&nbsp;
-                    <div class="col-sm-11">
-                        <label class="col-md-6 control-label">ที่อยู่ร้าน</label>
-                        <input type="text" class="form-control input-md" formControlName="address">
-                        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-invalid">
-                            <div *ngIf="address.errors.required">
-                                กรุณากรอกที่อยู่
-                            </div>
-                         </div>
-                    </div>&nbsp;
-                    <div class="row">
-                        
-                        <div class="col-sm-5" style="margin-left: 15px;">
-                          <label class="col-md-5 control-label">ตำบล</label>
-                          <input type="text" class="form-control input-md" formControlName="tumbon">
+
+                    </div>
+                    <div class="col-sm mitfFont">
+                        <form [formGroup]="shopForm">
+
+                         <label class=" control-label">ที่อยู่ร้าน</label>
+                         <input type="text" class="form-control input-md" formControlName="address" style="width: 80%; border-radius: 25px;">
+                         <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-invalid">
+                             <div *ngIf="address.errors.required">
+                                 กรุณากรอกที่อยู่
+                             </div>
+                          </div>
+                          
+                          <label class=" control-label">ตำบล</label>
+                          <input type="text" class="form-control input-md" formControlName="tumbon" style="width: 80%; border-radius: 25px;">
                           <div *ngIf="tumbon.invalid && (tumbon.dirty || tumbon.touched)" class="text-invalid">
                             <div *ngIf="tumbon.errors.required">
                                 กรุณากรอกตำบล
                             </div>
                          </div>
-                        </div>
-                        
-                        <div class="col-sm-5" style="margin-left: 28px;">
-                          <label class="col-md-5 control-label">อำเภอ</label>
-                          <input type="text" class="form-control input-md" formControlName="amphoe">
+
+                          <label class="control-label">อำเภอ</label>
+                          <input type="text" class="form-control input-md" formControlName="amphoe" style="width: 80%; border-radius: 25px;">
                           <div *ngIf="amphoe.invalid && (amphoe.dirty || amphoe.touched)" class="text-invalid">
                             <div *ngIf="amphoe.errors.required">
                                 กรุณากรอกอำเภอ
                             </div>
                          </div>
-                        </div>
-            
-                        
-                        
-                    </div>&nbsp;
-                    <div class="row">
-                        
-                        <div class="col-sm-5" style="margin-left: 15px;">
-                          <label class="col-md-5 control-label">จังหวัด</label>
-                          <input type="text" class="form-control input-md" formControlName="province">
+
+                         <label class=" control-label">จังหวัด</label>
+                          <input type="text" class="form-control input-md" formControlName="province" style="width: 80%; border-radius: 25px;">
                           <div *ngIf="province.invalid && (province.dirty || province.touched)" class="text-invalid">
                             <div *ngIf="province.errors.required">
                                 กรุณากรอกจังหวัด
                             </div>
                          </div>
-                        </div>
-                        
-                        <div class="col-sm-5" style="margin-left: 28px;">
-                          <label class="col-md-5 control-label">ไปรษณีย์</label>
-                          <input type="text" class="form-control input-md" formControlName="post">
+
+                         <label class="control-label">ไปรษณีย์</label>
+                          <input type="text" class="form-control input-md" formControlName="post" style="width: 80%; border-radius: 25px;">
                           <div *ngIf="post.invalid && (post.dirty || post.touched)" class="text-invalid">
                             <div *ngIf="post.errors.required">
                                 กรุณากรอกรหัสไปรษณีย์
@@ -191,50 +145,24 @@
                                 กรุณากรอกรูปแบบรหัสไปรษณีย์
                           </div>
                          </div>
-                        </div>
-            
-                        
-                        
-                    </div>&nbsp;
-                    </form>
 
-                </div>
-                
-                <div class="col-sm-4">
-                    <div class="row"> 
 
-                            <div class="col-sm-11">
-                                <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
-                                    
-                                </div>
-                                    &nbsp;
-                                    <div class="form-group">
-                        
-                                    </div>
-                                    &nbsp;
-                                    <div class="form-group">
-                        
-                                    </div>
-                                    &nbsp;
-                                    <div class="form-group">
-                        
-                                    </div>
-                                    <form [formGroup]="shopForm">
-                                    <button class="btn btn-primary btn-rounded-corners titleWhite "  (click)="addShop()" > บันทึก </button>
-                                    </form>
-                            </div>
-
-                            <div class="col-sm-1">
-                                
-                            </div>
-                    
+                        </form>
                     </div>
+                    
                 </div>
+                <div>
+                    <form [formGroup]="shopForm" style="float: right;"><br/>
+                        <button class="btn btn-primary btn-rounded-corners mitfFont "  style="font-size: 0.75vw; margin-right: 5vw; width: 10vw;" (click)="addShop()" > บันทึก </button><br/>
+                    </form>
+                    
+                </div>
+
             </div>
+            
+        </div>
+        <div class="col-sm-1">
+
         </div>
     </div>
-    <div class="col-sm-1">
-
-    </div>
 </div>
-

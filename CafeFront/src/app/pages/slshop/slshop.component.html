@@ -1,13 +1,11 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 &nbsp;
 <div class="row">
     <div class="col-sm-11">
 
     </div>
     <div class="col-sm-1">
-        <a class="underlineHover titleBack" (click)="logOut()" href="#">ย้อนกลับ</a>
+        <a class="underlineHover mitfFontHev font30x" style="color: #000;" (click)="logOut()" href="#">ย้อนกลับ</a>
     </div>
     
 </div>
@@ -21,7 +19,7 @@
 
     </div>
     <div class="col-sm-4">
-        <h1 class="titleWhite">เลือกร้านคาเฟ่ของคุณ</h1>
+        <h1 class="mitfFontHev font30x" style="text-align: center;">เลือกร้านคาเฟ่ของคุณ</h1>
     </div>
     <div class="col-sm-4">
 
@@ -34,9 +32,9 @@
 
     </div>
         
-        <button class="col-sm-6 btn btn-primary btn_slshop"  (click)="clickShop({name:item.name,id:item._id,promptpay:item.promptpay})" routerLink="/home">
+        <button class="col-sm-6 btn btn-dark btn_slshop"  (click)="clickShop({name:item.name,id:item._id,promptpay:item.promptpay})" routerLink="/home">
             <div class="row">
-            <div class="col-sm-4 titleWh">{{item.name}}</div> 
+            <div class="col-sm-4 mitfFontHev font30x">{{item.name}}</div> 
             </div>  
         </button>
         
@@ -54,9 +52,9 @@
     
         <button class="col-sm-6 btn btn-primary btn_slnew" routerLink="/regshop">
             <div class="row">
-            <div class="col-sm-4 titleWh ">เพิ่มร้านใหม่</div>
+            <div class="col-sm-4 mitfFontHev font30x ">เพิ่มร้านใหม่</div>
             <div class="col-sm-6 "></div>
-            <div class="col-sm-2 titleWh">+</div>
+            <div class="col-sm-2 text-align: center;">+</div>
             </div>
         </button>
  

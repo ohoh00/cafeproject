@@ -83,10 +83,10 @@
                       </div>
                       <div class="form-group">
                         <label for="message-text" class="mitfFont">ช่องทางการชำระ:</label>&nbsp;
-                        <select class="mb-3 mitfFont" formControlName="paymentMethod" >
-                          <option value="โอนเงิน">โอนเงิน</option>
-                          <option value="เงินสด">เงินสด</option>
-                      </select>
+                        <select class=" mb-3form-control" formControlName="paymentMethod" #x (change)="selectPaytype(x.value)">
+                          <option value=null>เลือกช่องทางชำระเงิน</option>
+                          <option *ngFor="let item of paytypeList; index as  i"   >{{this.paytypeList[i].paytype}}</option>
+                        </select>
                       <div *ngIf="paymentMethod.invalid && (paymentMethod.dirty || paymentMethod.touched)" class="text-invalid">
                         <div class="mitfFont" *ngIf="paymentMethod.errors.required">
                             กรุณาเลือกวิธีการชำระเงิน

@@ -54,11 +54,10 @@
                   </div>
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">สถานะ:</label>
-                    <select class="form-control" formControlName="status">
-                        <option value=""></option>
-                        <option>มี</option>
-                        <option>หมด</option>
-                      </select>
+                    <select class="form-control" formControlName="status" #x (change)="selectStatus(x.value)">
+                      <option value=null>เลือกสถานะ</option>
+                      <option *ngFor="let item of statusList; index as  i"   >{{this.statusList[i].status}}</option>
+                    </select>
                       <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-invalid">
                         <div *ngIf="status.errors.required">
                             กรุณาเลือกสถานะ
@@ -101,19 +100,18 @@
                         </div>
                     </div>
                     </div>
-                    <div class="form-group">
+                    
                       <label for="recipient-name" class="col-form-label">สถานะ:</label>
-                      <select class="form-control" formControlName="status">
-                        <option value=""></option>
-                        <option>มี</option>
-                        <option>หมด</option>
+                      <select class="form-control" formControlName="status" #x (change)="selectStatus(x.value)">
+                        <option value=null>เลือกสถานะ</option>
+                        <option *ngFor="let item of statusList; index as  i"   >{{this.statusList[i].status}}</option>
                       </select>
                       <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-invalid">
                         <div *ngIf="status.errors.required">
                             กรุณาเลือกสถานะ
                         </div>
                   </div>
-                    </div>
+                    
                   </form>
                 </div>
       

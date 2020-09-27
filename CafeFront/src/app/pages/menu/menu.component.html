@@ -29,9 +29,68 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopinfo" href="#">Shop-info</a>
       </li>
+      
     </ul>
     <ul class="navbar-nav ml-auto">
       <div class="pull-right">
+        <div class="dropdown">
+          <span class="mitfFontHev" style="color: white;">{{shop}}&nbsp;</span> <i class="fa fa-chevron-down" style="color: white;"></i>
+          <div class="dropdown-content" style="margin-left: -6vw; margin-top: -1vw;">
+
+              <div class="row">
+                  <div class="col-sm-1"></div>
+                  <div class="col-sm-10 mitfFontHev" style="text-align: center;">
+                      {{shop}}
+                  </div>
+                  <div class="col-sm-1"></div>
+              </div>
+              <br>
+              <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10 ">
+                  <button class="btn btn-dark btn-rounded-corners btn_slshop" routerLink="/shopinfo">
+                    <div class="mitfFontHevB">ข้อมูลร้าน</div>
+                    
+                  </button>
+              </div>
+              <div class="col-sm-1"></div>
+
+            </div>
+            <br>
+              <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10 ">
+                  <button class="btn btn-dark btn-rounded-corners btn_slshop" routerLink="/promotion">
+                    <div class="mitfFontHevB">จัดการโปรโมชั่น</div>
+                  </button>
+              </div>
+              <div class="col-sm-1"></div>
+
+            </div>
+            
+
+            <br>
+            <div class="row">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6 ">
+                  <button class="btn btn-danger  btn_slshop2 titleBsmall"   routerLink="/slshop">
+                    <div class="mitfFontHevB">เลือกร้านค้า</div>
+                  </button>
+              </div>
+              <div class="col-sm-3"></div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+
+      <div class="pull-right">
+        
+
+
         <div class="dropdown titleWmed pull-right">
            <i class="fa fa-chevron-down"  style="color: white; margin-left: 10px;"></i>
           <div class="dropdown-content">
@@ -46,16 +105,17 @@
             <br>
             <div class="row">
               <div class="col-sm-1"></div>
-              <div class="col-sm-10 titleBmed">
-                 {{getName()}}
+              <div class="col-sm-10">
+                <div class="mitfFontHevB" style="text-align: center;">{{getName()}}</div>
               </div>
               <div class="col-sm-1"></div>
 
             </div>
             <div class="row">
               <div class="col-sm-1"></div>
-              <div class="col-sm-10 titleBsmall">
-                  {{getEmail()}}
+              <div class="col-sm-10">
+                <div class="mitfFontHevB" style="text-align: center; font-size: 12px;">{{getEmail()}}</div>
+                  
               </div>
               <div class="col-sm-1"></div>
 
@@ -64,7 +124,9 @@
             <div class="row">
               <div class="col-sm-1"></div>
               <div class="col-sm-10 ">
-                  <button class="btn btn-primary btn-rounded-corners btn_slshop titleBmedA" routerLink="/employee" >จัดการพนักงาน</button>
+                  <button class="btn btn-dark btn-rounded-corners btn_slshop" routerLink="/employee" >
+                    <div class="mitfFontHevB">จัดการพนักงาน</div>
+                  </button>
               </div>
               <div class="col-sm-1"></div>
 
@@ -73,7 +135,9 @@
             <div class="row">
               <div class="col-sm-1"></div>
               <div class="col-sm-10 ">
-                  <button class="btn btn-primary btn-rounded-corners btn_slshop titleBmedA " style="margin-top: 10px" routerLink="/customer" >สมัครสมาชิกลูกค้า</button>
+                  <button class="btn btn-dark btn-rounded-corners btn_slshop " style="margin-top: 10px" routerLink="/customer" >
+                    <div class="mitfFontHevB">สมัครสมาชิกลูกค้า</div>
+                  </button>
               </div>
               <div class="col-sm-1"></div>
 
@@ -82,7 +146,9 @@
             <div class="row">
               <div class="col-sm-3"></div>
               <div class="col-sm-6 ">
-                  <button class="btn btn-danger  btn_slshop2 titleBsmall" (click)="logOut()" >ออกจากระบบ</button>
+                  <button class="btn btn-danger  btn_slshop2 " (click)="logOut()" >
+                    <div class="mitfFontHevB">ออกจากระบบ</div>
+                  </button>
               </div>
               <div class="col-sm-3"></div>
 
@@ -91,6 +157,7 @@
           </div>
         </div>
         <a href="">
+
           <img [src]="getImg()" class="pull-right" style="width:15%; height:auto;" alt="Responsive image">
         </a>
         

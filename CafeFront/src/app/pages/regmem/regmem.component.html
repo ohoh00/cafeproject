@@ -1,7 +1,7 @@
 <br>
 <br>
 <div class="container-fluid" >
-  <form [formGroup]="registerForm" >
+  <form [formGroup]="registerForm" class="mitfFont">
     <div class="row">
       <div class="col-sm-3">
         <div class="card" style="max-width: 100%; height: auto;">
@@ -9,7 +9,7 @@
       [src]="this.registerForm.value.imageProfile"
       alt="Card image" style="width:100%">
         <div class="form-group">
-          <label class="col-md-4 control-label" for="filebutton">รูปโปรไฟล์</label>
+          <label class="control-label" for="filebutton" style="margin-left: 1%;">รูปโปรไฟล์</label>
           <div class="col-md-4">
             <input id="filebutton" name="filebutton" class="input-file" type="file"  (change) = "onChangeImg($event)">
           </div>
@@ -35,8 +35,8 @@
 
             </div>
             <div class="col-sm-4">
-            <label class="col-md-4 control-label">อีเมล</label>
-            <input type="text" placeholder="example@mail.com" class="form-control input-md" formControlName = "email" >
+            <label class=" control-label">อีเมล</label>
+            <input style="width: 80%; border-radius: 25px;" type="text" placeholder="example@mail.com" class="form-control input-md" formControlName = "email" >
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-invalid">
               <div *ngIf="email.errors.required">
                   กรุณากรอกEmail
@@ -58,8 +58,8 @@
 
             </div>
             <div class="col-sm-4">
-              <label class="col-md-4 control-label">รหัสผ่าน</label>
-              <input type="password" placeholder="" class="form-control input-md" required="" formControlName="password">
+              <label class="control-label">รหัสผ่าน</label>
+              <input style="width: 80%; border-radius: 25px;" type="password" placeholder="" class="form-control input-md" required="" formControlName="password">
               <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-invalid">
                 <div *ngIf="password.errors.required">
                     กรุณากรอกรหัสผ่าน
@@ -68,8 +68,8 @@
             </div>
             
             <div class="col-sm-4">
-              <label class="col-md-5 control-label">ยืนยันรหัสผ่าน</label>
-              <input type="password" placeholder="" [formControl]="chpass" class="form-control input-md" required="">
+              <label class="control-label">ยืนยันรหัสผ่าน</label>
+              <input style="width: 80%; border-radius: 25px;" type="password" placeholder="" [formControl]="chpass" class="form-control input-md" required="">
               <div *ngIf="chpass.value != password.value" class="text-invalid" >
                    กรุณากรอกรหัสผ่านให้ตรงกัน
             </div>
@@ -90,8 +90,8 @@
 
             </div>
             <div class="col-sm-4">
-              <label class="col-md-4 control-label">ชื่อ-สกุล</label>
-              <input type="text" placeholder="" class="form-control input-md" required="" formControlName="name">
+              <label class="control-label">ชื่อ-สกุล</label>
+              <input style="width: 80%; border-radius: 25px;" type="text" placeholder="" class="form-control input-md" required="" formControlName="name">
               <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
                 <div *ngIf="name.errors.required">
                     กรุณากรอกชื่อ
@@ -100,8 +100,8 @@
             </div>
             
             <div class="col-sm-4">
-              <label class="col-md-5 control-label">เบอร์โทร</label>
-              <input type="text" placeholder="" class="form-control input-md" required="" formControlName="phoneNumber">
+              <label class="control-label">เบอร์โทร</label>
+              <input style="width: 80%; border-radius: 25px;" type="text" placeholder="" class="form-control input-md" required="" formControlName="phoneNumber">
               <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
                 <div *ngIf="phoneNumber.errors.required">
                     กรุณากรอกเบอร์โทร
@@ -125,8 +125,8 @@
 
             </div>
             <div class="col-sm-4">
-            <label class="col-md-6 control-label">เลขบัตรประชาชน</label>
-            <input id="textinput" name="textinput" type="text" class="form-control input-md" required="" formControlName="personalId">
+            <label class="control-label">เลขบัตรประชาชน</label>
+            <input style="width: 80%; border-radius: 25px;" id="textinput" name="textinput" type="text" class="form-control input-md" required="" formControlName="personalId">
             <div *ngIf="personalId.invalid && (personalId.dirty || personalId.touched)" class="text-invalid">
               <div *ngIf="personalId.errors.required">
                   กรุณากรอกเลขบัตรประชาชน
@@ -148,8 +148,8 @@
 
             </div>
             <div class="col-sm-8">
-            <label class="col-md-6 control-label">ที่อยู่</label>
-            <input id="textinput" name="textinput" type="text" class="form-control input-md" required="" formControlName="address">
+            <label class="control-label">ที่อยู่</label>
+            <input style="width: 80%; border-radius: 25px;" id="textinput" name="textinput" type="text" class="form-control input-md" required="" formControlName="address">
             <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-invalid">
               <div *ngIf="address.errors.required">
                   กรุณากรอกที่อยู่
@@ -168,8 +168,8 @@
 
             </div>
             <div class="col-sm-4">
-              <label class="col-md-4 control-label">ตำบล</label>
-              <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" formControlName="tumbon">
+              <label class="control-label">ตำบล</label>
+              <input style="width: 80%; border-radius: 25px;" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" formControlName="tumbon">
               <div *ngIf="tumbon.invalid && (tumbon.dirty || tumbon.touched)" class="text-invalid">
                 <div *ngIf="tumbon.errors.required">
                     กรุณากรอกตำบล
@@ -178,8 +178,8 @@
             </div>
             
             <div class="col-sm-4">
-              <label class="col-md-5 control-label">อำเภอ</label>
-              <input type="text" placeholder="" class="form-control input-md" required="" formControlName="amphoe">
+              <label class="control-label">อำเภอ</label>
+              <input style="width: 80%; border-radius: 25px;" type="text" placeholder="" class="form-control input-md" required="" formControlName="amphoe">
               <div *ngIf="amphoe.invalid && (amphoe.dirty || amphoe.touched)" class="text-invalid">
                 <div *ngIf="amphoe.errors.required">
                     กรุณากรอกอำเภอ
@@ -200,8 +200,8 @@
 
             </div>
             <div class="col-sm-4">
-              <label class="col-md-4 control-label">จังหวัด</label>
-              <input type="text" placeholder="" class="form-control input-md" required="" formControlName="province"> 
+              <label class="control-label">จังหวัด</label>
+              <input type="text" placeholder="" class="form-control input-md" style="width: 80%; border-radius: 25px;" required="" formControlName="province"> 
               <div *ngIf="province.invalid && (province.dirty || province.touched)" class="text-invalid">
                 <div *ngIf="province.errors.required">
                     กรุณากรอกจังหวัด
@@ -210,8 +210,8 @@
             </div>
             
             <div class="col-sm-4">
-              <label class="col-md-5 control-label">รหัสไปรษณีย์</label>
-              <input type="text" placeholder="" class="form-control input-md" required="" formControlName="post">
+              <label class="control-label">รหัสไปรษณีย์</label>
+              <input style="width: 80%; border-radius: 25px;" type="text" placeholder="" class="form-control input-md" required="" formControlName="post">
               <div *ngIf="post.invalid && (post.dirty || post.touched)" class="text-invalid">
                 <div *ngIf="post.errors.required">
                     กรุณากรอกรหัสไปรษณีย์
@@ -226,21 +226,23 @@
               
             </div>
             
+          </div><br/><br/><br/>
+          <div class="row">
+            <div class="col-sm-2">
+              
+            </div>
+            <div class="col-sm-4">
+              <a class="underlineHover titleBack mitfFont " routerLink="/login" href="#">ย้อนกลับ</a><br/>
+            </div>
+            <div class="col-sm-4">
+              <button class="btn btn-primary btn-rounded-corners mitfFont"  style="width: 50%;" (click)="register()" > สมัคร </button>
+            </div>
+            <div class="col-sm-2">
+              
+            </div>
           </div>
-          <div class="form-group">
-            
-          </div>
-          <div class="form-group">
-            
-          </div>
-          <div class="form-group">
-            
-          </div>
-          <div class="form-group">
-            
-          </div>
-          <a class="underlineHover titleBack " routerLink="/login" href="#">ย้อนกลับ</a>
-          <button class="btn btn-primary btn-rounded-corners "  (click)="register()" > Register!! </button>
+          
+          
           <div class="form-group">
             
           </div>
