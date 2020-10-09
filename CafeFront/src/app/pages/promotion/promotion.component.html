@@ -45,21 +45,7 @@
                            
                            <br>
                       
-                      <div class="form-group">
-                            <label for="message-text" class="col-form-label">ประเภท</label>&nbsp;
-                            <select class="mb-3" formControlName="type" >
-                              <option value="ส่วนลด">ส่วนลด</option>
-                              <option value="แถม">แถม</option>
-                          </select>
-                          <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
-                            <div *ngIf="type.errors.required">
-                                กรุณาเลือกประเภท
-                            </div>
-                        </div>
-                      </div>
-                           
                       
-                          <br>
                   
                       <label for="message-text" class="col-form-label">กี่เปอร์เซ็นต์</label>
                           <div class="form-group">
@@ -105,7 +91,6 @@
                 <tr>
                   <th scope="col">ลำดับ</th>
                   <th scope="col">โค้ดโปรโมชั่น</th>
-                  <th scope="col">ประเภท</th>
                   <th scope="col">เปอร์เซ็นต์</th>
                   <th scope="col">แต้มที่ใช้</th>
                   <th scope="col">ลบ</th>
@@ -115,7 +100,6 @@
                 <tr *ngFor="let item of promotions; index as i">
                   <td>{{i+1}}</td>
                   <td>{{item.name}}</td>
-                  <td>{{item.type}}</td>
                   <td>{{item.discount}}</td>
                   <td>{{item.point}}</td>
                   <td><button class="button button3" style="border-radius: 100px; font-weight: bolder;" (click)="deleteitem(item._id)">X</button></td>

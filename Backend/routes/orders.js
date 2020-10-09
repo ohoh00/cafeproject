@@ -13,7 +13,8 @@ const orderSchema = schema({
     paymentMethod:String,
     customerPhoneNumber:String,
     promotion:String,
-    shop:String
+    shop:String,
+    done: Boolean
 
 },{
     collection: 'orders'
@@ -61,6 +62,23 @@ function getAllOrders(id,shop){
       })
     })   
 }
+function getAllOrdersDone(id,shop,pay){
+
+    return new Promise((resolve, reject) => {
+        Orders.find({done:id,shop:shop,paymentStatus:pay},(err,data) => {
+          if (err) {
+              reject(new Error('Cannot get orders'))
+          } else {
+              if(data){
+                  resolve(data)
+              }
+              else{
+                reject(new Error('Cannot get orders'))
+              }
+          }
+      })
+    })   
+}
 function addOrder(orderDetails){
     return new Promise((res,rej) => {
         var new_user = new Orders({
@@ -72,7 +90,8 @@ function addOrder(orderDetails){
             quantity:orderDetails.quantity,
             customerPhoneNumber:orderDetails.customerPhoneNumber,
             promotion:orderDetails.promotion,
-            shop:orderDetails.shop
+            shop:orderDetails.shop,
+            done:orderDetails.done
 
         })
         new_user.save((err,data) => {
@@ -142,10 +161,25 @@ router.route('/updateOrder').put(auth,(req,res) => {
         paymentMethod:req.body.paymentMethod,
         customerPhoneNumber:req.body.customerPhoneNumber,
         promotion:req.body.promotion,
-        totalPrice: req.body.totalPrice
+        totalPrice: req.body.totalPrice,
+        done: req.body.done
     }
     console.log(payload)
     Orders.updateOne({_id:req.body.id},payload,(err,data) => {
+        if(data){
+            res.status(200).json(data)
+        }
+        else{
+            res.status(500).send({message:'Update failed'+err.message})
+        }
+    })
+})
+router.route('/updateOrderDone').put(auth,(req,res) => {
+    const payload =  {
+        done: req.body.done
+    }
+    console.log(payload)
+    Orders.updateOne({_id:req.body.id},{done: payload.done},(err,data) => {
         if(data){
             res.status(200).json(data)
         }
@@ -165,7 +199,8 @@ router.route('/addOrder').post(auth,(req,res) => {
             quantity:req.body.quantity,
             customerPhoneNumber:req.body.customerPhoneNumber,
             promotion:req.body.promotion,
-            shop:req.body.shop
+            shop:req.body.shop,
+            done: req.body.done
 
         }
         console.log(payload)
@@ -197,6 +232,20 @@ router.route('/getOrder/:shop/:paymentStatus').get(auth,(req,res) => {
 
 
     getAllOrders(req.params.paymentStatus == "false" ? false : true,req.params.shop).then( result => {
+        if(result)
+            res.status(200).json(result)
+        else
+            res.status(204).send({message : `Document is empty.`})
+    })
+    .catch( err => {
+        res.status(500).send({message: `Eroor: ${err}`})
+    })
+})
+
+router.route('/getOrderDone/:shop/:done').get(auth,(req,res) => {
+
+
+    getAllOrdersDone(req.params.done == "false" ? false : true,req.params.shop,true).then( result => {
         if(result)
             res.status(200).json(result)
         else

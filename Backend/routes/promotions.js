@@ -6,7 +6,6 @@ const auth = require('../Auth')
 var schema = require('mongoose').Schema
 const promotionSchema = schema({
     name: String,
-    type: String,
     discount: Number,
     point: Number,
     shop: String
@@ -41,7 +40,6 @@ function addPromotion(PromotionDetails){
     return new Promise((res,rej) => {
         var new_user = new Promotion({
             name:PromotionDetails.name,
-            type:PromotionDetails.type,
             discount:PromotionDetails.discount,
             point:PromotionDetails.point,
             shop:PromotionDetails.shop
@@ -112,7 +110,6 @@ router.route('/updatepromotions').put(auth,(req,res) => {
 router.route('/addPromotion').post(auth,(req,res) => {
         const payload ={
             name:req.body.name,
-            type:req.body.type,
             discount:req.body.discount,
             point:req.body.point,
             shop: req.body.shop

@@ -72,35 +72,7 @@
                           <option value=null>เลือกประเภท</option>
                           <option *ngFor="let item of variationList; index as  i"   >{{this.variationList[i].variation}}</option>
                         </select>
-                        <select *ngIf="this.manageForm.get('type').value == 'กาแฟ' " class="form-control" formControlName="variation">
-                          <option value=""></option>
-                          <option>ร้อน</option>
-                          <option>เย็น</option>
-                          <option>ปั่น</option>
-                        </select>
-                        <select *ngIf="this.manageForm.get('type').value == 'นม' " class="form-control" formControlName="variation">
-                          <option value=""></option>
-                          <option>ร้อน</option>
-                          <option>เย็น</option>
-                          <option>ปั่น</option>
-                        </select>
-                        <select *ngIf="this.manageForm.get('type').value == 'โซดา' " class="form-control" formControlName="variation">
-                          <option value=""></option>
-                          <option>เย็น</option>
-                        </select>
-                        <select *ngIf="this.manageForm.get('type').value == 'ขนม' " class="form-control" formControlName="variation">
-                          <option value=""></option>
-                          <option>เค้ก</option>
-                          <option>แซนวิช</option>
-                          <option>ขนมปัง</option>
-                          <option>อื่นๆ</option>
-                        </select>
-                        <select *ngIf="this.manageForm.get('type').value == 'เมนูโปรโมชั่น' " class="form-control" formControlName="variation">
-                          <option value=""></option>
-                          <option>1แถม1</option>
-                          <option>1แถม2</option>
-                          <option>1แถม3</option>
-                        </select>
+                        
                         <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
                           <div *ngIf="type.errors.required">
                               กรุณาเลือกประเภท

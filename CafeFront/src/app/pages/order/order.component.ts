@@ -84,7 +84,7 @@ export class OrderComponent implements OnInit {
       return alert('No menu selected!.') 
     }
     const payload = {
-        menu:this.selectMenu,quantity:this.selectMenu.length,paymentDate:'',paymentStatus:false,paymentMethod:'',customerPhoneNumber:'',totalPrice:this.SumPrice(this.selectMenu),shop:this.shop
+        menu:this.selectMenu,quantity:this.selectMenu.length,paymentDate:'',paymentStatus:false,paymentMethod:'',customerPhoneNumber:'',totalPrice:this.SumPrice(this.selectMenu),shop:this.shop,done:false
     }
    
     this.os.addOrder(payload).subscribe(data => {

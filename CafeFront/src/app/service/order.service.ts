@@ -32,6 +32,14 @@ export class OrderService {
       })
     )
   }
+  updateOrderDone(done){
+    const headers = {'authorization': this.ls.get('user').token}
+    return this.http.put<any>(`${this.URL}/orders/updateOrderDone`,done,{headers}).pipe(
+      map(data => {
+        return data
+      })
+    )
+  }
 
   getOrder(id,shop){
     const headers = {'authorization': this.ls.get('user').token}
@@ -48,6 +56,18 @@ export class OrderService {
   getAllOrders(shop,paymentstatus='false'){
     const headers = {'authorization': this.ls.get('user').token}
     return this.http.get<any>(`${this.URL}/orders/getOrder/${shop}/${paymentstatus}`,{headers}).pipe(
+      map(data => {
+        if(data){
+          this.order = data
+         
+        }
+        return this.order
+      })
+    )
+  }
+  getAllOrdersDone(shop,done='false'){
+    const headers = {'authorization': this.ls.get('user').token}
+    return this.http.get<any>(`${this.URL}/orders/getOrderDone/${shop}/${done}`,{headers}).pipe(
       map(data => {
         if(data){
           this.order = data

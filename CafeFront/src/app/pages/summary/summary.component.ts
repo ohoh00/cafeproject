@@ -44,7 +44,6 @@ export class SummaryComponent implements OnInit {
         });
        
     })
-    
    
    }
 
@@ -60,6 +59,7 @@ export class SummaryComponent implements OnInit {
       this.orders = data.length
       data.forEach(pr => {
         price +=pr.totalPrice
+
       });
       
       this.totalPrice = price

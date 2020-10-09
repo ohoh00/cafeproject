@@ -38,12 +38,12 @@ export class PromotionService {
   }
 
   getPromotionShop(id){const headers = {'authorization': this.ls.get('user').token}
-    return this.http.get<any>(`http://localhost:3000/promotions/getPromotionShop/${id}`,{headers}).pipe(map( data => {
+    return this.http.get<Array<any>>(`http://localhost:3000/promotions/getPromotionShop/${id}`,{headers}).pipe(map( data => {
       if(data){
         this.promotion = data
-
+        console.log(data)
       }
-      return this.promotion
+      return data
     }))
   }
   deleteitem(id){const headers = {'authorization': this.ls.get('user').token}

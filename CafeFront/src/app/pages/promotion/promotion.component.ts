@@ -14,7 +14,6 @@ export class PromotionComponent implements OnInit {
   shop:any
   promotionForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    type: new FormControl('', [Validators.required]),
     discount: new FormControl('', [Validators.required,Validators.min(0),Validators.max(100)]),
     point: new FormControl('', [Validators.required,Validators.min(0)]),
     shop: new FormControl('', [Validators.required])
@@ -76,16 +75,11 @@ export class PromotionComponent implements OnInit {
 
   resetForm(){
     this.promotionForm.get('name').setValue('');
-    this.promotionForm.get('type').setValue('');
     this.promotionForm.get('discount').setValue('');
     this.promotionForm.get('point').setValue('');
   }
   get name(){
     return this.promotionForm.get('name');
-  }
-
-  get type(){
-    return this.promotionForm.get('type');
   }
 
   get discount(){

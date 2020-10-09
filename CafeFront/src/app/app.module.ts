@@ -26,6 +26,7 @@ import { ChartModule } from 'angular2-chartjs';
 import {AuthGuardService} from './service/auth-guard.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PromotionComponent } from './pages/promotion/promotion.component';
+import { QueueComponent } from './pages/queue/queue.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { PromotionComponent } from './pages/promotion/promotion.component';
     ManageingrtComponent,
     OrderComponent,
     NotFoundComponent,
-    PromotionComponent
+    PromotionComponent,
+    QueueComponent
 
   ],
   imports: [

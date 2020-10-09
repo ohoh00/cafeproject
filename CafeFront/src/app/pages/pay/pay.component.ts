@@ -1,3 +1,4 @@
+declare var require: any
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms'
 import {OrderService} from '../../service/order.service'
@@ -6,6 +7,8 @@ import {PromotionService} from '../../service/promotion.service'
 import {PaytypeService} from '../../service/paytype.service'
 import {LocalStorageService} from 'angular-web-storage'
 import { DomSanitizer } from '@angular/platform-browser';
+import { Qrcode } from '../../../../node_modules/qrcode'
+import { Promptpay } from '../../../../node_modules/promptpay-qr'
 @Component({
   selector: 'app-pay' ,
   templateUrl: './pay.component.html',
@@ -13,6 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 
 export class PayComponent implements OnInit  {
+  
   Sum : number = 0
   OrderList: any
   OrderSelect:any
@@ -23,7 +27,7 @@ export class PayComponent implements OnInit  {
   name: string
   customerTelUse: any
   customerPoint: number = 0
-  promotionList: any
+  promotionList: Array<any> = []
   promotionName : String
   promotionPoint : number = 0
   promotionDiscount: number = 0
@@ -32,7 +36,7 @@ export class PayComponent implements OnInit  {
   svg : String 
   data : any
   paytypeList: any
-
+  
   orderForm = new FormGroup({
     id:new FormControl('',[Validators.required]),
     paymentMethod : new FormControl('',[Validators.required]),
@@ -53,12 +57,14 @@ export class PayComponent implements OnInit  {
       this.orderForm.get('id').setValue(this.OrderList[0]._id)
     })
     this.pr.getPromotionShop(this.shop).subscribe( data => {
-      this.promotionList = data
+      this.promotionList.push({name:"ไม่ใช้โปรโมชั่น",point:0,discount:0})
+      data.forEach(index=>{this.promotionList.push(index)})
       console.log(this.promotionList)
     })
     this.py.getPaytype().subscribe( data => {
       this.paytypeList = data
       console.log(this.paytypeList)
+      
     })
 
   }
@@ -89,6 +95,7 @@ export class PayComponent implements OnInit  {
       console.log(this.customerTelUse)
       this.name = this.customer.name.toString()
       this.customerPoint = this.customer.point
+      
       console.log(this.customerId)
  
       console.log(qrtel)
@@ -106,8 +113,9 @@ export class PayComponent implements OnInit  {
     this.getQRcode(qrtel,Sumex)
   }
   async getQRcode(phone,Sumex){
-    const qrcode = require('qrcode')
-    const generatePayload = require('promptpay-qr') 
+    
+    var qrcode = require('qrcode')
+    var generatePayload = require('promptpay-qr') 
     const amount = Sumex
     console.log(Sumex)
     const payload = generatePayload(phone,{ amount })
@@ -126,7 +134,7 @@ export class PayComponent implements OnInit  {
   getPromotionShop(){
     this.pr.getPromotionShop(this.shop).subscribe( data => {
       this.promotionList = data
-    
+      
     })
     console.log(this.promotionList)
   }
@@ -136,6 +144,7 @@ export class PayComponent implements OnInit  {
       this.OrderList = data
     
     })
+    console.log(this.OrderList)
   }
   selectPromotion(x){
     this.orderForm.get('promotion').setValue(this.promotionList[x].name)
@@ -162,13 +171,19 @@ export class PayComponent implements OnInit  {
     console.log(value)
     this.OrderSelect = this.OrderList[value].menu
     this.orderForm.get('id').setValue(this.OrderList[value]._id)
- 
+    console.log(this.OrderSelect.length)
     this.Sum = this.OrderList[value].totalPrice
   }
   Pay(){
     if(!this.orderForm.valid){
-   
+      location.reload();
       return alert('Payment form is not valid')
+    }
+    if(this.customerPoint<this.promotionPoint){
+      location.reload();
+      this.customerPoint = 0
+      return alert('เเต้มไม่พอใช้')
+
     }
     const payload = {
     id:this.orderForm.get('id').value,
@@ -177,7 +192,8 @@ export class PayComponent implements OnInit  {
     paymentMethod:this.orderForm.get('paymentMethod').value,
     customerPhoneNumber:this.orderForm.get('customerPhoneNumber').value,
     promotion:this.orderForm.get('promotion').value,
-    totalPrice:this.Sumfinal
+    totalPrice:this.Sumfinal,
+    done:false
     }
     console.log(payload)
     this.os.updateOrder(payload).subscribe( data => {
@@ -192,7 +208,7 @@ export class PayComponent implements OnInit  {
 
     const changepoint = {
       id:this.customerId,
-      point: this.customerPoint-this.promotionPoint
+      point: this.customerPoint-this.promotionPoint+this.OrderSelect.length
     }
     console.log(changepoint)
     this.cs.updateCustomer(changepoint).subscribe( data => {
@@ -201,9 +217,20 @@ export class PayComponent implements OnInit  {
     },err => {
       console.log('Point is failed to update.\n Err:',err)
     })
+    this.reset()
+    this.os.getAllOrders(this.shop).subscribe( data => {
+      this.OrderList = data
+      this.OrderSelect = this.OrderList[0].menu
+      this.Sum = this.OrderList[0].totalPrice
+      this.orderForm.get('id').setValue(this.OrderList[0]._id)
+    })
+    this.onChange(0)
+    this.resetPromotion()
+    this.selectPromotion(0)
   }
   reset(){
     this.orderForm.reset()
+    this.OrderSelect = null
   }
 
   

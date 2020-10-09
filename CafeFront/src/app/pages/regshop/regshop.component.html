@@ -34,7 +34,7 @@
 
                             <label class=" control-label">ชื่อร้าน</label>
                                 <input type="text" class="form-control input-md" formControlName="name" style="width: 80%; border-radius: 25px;">
-                                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
+                                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid text-center">
                                         <div *ngIf="name.errors.required">
                                             กรุณากรอกชื่อร้าน
                                         </div>
@@ -42,7 +42,7 @@
 
                              <label class=" control-label">เบอร์ติดต่อ</label>
                                 <input type="text" class="form-control input-md" formControlName="phoneNumber" style="width: 80%; border-radius: 25px;">
-                                <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
+                                <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid text-center">
                                         <div *ngIf="phoneNumber.errors.required">
                                         กรุณากรอกเบอร์โทร
                                         </div>
@@ -53,7 +53,7 @@
 
                           <label class="control-label">เบอร์พร้อมเพย์</label>
                             <input type="text" class="form-control input-md" formControlName="promptpay" style="width: 80%; border-radius: 25px;">
-                             <div *ngIf="promptpay.invalid && (promptpay.dirty || promptpay.touched)" class="text-invalid">
+                             <div *ngIf="promptpay.invalid && (promptpay.dirty || promptpay.touched)" class="text-invalid text-center">
                                  <div *ngIf="promptpay.errors.required">
                                    กรุณากรอกเบอร์โทร
                                  </div>
@@ -66,7 +66,7 @@
                               <div class="col-6">
                                 <label class=" control-label">เวลาเปิด</label>
                             <input type="time" class="form-control input-md" formControlName="timeO" style="width: 90%; border-radius: 25px;">
-                            <div *ngIf="timeO.invalid && (timeO.dirty || timeO.touched)" class="text-invalid">
+                            <div *ngIf="timeO.invalid && (timeO.dirty || timeO.touched)" class="text-invalid text-center">
                               <div *ngIf="timeO.errors.required" >
                                   กรุณาเลือกเวลาเปิด
                               </div>
@@ -75,7 +75,7 @@
                               <div class="col-6">
                                 <label class=" control-label">เวลาปิด</label>
                             <input type="time" class="form-control input-md" formControlName="timeC" style="width: 80%; border-radius: 25px;">
-                            <div *ngIf="timeC.invalid && (timeC.dirty || timeC.touched)" class="text-invalid">
+                            <div *ngIf="timeC.invalid && (timeC.dirty || timeC.touched)" class="text-invalid text-center">
                               <div *ngIf="timeC.errors.required">
                                   กรุณาเลือกเวลาปิด
                               </div>
@@ -90,7 +90,7 @@
                         
                               <label class=" control-label">คำอธิบายร้าน</label>
                                 <input type="text" class="form-control input-md" formControlName="description" style="width: 80%; border-radius: 25px;">
-                                <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-invalid">
+                                <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-invalid text-center">
                                     <div *ngIf="description.errors.required">
                                         กรุณากรอกคำอธิบายร้าน
                                     </div>
@@ -105,7 +105,7 @@
 
                          <label class=" control-label">ที่อยู่ร้าน</label>
                          <input type="text" class="form-control input-md" formControlName="address" style="width: 80%; border-radius: 25px;">
-                         <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-invalid">
+                         <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-invalid text-center">
                              <div *ngIf="address.errors.required">
                                  กรุณากรอกที่อยู่
                              </div>
@@ -113,7 +113,7 @@
                           
                           <label class=" control-label">ตำบล</label>
                           <input type="text" class="form-control input-md" formControlName="tumbon" style="width: 80%; border-radius: 25px;">
-                          <div *ngIf="tumbon.invalid && (tumbon.dirty || tumbon.touched)" class="text-invalid">
+                          <div *ngIf="tumbon.invalid && (tumbon.dirty || tumbon.touched)" class="text-invalid text-center">
                             <div *ngIf="tumbon.errors.required">
                                 กรุณากรอกตำบล
                             </div>
@@ -121,7 +121,7 @@
 
                           <label class="control-label">อำเภอ</label>
                           <input type="text" class="form-control input-md" formControlName="amphoe" style="width: 80%; border-radius: 25px;">
-                          <div *ngIf="amphoe.invalid && (amphoe.dirty || amphoe.touched)" class="text-invalid">
+                          <div *ngIf="amphoe.invalid && (amphoe.dirty || amphoe.touched)" class="text-invalid text-center">
                             <div *ngIf="amphoe.errors.required">
                                 กรุณากรอกอำเภอ
                             </div>
@@ -129,7 +129,7 @@
 
                          <label class=" control-label">จังหวัด</label>
                           <input type="text" class="form-control input-md" formControlName="province" style="width: 80%; border-radius: 25px;">
-                          <div *ngIf="province.invalid && (province.dirty || province.touched)" class="text-invalid">
+                          <div *ngIf="province.invalid && (province.dirty || province.touched)" class="text-invalid text-center">
                             <div *ngIf="province.errors.required">
                                 กรุณากรอกจังหวัด
                             </div>
@@ -137,7 +137,7 @@
 
                          <label class="control-label">ไปรษณีย์</label>
                           <input type="text" class="form-control input-md" formControlName="post" style="width: 80%; border-radius: 25px;">
-                          <div *ngIf="post.invalid && (post.dirty || post.touched)" class="text-invalid">
+                          <div *ngIf="post.invalid && (post.dirty || post.touched)" class="text-invalid text-center">
                             <div *ngIf="post.errors.required">
                                 กรุณากรอกรหัสไปรษณีย์
                             </div>

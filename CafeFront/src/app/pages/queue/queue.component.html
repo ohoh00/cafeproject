@@ -1,0 +1,46 @@
+<app-menu></app-menu>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            <br/>
+            <div class="col text-center">
+              <div class="mitfFont fontre">คิวออเดอร์</div>
+            </div>
+            <br/>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+                <table class="table table-bordered table-striped mb-0" style="background-color: white;">
+                  <thead class="thead-dark mitfFontlight" style="text-align: center;">
+                    <tr>
+                      <th scope="col">ออร์เดอร์</th>
+                      <th scope="col">เบอร์สมาชิก</th>
+                      <th scope="col">วันที่จ่าย</th>
+                      <th scope="col">การจ่าย</th>
+                      <th scope="col">จำนวนเมนู</th>
+                      <th scope="col">โปรโมชั่นที่ใช้</th>
+                      <th scope="col">ราคารวม</th>
+                      <th scope="col">เสร็จ</th>
+                    </tr>
+                  </thead>
+                  <tbody class="mitfFont" style="text-align: center;">
+                    <tr *ngFor="let item of OrderList; index as i">
+                        <td scope="row">{{i}}</td>
+                        <td>{{item.customerPhoneNumber}}</td>
+                        <td>{{item.paymentDate}}</td>
+                        <td>{{item.paymentMethod}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.promotion}}</td>
+                        <td>{{item.totalPrice}}</td>
+                        <td><a  (click)="UpdateDone(item._id)" class="btn btn-success" style="color: white;">Done</a></td>
+                    </tr>
+                </tbody>
+                </table>
+              </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+</div>
