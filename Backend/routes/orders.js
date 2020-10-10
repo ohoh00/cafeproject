@@ -1,5 +1,5 @@
 var expressFunction = require('express')
-
+var queues = 1
 const router = expressFunction.Router()
 const mongoose = require('mongoose')
 const auth = require('../Auth')
@@ -14,7 +14,8 @@ const orderSchema = schema({
     customerPhoneNumber:String,
     promotion:String,
     shop:String,
-    done: Boolean
+    done: Boolean,
+    queue: Number
 
 },{
     collection: 'orders'
@@ -91,7 +92,8 @@ function addOrder(orderDetails){
             customerPhoneNumber:orderDetails.customerPhoneNumber,
             promotion:orderDetails.promotion,
             shop:orderDetails.shop,
-            done:orderDetails.done
+            done:orderDetails.done,
+            queue: queues
 
         })
         new_user.save((err,data) => {
@@ -100,6 +102,7 @@ function addOrder(orderDetails){
             }
             else{
                 res({message: 'Add order successfully'})
+                queues+=1
             }
         })
     })
@@ -201,7 +204,6 @@ router.route('/addOrder').post(auth,(req,res) => {
             promotion:req.body.promotion,
             shop:req.body.shop,
             done: req.body.done
-
         }
         console.log(payload)
         addOrder(payload)

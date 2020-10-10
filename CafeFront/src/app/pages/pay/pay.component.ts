@@ -7,8 +7,6 @@ import {PromotionService} from '../../service/promotion.service'
 import {PaytypeService} from '../../service/paytype.service'
 import {LocalStorageService} from 'angular-web-storage'
 import { DomSanitizer } from '@angular/platform-browser';
-import { Qrcode } from '../../../../node_modules/qrcode'
-import { Promptpay } from '../../../../node_modules/promptpay-qr'
 @Component({
   selector: 'app-pay' ,
   templateUrl: './pay.component.html',
@@ -199,7 +197,6 @@ export class PayComponent implements OnInit  {
     this.os.updateOrder(payload).subscribe( data => {
     
      alert('Payment updated.')
-     this.reset()
      this.getOrders()
 
     },err => {
@@ -213,7 +210,6 @@ export class PayComponent implements OnInit  {
     console.log(changepoint)
     this.cs.updateCustomer(changepoint).subscribe( data => {
       
-      this.reset()
     },err => {
       console.log('Point is failed to update.\n Err:',err)
     })

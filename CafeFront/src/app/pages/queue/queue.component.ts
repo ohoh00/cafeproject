@@ -9,19 +9,19 @@ import {LocalStorageService} from 'angular-web-storage'
 })
 export class QueueComponent implements OnInit {
 
-
+  bills : 0
   OrderList: any[] = []
+  shopname : any
   shop: any
-  queue: []
   constructor(private os: OrderService,private ls : LocalStorageService) {
     this.shop = this.ls.get('shop').id
-
+    this.shopname = this.ls.get('shop').name
     this.os.getAllOrdersDone(this.shop,'false').subscribe( data => {
       data.forEach(element => {
          var item = {
            _id:element._id
           ,customerPhoneNumber:element.customerPhoneNumber
-          ,paymentDate:new Date(element.paymentDate).toUTCString()
+          ,paymentDate:new Date(element.paymentDate).toLocaleString()
           ,paymentMethod:element.paymentMethod
           ,quantity:element.quantity
           ,totalPrice:element.totalPrice
@@ -29,6 +29,7 @@ export class QueueComponent implements OnInit {
           ,menu:element.menu
           ,promotion:element.promotion
           ,done:element.done
+          ,queue:element.queue
         }
         this.OrderList.push(item)
         console.log(item)
@@ -36,6 +37,7 @@ export class QueueComponent implements OnInit {
      
 
     })
+    this.bills = 0
    }
 
   ngOnInit(): void {
@@ -55,5 +57,8 @@ export class QueueComponent implements OnInit {
         console.log(err);
     });
     location.reload();
+  }
+  bill(i){
+    this.bills = i
   }
 }

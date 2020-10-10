@@ -112,6 +112,45 @@ function login(email){
     })
     
 }
+function detectemail(email){
+    return new Promise((resolve, reject) => {
+      User.findOne({email:email},(err,data) => {
+          if(err){
+              reject(new Error('Cannot find username'))
+          }
+          else{
+            if(data){
+                resolve("cannot use")
+
+            }
+            else{
+                reject(new Error('Cannot find username'))
+            }
+          }
+      })
+    })
+    
+}
+router.route('/email').post(async (req,res) => {
+    const payload = {
+        email:req.body.email
+    }
+    console.log(payload)
+    try {
+        const result = await detectemail(payload.email)
+        console.log(result)
+
+        if(result){
+            res.status(200).json({status: 0})
+        }
+        else{
+            res.status(200).json({status: 1})
+        }
+    } catch (error) {
+        res.status(200).json({status: 1})
+        
+    }
+})
 async function compareHash(Text,myHash) {
     return new Promise((resolve, reject) => {
          bcr.compare(Text,myHash,(err,data) => {

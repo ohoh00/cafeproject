@@ -40,7 +40,6 @@ export class OwnerService {
 
         if(data){
           this.local.set('user',data,1,'w')
-          console.log('write ',this.local.get('user'))
           this.isLoggedin = true
         }
 
@@ -48,7 +47,19 @@ export class OwnerService {
       })
     )
   }
+  emailde(user){
+    var email = {ji:"apower"}
+    return this.http.post('http://localhost:3000/owner/email',email).pipe(
+      
+      map(data=>{
+        console.log("2")
+        console.log(data)
+      })
+      
+    )
+  }
   isLoggedIn(){
     return this.isLoggedin
   }
+
 }

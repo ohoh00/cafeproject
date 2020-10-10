@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
 import {OwnerService} from '../../service/owner.service'
 import { variable } from '@angular/compiler/src/output/output_ast';
@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   templateUrl: './regmem.component.html',
   styleUrls: ['./regmem.component.scss']
 })
-export class RegmemComponent implements OnInit {
-
+export class RegmemComponent implements OnInit , OnChanges {
+  used : any
   registerForm  = new FormGroup({
     email: new FormControl('',[Validators.email,Validators.required]),
     password: new FormControl('',[Validators.required]),
@@ -34,6 +34,8 @@ export class RegmemComponent implements OnInit {
 
 
   ngOnInit(): void {
+  }
+  ngOnChanges(){
   }
   onChangeImg(e:any){
     if(e.target.files.length > 0){
@@ -74,7 +76,46 @@ export class RegmemComponent implements OnInit {
       }
     )
   }
+  reallogin(emails){
+    var status = ""
+    var myHeaders = new Headers();
+    //myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlY2YzNTU3MDE0ZWM4NGVmY2M4NzhkNyIsInVzZXJuYW1lIjoiYjYwMTA3OTkiLCJwYXNzd29yZCI6IiQyYSQxMCQya0hSUmpmOU5Eby45Zm01QnA0VmIuSHJUd2FRczBNYnh3U2RpZjVaZmRXL1pHdy5YYmM4ZSIsImlhdCI6MTU5MDY0MDUxNywiZXhwIjoxNTkwNjQwNzY3fQ.PzOfHwCMNXmKjs4gfN1x_rlfCPEkUe4vW2YEdc6ufjA");
+    myHeaders.append("Content-Type", "application/json");
 
+    var raw = JSON.stringify({email:emails});
+
+    let requestOptions: RequestInit  = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/owner/email", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result)
+        var res = result.toString()
+        console.log(res) 
+        if(res.indexOf('0') > -1){
+          console.log("Found")
+          this.used = '0'
+        }
+        else{
+          console.log("not found")
+          this.used = '1'
+        }
+      
+      })
+      .catch(error => console.log('error', error));
+
+      return status
+  }
+  emaildetect(email){
+    this.reallogin(email)
+    console.log(this.used)
+    
+  }
 
     get email(){
       return this.registerForm.get('email');

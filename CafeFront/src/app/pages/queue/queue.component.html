@@ -14,7 +14,7 @@
                 <table class="table table-bordered table-striped mb-0" style="background-color: white;">
                   <thead class="thead-dark mitfFontlight" style="text-align: center;">
                     <tr>
-                      <th scope="col">ออร์เดอร์</th>
+                      <th scope="col">ออร์เดอร์ที่</th>
                       <th scope="col">เบอร์สมาชิก</th>
                       <th scope="col">วันที่จ่าย</th>
                       <th scope="col">การจ่าย</th>
@@ -22,11 +22,12 @@
                       <th scope="col">โปรโมชั่นที่ใช้</th>
                       <th scope="col">ราคารวม</th>
                       <th scope="col">เสร็จ</th>
+                      <th scope="col">ใบเสร็จ</th>
                     </tr>
                   </thead>
                   <tbody class="mitfFont" style="text-align: center;">
                     <tr *ngFor="let item of OrderList; index as i">
-                        <td scope="row">{{i}}</td>
+                        <td scope="row">{{item.queue}}</td>
                         <td>{{item.customerPhoneNumber}}</td>
                         <td>{{item.paymentDate}}</td>
                         <td>{{item.paymentMethod}}</td>
@@ -34,10 +35,98 @@
                         <td>{{item.promotion}}</td>
                         <td>{{item.totalPrice}}</td>
                         <td><a  (click)="UpdateDone(item._id)" class="btn btn-success" style="color: white;">Done</a></td>
+                        <td><button type="button" class="btn btn-primary" (click)="bill(i)" data-toggle="modal" data-target="#exampleModal">
+                          Bill
+                          
+                        </button></td>
+                        
                     </tr>
                 </tbody>
                 </table>
+                
               </div>
+              <div class="modal fade mitfFont" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <div class="text-center" id="exampleModalLabel">ใบเสร็จ</div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    
+                    <div class="modal-body">
+
+                      <div class="row">
+                        <br/>
+                        <div class="col text-center font30x">
+                          {{this.shopname}}
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col text-center font30x">
+                          คิวที่ {{this.OrderList[this.bills].queue}}
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col text-center font10x">
+                          # {{this.OrderList[this.bills]._id}}
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col text-center font10x">
+                           {{this.OrderList[this.bills].paymentDate}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col text-center font30x">
+                          .............................................................
+                        </div>
+                      </div>
+                        <div class="col text-center font10x" *ngFor="let item of OrderList[this.bills].menu; index as i" style="text-align: center;">
+                          <div class="row">
+                            <div class="col text-left">
+                              {{i+1}}. -- {{item.name}} ({{item.variation}})
+                            </div>
+                            <div class="col text-right">
+                              {{item.price}} บาท
+                            </div>
+                                
+                          </div>
+                        </div>
+                        <br/>
+                        <div class="col">
+                          <div class="row" style="text-align: center;">
+                            <div class="col text-left">
+                              
+                            </div>
+                            <div class="col text-center">
+                              Total
+                            </div>
+                            <div class="col text-right">
+                              {{this.OrderList[this.bills].totalPrice}} บาท
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col text-center font30x">
+                            .............................................................
+                          </div>
+                        </div>
+                        
+                    </div>
+
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div> 
         </div>
         <div class="col-1">
 

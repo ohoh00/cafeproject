@@ -37,6 +37,9 @@
             <div class="col-sm-4">
             <label class=" control-label">อีเมล</label>
             <input style="width: 80%; border-radius: 25px;" type="text" placeholder="example@mail.com" class="form-control input-md" formControlName = "email" >
+            <div *ngIf="this.used == '0'" class="text-invalid">
+              อีเมลนี้ถูกใช้ไปเเล้ว
+          </div>
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-invalid">
               <div *ngIf="email.errors.required">
                   กรุณากรอกEmail
@@ -46,8 +49,11 @@
               </div>
           </div>
             </div>
-            <div class="col-sm-6">
-
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-dark" style="margin-top: 6.5%;" (click)="emaildetect(this.registerForm.get('email').value)">เช็คอีเมล</button>
+            </div>
+            <div class="col-sm-2">
+              
             </div>
           </div>
           <div class="form-group">
