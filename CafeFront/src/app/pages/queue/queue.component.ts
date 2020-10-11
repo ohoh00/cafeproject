@@ -41,6 +41,20 @@ export class QueueComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.onLoading()
+  }
+  onLoading() {
+    try {
+      this.os.getAllOrdersDone(this.shop,'false').subscribe(
+        data => {
+          this.OrderList = data; 
+      },
+        err => {
+          console.log(err)
+        });
+    } catch (error) {
+        console.log(error)
+    }
   }
   UpdateDone(id){
     const donepass = {
@@ -51,12 +65,11 @@ export class QueueComponent implements OnInit {
     this.os.updateOrderDone(donepass).subscribe(
       data => {
    
-        alert('Order update done successfully');
+        this.onLoading()
       },
       err =>{
         console.log(err);
     });
-    location.reload();
   }
   bill(i){
     this.bills = i

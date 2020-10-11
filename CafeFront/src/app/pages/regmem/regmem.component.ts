@@ -1,4 +1,4 @@
-import { Component, OnInit ,OnChanges} from '@angular/core';
+import { Component, OnInit ,OnChanges,Input} from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
 import {OwnerService} from '../../service/owner.service'
 import { variable } from '@angular/compiler/src/output/output_ast';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegmemComponent implements OnInit , OnChanges {
   used : any
-  registerForm  = new FormGroup({
+  @Input() registerForm  = new FormGroup({
     email: new FormControl('',[Validators.email,Validators.required]),
     password: new FormControl('',[Validators.required]),
     imageProfile: new FormControl('../../../assets/regmem.png',[Validators.required]),
@@ -29,13 +29,18 @@ export class RegmemComponent implements OnInit , OnChanges {
 
   previewLoaded:boolean = false
   constructor(private os : OwnerService,private router : Router) {
-
+    this.used = '2'
    }
 
-
-  ngOnInit(): void {
+   ngOnChanges(): void{
+     console.log("sds")
   }
-  ngOnChanges(){
+  ngOnInit(): void {
+    
+  }
+  
+  test(){
+    console.log("Heloo")
   }
   onChangeImg(e:any){
     if(e.target.files.length > 0){
@@ -60,7 +65,6 @@ export class RegmemComponent implements OnInit , OnChanges {
 
   register(){
 
- 
     if(!this.registerForm.valid){
       return alert("Register form is invalid.")
     }
@@ -77,7 +81,6 @@ export class RegmemComponent implements OnInit , OnChanges {
     )
   }
   reallogin(emails){
-    var status = ""
     var myHeaders = new Headers();
     //myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlY2YzNTU3MDE0ZWM4NGVmY2M4NzhkNyIsInVzZXJuYW1lIjoiYjYwMTA3OTkiLCJwYXNzd29yZCI6IiQyYSQxMCQya0hSUmpmOU5Eby45Zm01QnA0VmIuSHJUd2FRczBNYnh3U2RpZjVaZmRXL1pHdy5YYmM4ZSIsImlhdCI6MTU5MDY0MDUxNywiZXhwIjoxNTkwNjQwNzY3fQ.PzOfHwCMNXmKjs4gfN1x_rlfCPEkUe4vW2YEdc6ufjA");
     myHeaders.append("Content-Type", "application/json");
@@ -99,6 +102,7 @@ export class RegmemComponent implements OnInit , OnChanges {
         console.log(res) 
         if(res.indexOf('0') > -1){
           console.log("Found")
+          this.registerForm.get('email').setValue(null)
           this.used = '0'
         }
         else{
@@ -108,13 +112,10 @@ export class RegmemComponent implements OnInit , OnChanges {
       
       })
       .catch(error => console.log('error', error));
-
-      return status
   }
   emaildetect(email){
     this.reallogin(email)
     console.log(this.used)
-    
   }
 
     get email(){

@@ -36,10 +36,10 @@
             </div>
             <div class="col-sm-4">
             <label class=" control-label">อีเมล</label>
-            <input style="width: 80%; border-radius: 25px;" type="text" placeholder="example@mail.com" class="form-control input-md" formControlName = "email" >
+            <input style="width: 80%; border-radius: 25px;" (change) = "emaildetect(this.registerForm.get('email').value)" type="text" placeholder="example@mail.com" class="form-control input-md" formControlName = "email" >
             <div *ngIf="this.used == '0'" class="text-invalid">
-              อีเมลนี้ถูกใช้ไปเเล้ว
-          </div>
+              ลองใช้อีเมลอื่นดู
+            </div>
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-invalid">
               <div *ngIf="email.errors.required">
                   กรุณากรอกEmail
@@ -50,7 +50,7 @@
           </div>
             </div>
             <div class="col-sm-4">
-              <button type="button" class="btn btn-dark" style="margin-top: 6.5%;" (click)="emaildetect(this.registerForm.get('email').value)">เช็คอีเมล</button>
+
             </div>
             <div class="col-sm-2">
               
@@ -241,7 +241,11 @@
               <a class="underlineHover titleBack mitfFont " routerLink="/login" href="#">ย้อนกลับ</a><br/>
             </div>
             <div class="col-sm-4">
-              <button class="btn btn-primary btn-rounded-corners mitfFont"  style="width: 50%;" (click)="register()" > สมัคร </button>
+                  
+                <div *ngIf="this.used == '1'">
+                  <button class="btn btn-primary btn-rounded-corners mitfFont"  style="width: 50%;" (click)="register()">สมัคร</button>
+                </div>
+                
             </div>
             <div class="col-sm-2">
               
