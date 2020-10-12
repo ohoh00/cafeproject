@@ -67,12 +67,17 @@ export class OrderService {
   }
   getAllOrdersDone(shop,done='false'){
     const headers = {'authorization': this.ls.get('user').token}
+    var orders = []
     return this.http.get<any>(`${this.URL}/orders/getOrderDone/${shop}/${done}`,{headers}).pipe(
       map(data => {
         if(data){
-          this.order = data
-         
+          data.forEach(element => {
+            element.paymentDate = new Date(element.paymentDate).toLocaleString()
+            orders.push(element)
+          });
         }
+        this.order = orders
+        console.log(this.order)
         return this.order
       })
     )

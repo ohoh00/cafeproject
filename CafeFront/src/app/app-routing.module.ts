@@ -17,7 +17,7 @@ import { OrderComponent } from './pages/order/order.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component'
 import {AuthGuardService} from './service/auth-guard.service';
 import { PromotionComponent } from './pages/promotion/promotion.component';
-import { QueueComponent } from './pages/queue/queue.component'
+import { QueueComponent } from './pages/queue/queue.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},

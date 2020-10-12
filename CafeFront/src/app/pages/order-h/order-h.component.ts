@@ -22,7 +22,7 @@ export class OrderHComponent implements OnInit {
       data.forEach(element => {
          var item = {
           customerPhoneNumber:element.customerPhoneNumber
-          ,paymentDate:new Date(element.paymentDate).toLocaleString()
+          ,paymentDate:element.paymentDate
           ,paymentMethod:element.paymentMethod
           ,quantity:element.quantity
           ,totalPrice:element.totalPrice

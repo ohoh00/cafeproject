@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../service/order.service'
-import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {LocalStorageService} from 'angular-web-storage'
 @Component({
   selector: 'app-queue',
@@ -9,7 +8,7 @@ import {LocalStorageService} from 'angular-web-storage'
 })
 export class QueueComponent implements OnInit {
 
-  bills : 0
+  bills : any
   OrderList: any[] = []
   shopname : any
   shop: any
@@ -21,7 +20,7 @@ export class QueueComponent implements OnInit {
          var item = {
            _id:element._id
           ,customerPhoneNumber:element.customerPhoneNumber
-          ,paymentDate:new Date(element.paymentDate).toLocaleString()
+          ,paymentDate:element.paymentDate
           ,paymentMethod:element.paymentMethod
           ,quantity:element.quantity
           ,totalPrice:element.totalPrice
@@ -55,8 +54,10 @@ export class QueueComponent implements OnInit {
     } catch (error) {
         console.log(error)
     }
+    this.bills = 0
   }
   UpdateDone(id){
+    console.log(id)
     const donepass = {
       id:id,
       done:true
@@ -71,7 +72,9 @@ export class QueueComponent implements OnInit {
         console.log(err);
     });
   }
-  bill(i){
-    this.bills = i
+  bill(x){
+    this.bills = x
+    console.log(x)
+    console.log(this.bills)
   }
 }

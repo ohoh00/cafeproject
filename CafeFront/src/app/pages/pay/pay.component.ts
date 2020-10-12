@@ -40,7 +40,7 @@ export class PayComponent implements OnInit  {
     id:new FormControl('',[Validators.required]),
     paymentMethod : new FormControl('',[Validators.required]),
     customerPhoneNumber: new FormControl('',[Validators.pattern('[0-9]{10}')]),
-    promotion: new FormControl('ไม่ได้ใช้โปรโมชั่น',[])
+    promotion: new FormControl('ไม่ใช้โปรโมชั่น',[])
   })
   
   constructor(private os: OrderService,private cs: CustomerService,private ls : LocalStorageService,private pr : PromotionService,private sanitizer: DomSanitizer,private py: PaytypeService,private router : Router) {
@@ -63,15 +63,16 @@ export class PayComponent implements OnInit  {
     })
     this.py.getPaytype().subscribe( data => {
       this.paytypeList = data
+      this.orderForm.get('paymentMethod').setValue(this.paytypeList[0].paytype)
       console.log(this.paytypeList)
       
     })
-
+    
   }
 
   ngOnInit(): void {
     this.orderForm.get('id').setValue(this.OrderList[0]._id)
-    
+    this.selectPaytype(0)
   }
   getPaytype(){
     this.py.getPaytype().subscribe( data => {
@@ -87,7 +88,6 @@ export class PayComponent implements OnInit  {
     qrtel = qrtel + this.promptpay.substr(0, 3) + "-"
     qrtel = qrtel + this.promptpay.substr(3, 3) + "-"
     qrtel = qrtel + this.promptpay.substr(6, 4) 
-    this.customerPoint = 0
     this.cs.getCustomerTel(this.shop,this.orderForm.get('customerPhoneNumber').value).subscribe( data => {
       this.customer = data[0]
       console.log(this.customer)
@@ -156,16 +156,15 @@ export class PayComponent implements OnInit  {
     console.log(this.orderForm.get('promotion').value)
     console.log(x)
   }
-  selectPaytype(x){
-    this.orderForm.get('paymentMethod').setValue(this.paytypeList[x].paytype)
+  selectPaytype(s){
+    this.orderForm.get('paymentMethod').setValue(this.paytypeList[s].paytype)
     console.log(this.orderForm.get('paymentMethod').value)
-    console.log(x)
+    console.log(s)
   }
   resetPromotion(){
-    this.promotionName = "ไม่ใช้โปรโมชั่น"
+    this.orderForm.get('promotion').setValue("ไม่ใช้โปรโมชั่น")
     this.promotionPoint = 0
-    console.log(this.promotionName)
-    console.log(this.promotionPoint)
+    this.promotionDiscount = 0
   }
   
   onChange(value){
@@ -209,7 +208,7 @@ export class PayComponent implements OnInit  {
 
     const changepoint = {
       id:this.customerId,
-      point: this.customerPoint-this.promotionPoint+this.OrderSelect.length
+      point: (this.customerPoint-this.promotionPoint)+this.OrderSelect.length
     }
     console.log(changepoint)
     this.cs.updateCustomer(changepoint).subscribe( data => {
@@ -224,21 +223,24 @@ export class PayComponent implements OnInit  {
     this.os.getAllOrders(this.shop).subscribe( data => {
       this.OrderList = data
       console.log(this.OrderList)
-      if(this.OrderList.length==0){
+      if(this.OrderList.length==0||this.OrderList==null){
         this.router.navigate(['/queue'])
       }
       this.OrderSelect = this.OrderList[0].menu
       this.Sum = this.OrderList[0].totalPrice
       this.orderForm.get('id').setValue(this.OrderList[0]._id)
     })
+    this.orderForm.get('paymentMethod').setValue(this.paytypeList[0].paytype)
     this.onChange(0)
     this.resetPromotion()
-    this.selectPromotion(0)
     console.log(this.OrderList)
     
   }
   reset(){
     this.orderForm.reset()
+    this.orderForm.get('promotion').setValue("ไม่ใช้โปรโมชั่น")
+    this.promotionPoint = 0
+    this.promotionDiscount = 0
     this.OrderList = null
   }
 
