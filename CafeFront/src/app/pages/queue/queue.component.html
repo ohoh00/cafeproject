@@ -1,20 +1,23 @@
 
 <app-menu></app-menu>
 
-<div class="container-fluid">
-  
+<div class="container-fluid" >
+  <br/>
+  <div class="col text-center" *ngIf="OrderList.length==0">
+    <div class="mitfFont fontre">ไม่มีคิวออเดอร์</div>
+  </div>
     <div class="row">
         <div class="col-1">
-
+          
         </div>
-        <div class="col-10">
-            <br/>
+        <div class="col-10" *ngIf="OrderList.length!=0">
+          <br/>
             <div class="col text-center">
               <div class="mitfFont fontre">คิวออเดอร์</div>
             </div>
             <br/>
             <div class="table-wrapper-scroll-y my-custom-scrollbar" >
-                <table class="table table-bordered table-striped mb-0" style="background-color: white;">
+                <table class="table table-bordered table-striped mb-0"  style="background-color: white;">
                   <thead class="thead-dark mitfFontlight" style="text-align: center;">
                     <tr>
                       <th scope="col">ออร์เดอร์ที่</th>

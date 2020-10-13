@@ -8,7 +8,7 @@ import {LocalStorageService} from 'angular-web-storage'
 })
 export class QueueComponent implements OnInit {
 
-  bills : any
+  bills : number = 0
   OrderList: any[] = []
   shopname : any
   shop: any
@@ -18,6 +18,7 @@ export class QueueComponent implements OnInit {
     this.shopname = this.ls.get('shop').name
     console.log("1")
     this.os.getAllOrdersDone(this.shop,'false').subscribe( data => {
+      
       data.forEach(element => {
          var item = {
            _id:element._id
