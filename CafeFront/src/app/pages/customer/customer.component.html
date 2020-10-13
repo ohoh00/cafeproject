@@ -11,94 +11,7 @@
               <div class="mitfFont fontre">สมาชิก</div>
             </div>
             <br/>
-            <div class="text-center">
-              <button type="button" class="btn btn-primary btn-lg btn-rounded-corners" data-toggle="modal" data-target="#exampleModal">
-                <div class="mitfFont" style="margin-left: 20px;">
-                  สมัคร
-                  <i class="fa fa-plus-circle" style="color: white; margin-right: 10px;"></i>
-                </div></button>
-            </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title mitfFontHev" id="exampleModalLabel">สมัครสมาชิก</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-        
-                <!-- modal -->
-                  <div class="modal-body mitfFont">
-
-                    <form [formGroup]="customerForm">
-
-                      
-                        <label for="recipient-name" class="col-form-label">ชื่อ-นามสกุล:</label>
-                          <div class="form-group">
-                           <input type="text" class="form-control" formControlName='name'>
-                           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-invalid">
-                            <div *ngIf="name.errors.required">
-                                กรุณากรอกชื่อ
-                            </div>
-                         </div>
-                          </div>
-                   
-                      
-                        <label for="message-text" class="col-form-label">วันเกิด:</label>
-                          <div class="form-group">
-                           <input type="date" class="form-control" formControlName='birth'>
-                           <div *ngIf="birth.invalid && (birth.dirty || birth.touched)" class="text-invalid">
-                            <div *ngIf="birth.errors.required">
-                                กรุณาเลือกวันเกิด
-                            </div>
-                         </div>
-                          </div>
-                      
-
-                  
-                        <label for="message-text" class="col-form-label">เบอร์โทร:</label>
-                          <div class="form-group">
-                           <input type="text" class="form-control" formControlName='phoneNumber'>
-                           <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-invalid">
-                            <div *ngIf="phoneNumber.errors.required">
-                                กรุณากรอกเบอร์โทร
-                            </div>
-                            <div *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">
-                                กรุณากรอกรูปแบบเบอร์โทร
-                          </div>
-                         </div>
-                          </div>
-              
-
-                      
-                          <label for="message-text" class="col-form-label">อีเมล:</label>
-                          <div class="form-group">
-                            <input type="email" class="form-control" formControlName='email'>
-                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-invalid">
-                              <div *ngIf="email.errors.required">
-                                  กรุณากรอกEmail
-                              </div>
-                              <div *ngIf="email.errors.email">
-                                  กรุณากรอกรูปแบบEmail
-                              </div>
-                          </div>
-                          </div>
-                     
-                      
-                    </form>
-                  </div>
-        
-                  <div class="modal-footer mitfFont">
-                      <button type="button" class="btn btn-primary" (click)="addCustomer()" data-dismiss="modal">บันทึก</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                      
-                 
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <br/>
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
               <table class="table table-bordered table-striped mb-0" style="background-color: white;">
@@ -106,22 +19,18 @@
                   <tr>
                     <th scope="col">ลำดับ</th>
                     <th scope="col">ชื่อ-นามสกุล</th>
-                    <th scope="col">วันเกิด</th>
                     <th scope="col">อีเมล</th>
                     <th scope="col">เบอร์โทร</th>
                     <th scope="col">แต้มสะสม</th>
-                    <th scope="col">ลบ</th>
                   </tr>
                 </thead>
                 <tbody class="mitfFont" style="text-align: center;">
                   <tr *ngFor="let item of customers; index as i">
                     <td scope="row">{{i+1}}</td>
                     <td>{{item.name}}</td>
-                    <td>{{datetoString(item.birth)}}</td>
                     <td>{{item.email}}</td>
-                    <td>{{item.phoneNumber}}</td>
+                    <td>{{item.phone}}</td>
                     <td>{{item.point}}</td>
-                    <td><button class="button button3" style="border-radius: 100px; font-weight: bolder;" (click)="deleteitem(item._id)">X</button></td>
                   </tr>
                 </tbody>
               </table>

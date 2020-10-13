@@ -15,7 +15,7 @@ const orderSchema = schema({
     promotion:String,
     shop:String,
     done: Boolean,
-    queue: Number
+    queue: String
 
 },{
     collection: 'orders'
@@ -92,8 +92,7 @@ function addOrder(orderDetails){
             customerPhoneNumber:orderDetails.customerPhoneNumber,
             promotion:orderDetails.promotion,
             shop:orderDetails.shop,
-            done:orderDetails.done,
-            queue: queues
+            done:orderDetails.done
 
         })
         new_user.save((err,data) => {
@@ -102,7 +101,6 @@ function addOrder(orderDetails){
             }
             else{
                 res({message: 'Add order successfully'})
-                queues+=1
             }
         })
     })
@@ -165,7 +163,8 @@ router.route('/updateOrder').put(auth,(req,res) => {
         customerPhoneNumber:req.body.customerPhoneNumber,
         promotion:req.body.promotion,
         totalPrice: req.body.totalPrice,
-        done: req.body.done
+        done: req.body.done,
+        queue: req.body.queue
     }
     console.log(payload)
     Orders.updateOne({_id:req.body.id},payload,(err,data) => {

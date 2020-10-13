@@ -18,13 +18,13 @@
           
           <div class="card" style="width: 10vw; height: 15vw; margin-left: 1vw; margin-bottom: 1vw;" *ngFor="let item of menu; index as i" >
             <a (click)="addMenu({name:item.name,id:item._id,type:item.type,price:item.price,variation:item.variation})">  
-              <img [src]="item.img" class="image" style="width: 10vw; height: 10vw;" alt="Avatar">
+              <img [src]="item.img" class="image" style="width: 10vw; height: 10vw;" alt="Card image">
             </a>
            
             <div class="card-body mitfFont" style="font-size: 1vw;">
               {{item.name}} ({{item.variation}})
             </div>
-        </div> 
+  </div> 
         </div>  
       </div>
       <div class="col-3">

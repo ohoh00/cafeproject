@@ -13,8 +13,10 @@ export class QueueComponent implements OnInit {
   shopname : any
   shop: any
   constructor(private os: OrderService,private ls : LocalStorageService) {
+    this.bills = 0
     this.shop = this.ls.get('shop').id
     this.shopname = this.ls.get('shop').name
+    console.log("1")
     this.os.getAllOrdersDone(this.shop,'false').subscribe( data => {
       data.forEach(element => {
          var item = {
@@ -36,13 +38,16 @@ export class QueueComponent implements OnInit {
      
 
     })
+    console.log("2")
     this.bills = 0
    }
 
   ngOnInit(): void {
+    console.log("3")
     this.onLoading()
   }
   onLoading() {
+    console.log("4")
     try {
       this.os.getAllOrdersDone(this.shop,'false').subscribe(
         data => {
@@ -57,6 +62,7 @@ export class QueueComponent implements OnInit {
     this.bills = 0
   }
   UpdateDone(id){
+    console.log("5")
     console.log(id)
     const donepass = {
       id:id,
@@ -73,6 +79,7 @@ export class QueueComponent implements OnInit {
     });
   }
   bill(x){
+    console.log("6")
     this.bills = x
     console.log(x)
     console.log(this.bills)

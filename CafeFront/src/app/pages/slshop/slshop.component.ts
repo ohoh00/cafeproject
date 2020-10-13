@@ -38,7 +38,7 @@ export class SlshopComponent implements OnInit {
     console.log(data)
     
     this.local.set('shop',data,1,'w')
-
+    this.local.set('queue',{queue:"1"},1,'w')
   }
 
   onLoading() {
