@@ -1,10 +1,14 @@
 <app-menu></app-menu>
 <div class="container-fluid">
+  <br/>
+  <div class="col text-center" *ngIf="OrderList.length==0">
+    <div class="mitfFont fontre">ไม่มีออเดอร์</div>
+  </div>
   <div class="row">
     <div class="col-1">
 
     </div>
-    <div class="col-10">
+    <div class="col-10" *ngIf="OrderList.length!=0">
       <br/>
             <div class="col text-center">
               <div class="mitfFont fontre">ชำระเงิน</div>

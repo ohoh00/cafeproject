@@ -90,6 +90,7 @@ export class OrderService {
           this.order = data
 
         }
+        console.log(data)
         return this.order
       })
     )

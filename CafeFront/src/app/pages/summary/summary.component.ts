@@ -27,29 +27,32 @@ export class SummaryComponent implements OnInit {
 
   constructor(private os : OrderService,private ms : MenuService,private ls : LocalStorageService) {
     this.getOrders()
-    this.ms.getMenuShop(this.ls.get('shop').id).subscribe( data => {
-        data.forEach(item => {
-          this.menuList.push(item.name)
-        });
-    
-        this.menuList.forEach(item => {
-          this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
-            
-            
-            this.menuNumber.push(data.data)
-          
-            this.color.push(this.getRandomColor())
-            this.rederChart(this.menuNumber,this.color)
-          })
-        });
-       
-    })
+    this.getmenu()
    
    }
 
   ngOnInit(): void {
     console.log(this.menuNumber)
    
+  }
+   getmenu(){
+     this.ms.getMenuShop(this.ls.get('shop').id).subscribe( data => {
+      data.forEach(item => {
+        this.menuList.push(item.name)
+      });
+  
+      this.menuList.forEach( item => {
+         this.os.getMenuFromOrders(this.ls.get('shop').id,item).subscribe( data => {
+          
+          
+          this.menuNumber.push(data.data)
+        
+          this.color.push(this.getRandomColor())
+          this.rederChart(this.menuNumber,this.color)
+        })
+      });
+     
+  })
   }
   getOrders(){
     var price = 0
@@ -68,12 +71,13 @@ export class SummaryComponent implements OnInit {
   }
   rederChart(data,color){
     console.log(data)
-    this.typeChart = 'bar';   
+    this.typeChart = 'pie';   
+    console.log(this.menuList)
     this.dataChart = {
       labels:this.menuList,
       datasets: [
         {
-          label: "สรุปรายจ่าย",
+          label: "สรุปยอด",
           data: data,
           backgroundColor: color
         }
@@ -86,7 +90,7 @@ export class SummaryComponent implements OnInit {
     };
   }
   getRandomColor() {
-    var letters = '34567'.split('');
+    var letters = '345'.split('');
                 var color = '#';
                 for (var i = 0; i < 6; i++ ) {
                     color += letters[Math.floor(Math.random() * letters.length)];

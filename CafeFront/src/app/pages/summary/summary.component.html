@@ -9,7 +9,11 @@
             <div class="col text-center">
                 <div class="mitfFont fontre">สรุปยอด</div>
             </div>
+            <div class="row mitfFont font30x ">
+                <div class="col text-center">ยอดรวม : {{this.totalPrice}} บาท ออเดอร์ : {{this.orders}} ออเดอร์</div>
+            </div>
             <chart  [type]="typeChart" [data]="dataChart" [options]="optionsChart"></chart>
+            
         </div>
         <div class="col-1">
 

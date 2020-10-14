@@ -93,6 +93,7 @@
                           .............................................................
                         </div>
                       </div>
+                      <br/>
                         <div class="col text-center font10x" *ngFor="let item of OrderList[this.bills].menu; index as i" style="text-align: center;">
                           <div class="row">
                             <div class="col text-left">
@@ -105,13 +106,16 @@
                           </div>
                         </div>
                         <br/>
+                        <div class="row">
+                          <div class="col text-center font30x">
+                            .............................................................
+                          </div>
+                        </div>
+                        <br/>
                         <div class="col">
                           <div class="row" style="text-align: center;">
                             <div class="col text-left">
-                              
-                            </div>
-                            <div class="col text-center">
-                              Total
+                              Total(ราคารวมส่วนลด)
                             </div>
                             <div class="col text-right">
                               {{this.OrderList[this.bills].totalPrice}} บาท

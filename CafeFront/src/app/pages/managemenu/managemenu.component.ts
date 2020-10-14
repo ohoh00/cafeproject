@@ -25,7 +25,7 @@ export class ManagemenuComponent implements OnInit {
   typeList: any
   updateForm = new FormGroup({
     id: new FormControl('', [Validators.required]),
-    price: new FormControl(0, [Validators.required]),
+    price: new FormControl('', [Validators.required,Validators.min(1)]),
   });
 
   menus:any
@@ -164,6 +164,10 @@ export class ManagemenuComponent implements OnInit {
 
   get price(){
     return this.manageForm.get('price');
+  }
+
+  get price2(){
+    return this.updateForm.get('price');
   }
 
   selectVariation(x){

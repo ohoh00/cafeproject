@@ -62,7 +62,7 @@
                         </select>
                         <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-invalid">
                           <div *ngIf="type.errors.required">
-                              กรุณาเลือกประเภท
+                              กรุณาเลือกหมวดหมู่
                           </div>
                       </div>
                       </div>
@@ -129,6 +129,14 @@
                       <div class="form-group">
                           <label for="message-text" class="col-form-label">ราคา:</label>
                           <input type="number" class="form-control" formControlName="price">
+                          <div *ngIf="price2.invalid && (price2.dirty || price2.touched)" class="text-invalid">
+                            <div *ngIf="price2.errors.required">
+                                กรุณากรอกราคา
+                            </div>
+                            <div *ngIf="price2.errors.min">
+                              กรุณากรอกราคาให้ถูกต้อง
+                          </div>
+                        </div>
                       </div>
                     </form>
                   </div>
