@@ -13,8 +13,8 @@ export class EmployeeComponent implements OnInit {
   employees:any
   shop: String
   employeeForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    position: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required,Validators.maxLength(100)]),
+    position: new FormControl('', [Validators.required,Validators.maxLength(100)]),
     phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]{10}')]),
     email: new FormControl('', [Validators.required,Validators.email]),
     shop: new FormControl('', [Validators.required])

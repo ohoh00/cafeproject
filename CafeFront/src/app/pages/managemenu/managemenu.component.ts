@@ -14,7 +14,7 @@ export class ManagemenuComponent implements OnInit {
 
   shop: String
   manageForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required,Validators.maxLength(100)]),
     type: new FormControl('', [Validators.required]),
     variation: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required,Validators.min(1)]),

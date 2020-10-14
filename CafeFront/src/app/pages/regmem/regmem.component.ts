@@ -11,15 +11,15 @@ import { Router } from '@angular/router';
 export class RegmemComponent implements OnInit , OnChanges {
   used : any
   @Input() registerForm  = new FormGroup({
-    email: new FormControl('',[Validators.email,Validators.required]),
-    password: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.email,Validators.required,Validators.maxLength(100)]),
+    password: new FormControl('',[Validators.required,Validators.maxLength(100)]),
     imageProfile: new FormControl('../../../assets/regmem.png',[Validators.required]),
-    name:new FormControl('',[Validators.required]),
+    name:new FormControl('',[Validators.required,Validators.maxLength(100)]),
     phoneNumber: new FormControl('',[Validators.minLength(10),Validators.maxLength(10),Validators.required,Validators.pattern('[0-9]{10}')]),
-    address: new FormControl('',[Validators.required]),//"123"
-    tumbon: new FormControl('',[Validators.required]),
-    amphoe: new FormControl('',[Validators.required]),
-    province: new FormControl('',[Validators.required]),
+    address: new FormControl('',[Validators.required,Validators.maxLength(100)]),//"123"
+    tumbon: new FormControl('',[Validators.required,Validators.maxLength(100)]),
+    amphoe: new FormControl('',[Validators.required,Validators.maxLength(100)]),
+    province: new FormControl('',[Validators.required,Validators.maxLength(100)]),
     post: new FormControl('',[Validators.required,Validators.maxLength(5),Validators.minLength(5),Validators.pattern('[0-9]{5}')]),
     personalId:new FormControl('',[Validators.required,Validators.maxLength(13),Validators.minLength(13),Validators.pattern('[0-9]{13}')])
   })

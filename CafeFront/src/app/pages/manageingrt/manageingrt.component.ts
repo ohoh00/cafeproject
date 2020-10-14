@@ -13,7 +13,7 @@ export class ManageingrtComponent implements OnInit {
   statusList: any
   shop: String
   manageinForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required,Validators.maxLength(100)]),
     status: new FormControl('', [Validators.required]),
     shop: new FormControl('', [Validators.required])
   });

@@ -14,16 +14,16 @@ export class RegshopComponent implements OnInit {
   Open: String
   Close: String
   shopForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required,Validators.maxLength(100)]),
     imageProfile: new FormControl('../../../assets/regshop.png', [Validators.required]),
     timeO: new FormControl('', [Validators.required]),
     timeC: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required,Validators.maxLength(200)]),
     phoneNumber: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]{10}')]),
-    address: new FormControl('', [Validators.required]),
-    tumbon: new FormControl('', [Validators.required]),
-    amphoe: new FormControl('', [Validators.required]),
-    province: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required,Validators.maxLength(100)]),
+    tumbon: new FormControl('', [Validators.required,Validators.maxLength(100)]),
+    amphoe: new FormControl('', [Validators.required,Validators.maxLength(100)]),
+    province: new FormControl('', [Validators.required,Validators.maxLength(100)]),
     post: new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5),Validators.pattern('[0-9]{5}')]),
     promptpay: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]{10}')]),
     owner: new FormControl('', [Validators.required]),
